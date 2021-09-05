@@ -1,0 +1,48 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  /* margin-top: 60px; */
+}
+
+/* 布局样式 */
+.n-layout-header,
+.n-layout-footer {
+  background: rgba(128, 128, 128, 0.2);
+  padding: 10px;
+}
+
+.n-layout-sider {
+  background: rgba(128, 128, 128, 0.3);
+}
+
+.n-layout-content {
+  background: rgba(128, 128, 128, 0.4);
+
+}
+/* 布局样式 */
+
+/* 响应式栅格 */
+/* .n-grid{
+  height: max-content;
+
+} */
+
+
+
+/* 轮播图 */
+.carousel-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+}
+
+/* 卡片 */
+.n-card {
+  max-width: 80%;
+  max-height: 95%;
+}
+
+
