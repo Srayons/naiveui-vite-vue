@@ -7,7 +7,7 @@
   /* margin-top: 60px; */
 }
 
-/* 布局样式 */
+/* 布局样式 start */
 .n-layout-header,
 .n-layout-footer {
   background: rgba(128, 128, 128, 0.2);
@@ -22,15 +22,7 @@
   background: rgba(128, 128, 128, 0.4);
 
 }
-/* 布局样式 */
-
-/* 响应式栅格 */
-/* .n-grid{
-  height: max-content;
-
-} */
-
-
+/* 布局样式 end*/
 
 /* 轮播图 */
 .carousel-img {

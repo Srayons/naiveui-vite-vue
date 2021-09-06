@@ -3,7 +3,7 @@
     <n-layout>
       <pub-header></pub-header>
       <n-layout-content content-style="padding: 24px;">
-        <n-grid cols="1 s:1 m:1 l:4 xl:6 2xl:6" responsive="screen">
+        <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
           <n-grid-item span="1" id="refLeft" ref="refLeft">
             <div class="light-green">1</div>
           </n-grid-item>
@@ -37,10 +37,8 @@
                   <n-skeleton text v-if="loading" :repeat="6" />
                   <template v-else>
                     不要忘了留姓名
-                    <br />电话和其他事情
-                    <br />不要说的太快免得我没写下你大名
-                    <br />或许你不再打来
-                    <br />我却等到头发白
+                    <br />电话和其他事情 <br />不要说的太快免得我没写下你大名
+                    <br />或许你不再打来 <br />我却等到头发白
                     <br />希望有一天你会打来
                   </template>
                 </n-card>
@@ -116,6 +114,26 @@ export default defineComponent({
         this.screenWidth = document.body.clientWidth;
         this.screenHeight = document.body.clientHeight;
         // console.log(this.screenWidth + "--" + this.screenHeight);
+        if (
+          ref(this.screenWidth).value > 1280 &&
+          ref(this.screenWidth).value < 1536
+        ) {
+          console.log("窗口变化----小于1536");
+          refLeft.value.$el.attributes.style.value = "display:none;";
+          refCenter = new Proxy({},{
+              set: function (target, prop, value, receiver) {
+                //....
+                console.log(target);
+                console.log(value);
+                console.log(prop);
+                //.....
+                return true; //proxy handler返回true
+              },
+          })
+          refCenter.value.span = "4";
+          console.log(refCenter.value);
+          // refRigth.value.$el.attributes.style.value = "display:none;";
+        }
         if (ref(this.screenWidth).value < 1280) {
           console.log("窗口变化----小于1280");
           refLeft.value.$el.attributes.style.value = "display:none;";
@@ -137,8 +155,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+/* 响应式栅格 start*/
+// .n-grid{
+//   height: max-content;
+// }
 .light-green {
-  height: calc(10px * v-bind(cardLenStyle));
+  // height: calc(10px * v-bind(cardLenStyle));
   /* height: max-content; */
   background-color: rgba(0, 128, 0, 0.12);
   display: flex;
@@ -156,5 +178,5 @@ export default defineComponent({
   align-items: center;
   justify-content: center;
 }
-/* 响应式栅格 */
+/* 响应式栅格 end*/
 </style>
