@@ -4,10 +4,10 @@
       <pub-header></pub-header>
       <n-layout-content content-style="padding: 24px;">
         <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
-          <n-grid-item span="1" id="refLeft" ref="refLeft">
+          <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
             <div class="light-green">1</div>
           </n-grid-item>
-          <n-grid-item span="3" id="refCenter" ref="refCenter">
+          <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
             <div class="green">
               <n-carousel autoplay trigger="hover" show-arrow>
                 <img
@@ -45,7 +45,7 @@
               </n-space>
             </div>
           </n-grid-item>
-          <n-grid-item span="2" id="refRigth" ref="refRigth">
+          <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
             <div class="light-green">3</div>
           </n-grid-item>
         </n-grid>
@@ -64,6 +64,10 @@ const refLeft = ref(null);
 const refCenter = ref(null);
 const refRigth = ref(null);
 
+const LeftSpan = ref("1");
+const CenterSpan = ref("3");
+const RigthSpan = ref("2");
+
 let cardLen = [];
 cardLen.length = 10;
 
@@ -77,16 +81,30 @@ export default defineComponent({
       cardLenStyle: cardLen.length,
       cardLen,
       colors: "red",
+      LeftSpan :"1",
+      CenterSpan : "3",
+      RigthSpan : "2",
     };
   },
   setup() {
     const loadingBar = useLoadingBar();
     onMounted(() => {
       console.log("onMounted---");
+      let clientWidth = ref(document.body.clientWidth).value;
       //更改属性
       // refCenter.value.$el.attributes.style.value="display:none;"
+      if (
+          ref(document.body.clientWidth).value > 1280 &&
+          ref(document.body.clientWidth).value < 1536
+        ) {
+          console.log("窗小于1536");
+          refLeft.value.$el.attributes.style.value = "display:none;";
+          CenterSpan.value = "4"
+          // refRigth.value.$el.attributes.style.value = "display:none;";
+        }
       if (ref(document.body.clientWidth).value < 1280) {
-        console.log("小于1280");
+        console.log("窗口小于1280");
+        CenterSpan.value = "3"
         refLeft.value.$el.attributes.style.value = "display:none;";
         refRigth.value.$el.attributes.style.value = "display:none;";
       }
@@ -100,6 +118,9 @@ export default defineComponent({
       refLeft,
       refCenter,
       refRigth,
+      LeftSpan,
+      CenterSpan,
+      RigthSpan,
     };
   },
   mounted() {
@@ -114,28 +135,22 @@ export default defineComponent({
         this.screenWidth = document.body.clientWidth;
         this.screenHeight = document.body.clientHeight;
         // console.log(this.screenWidth + "--" + this.screenHeight);
+        if (ref(this.screenWidth).value > 1536) {
+          console.log("窗口变化----大于1536");
+          CenterSpan.value = "3"
+        }
         if (
           ref(this.screenWidth).value > 1280 &&
           ref(this.screenWidth).value < 1536
         ) {
           console.log("窗口变化----小于1536");
           refLeft.value.$el.attributes.style.value = "display:none;";
-          refCenter = new Proxy({},{
-              set: function (target, prop, value, receiver) {
-                //....
-                console.log(target);
-                console.log(value);
-                console.log(prop);
-                //.....
-                return true; //proxy handler返回true
-              },
-          })
-          refCenter.value.span = "4";
-          console.log(refCenter.value);
+          CenterSpan.value = "4"
           // refRigth.value.$el.attributes.style.value = "display:none;";
         }
         if (ref(this.screenWidth).value < 1280) {
           console.log("窗口变化----小于1280");
+          CenterSpan.value = "3"
           refLeft.value.$el.attributes.style.value = "display:none;";
           refRigth.value.$el.attributes.style.value = "display:none;";
         }
