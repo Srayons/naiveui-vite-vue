@@ -29,12 +29,23 @@
               </n-carousel>
               <n-space vertical>
                 <n-switch @click="add" v-model:value="loading" />
-                <n-card v-for="c in cardLen">
-                  <template #header>
+                <n-card v-for="i in cardLen">
+                  <template #header :key="i">
                     <n-skeleton text v-if="loading" width="60%" />
                     <template v-else>I'm OK</template>
                   </template>
-                  <n-skeleton text v-if="loading" :repeat="6" />
+                  <n-skeleton
+                    text
+                    v-if="loading"
+                    :repeat="6"
+                    width="60%"
+                    style="position: relative; right: 15%"
+                  />
+                  <n-skeleton
+                    v-if="loading"
+                    width="10%"
+                    style="position: relative; left: 10%"
+                  />
                   <template v-else>
                     不要忘了留姓名
                     <br />电话和其他事情 <br />不要说的太快免得我没写下你大名
@@ -81,9 +92,9 @@ export default defineComponent({
       cardLenStyle: cardLen.length,
       cardLen,
       colors: "red",
-      LeftSpan :"1",
-      CenterSpan : "3",
-      RigthSpan : "2",
+      LeftSpan: "1",
+      CenterSpan: "3",
+      RigthSpan: "2",
     };
   },
   setup() {
@@ -94,17 +105,17 @@ export default defineComponent({
       //更改属性
       // refCenter.value.$el.attributes.style.value="display:none;"
       if (
-          ref(document.body.clientWidth).value > 1280 &&
-          ref(document.body.clientWidth).value < 1536
-        ) {
-          console.log("窗小于1536");
-          refLeft.value.$el.attributes.style.value = "display:none;";
-          CenterSpan.value = "4"
-          // refRigth.value.$el.attributes.style.value = "display:none;";
-        }
+        ref(document.body.clientWidth).value > 1280 &&
+        ref(document.body.clientWidth).value < 1536
+      ) {
+        console.log("窗小于1536");
+        refLeft.value.$el.attributes.style.value = "display:none;";
+        CenterSpan.value = "4";
+        // refRigth.value.$el.attributes.style.value = "display:none;";
+      }
       if (ref(document.body.clientWidth).value < 1280) {
         console.log("窗口小于1280");
-        CenterSpan.value = "3"
+        CenterSpan.value = "3";
         refLeft.value.$el.attributes.style.value = "display:none;";
         refRigth.value.$el.attributes.style.value = "display:none;";
       }
@@ -114,16 +125,18 @@ export default defineComponent({
       loading() {
         loadingBar.start();
       },
-      loading: ref(true),
-      refLeft,
-      refCenter,
-      refRigth,
-      LeftSpan,
-      CenterSpan,
-      RigthSpan,
+      loading: ref(true), //加载动画
+      refLeft, //ref左侧标识
+      refCenter, //ref中间侧标识
+      refRigth, //ref右侧标识
+      LeftSpan, //左侧Span
+      CenterSpan, //中间Span
+      RigthSpan, //右侧Span
     };
   },
   mounted() {
+    var str3 = str_md5("adc");
+    console.log(str3);
     this.setUI();
     // 获取当前浏览器宽高
     this.screenWidth = document.body.clientWidth;
@@ -137,7 +150,7 @@ export default defineComponent({
         // console.log(this.screenWidth + "--" + this.screenHeight);
         if (ref(this.screenWidth).value > 1536) {
           console.log("窗口变化----大于1536");
-          CenterSpan.value = "3"
+          CenterSpan.value = "3";
         }
         if (
           ref(this.screenWidth).value > 1280 &&
@@ -145,12 +158,12 @@ export default defineComponent({
         ) {
           console.log("窗口变化----小于1536");
           refLeft.value.$el.attributes.style.value = "display:none;";
-          CenterSpan.value = "4"
+          CenterSpan.value = "4";
           // refRigth.value.$el.attributes.style.value = "display:none;";
         }
         if (ref(this.screenWidth).value < 1280) {
           console.log("窗口变化----小于1280");
-          CenterSpan.value = "3"
+          CenterSpan.value = "3";
           refLeft.value.$el.attributes.style.value = "display:none;";
           refRigth.value.$el.attributes.style.value = "display:none;";
         }

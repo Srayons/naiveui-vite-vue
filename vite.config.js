@@ -5,7 +5,7 @@ export default function () {
         proxy: {
             '/api': {
                 target: 'http://localhost:3000',
-                changeOrigin: true,
+                changeOrigin: false,
             }
         },
         // 项目启动的根路径
@@ -25,11 +25,11 @@ export default function () {
             '/@/':  path.resolve(__dirname, './src')
         },
         // 端口
-        port: 3002,
+        port: 2123,
         // 是否自动开启浏览器
-        open: false,
+        open:  true,
         // 开启控制台输出日志
-        silent: false,
+        silent: true,
         // 哪个第三方的包需要重新编译
         optimizeDeps:[],
 
