@@ -5,10 +5,12 @@
       <n-layout-content content-style="padding: 24px;">
         <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
           <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
-            <div class="light-green">1</div>
+            <div >
+              <n-card v-for="k in 10" class="cardStyle"></n-card>
+            </div>
           </n-grid-item>
           <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
-            <div class="green">
+            <div >
               <n-carousel autoplay trigger="hover" show-arrow>
                 <img
                   class="carousel-img"
@@ -29,35 +31,35 @@
               </n-carousel>
               <n-space vertical>
                 <n-switch @click="add" v-model:value="loading" />
-                <n-card v-for="i in cardLen">
-                  <template #header :key="i">
+                <n-card v-for="i in cardLen" hoverable class="cardStyle">
+                  <template #header :key="i" class="header-Skeleton">
                     <n-skeleton text v-if="loading" width="60%" />
                     <template v-else>I'm OK</template>
                   </template>
                   <n-skeleton
+                    class="text-Skeleton"
                     text
                     v-if="loading"
                     :repeat="6"
-                    width="60%"
-                    style="position: relative; right: 15%"
                   />
-                  <n-skeleton
-                    v-if="loading"
-                    width="10%"
-                    style="position: relative; left: 10%"
-                  />
-                  <template v-else>
+                  <template v-else class="text-Skeleton">
                     不要忘了留姓名
                     <br />电话和其他事情 <br />不要说的太快免得我没写下你大名
                     <br />或许你不再打来 <br />我却等到头发白
                     <br />希望有一天你会打来
                   </template>
+                  <n-skeleton 
+                    class="imgSkeleton"
+                    v-if="loading"
+                  />
                 </n-card>
               </n-space>
             </div>
           </n-grid-item>
           <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
-            <div class="light-green">3</div>
+            <div >
+              <n-card v-for="k in 10" hoverable class="cardStyle"></n-card>
+            </div>
           </n-grid-item>
         </n-grid>
       </n-layout-content>
@@ -135,7 +137,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    var str3 = str_md5("adc");
+    var str3 = hex_md5("adc");
     console.log(str3);
     this.setUI();
     // 获取当前浏览器宽高
