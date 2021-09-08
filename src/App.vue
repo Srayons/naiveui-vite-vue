@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { defineComponent } from '@vue/runtime-core';
+import { defineComponent } from 'vue';
 import index from "./views/index.vue";
 export default defineComponent({
   components: {

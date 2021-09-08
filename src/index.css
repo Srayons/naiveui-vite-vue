@@ -1,108 +1,121 @@
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
-    /* margin-top: 60px; */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
+  /* margin-top: 60px; */
 }
-
 
 /* 布局样式 start */
 
 .n-layout-header,
 .n-layout-footer {
-    background: rgba(128, 128, 128, 0.2);
-    padding: 10px;
+  background: rgba(128, 128, 128, 0.2);
+  padding: 10px;
 }
 
 .n-layout-header {
-    position: fixed;
-    left: 0;
-    background: rgba(255, 255, 255, .95);
-    box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
-    z-index: 1;
+  position: fixed;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
+  z-index: 1;
 }
 
 .n-layout-sider {
-    background: rgba(128, 128, 128, 0.3);
+  background: rgba(128, 128, 128, 0.3);
 }
 
 .n-layout-content {
-    /* background: #eaeaea; */
-    background-image: url("/img/plaid2dbf8.jpg");
-    margin-top: 62px;
+  /* background: #eaeaea; */
+  background-image: url("/img/plaid2dbf8.jpg");
+  margin-top: 62px;
 }
 
-
 /* 布局样式 end*/
-
 
 /* 轮播图 */
 
 .carousel-img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
 
+.n-carousel {
+  border-radius: 10px;
+}
 
 /* 卡片 */
 
 .n-card {
-    max-width: 100%;
-    max-height: 100%;
-    padding: 0 5% 0 5;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0 5% 0 5;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 /* 卡片整体样式 */
 
 .cardStyle {
-    max-width: 100%;
-    margin-bottom: 12px;
-    opacity: 0.8;
-    border-radius: 10px;
+  max-width: 100%;
+  margin-bottom: 15px;
+  opacity: 0.8;
+  border-radius: 10px;
 }
 
 .cardStyle:hover {
-    opacity: 0.9;
-    /* filter: blur(20px); */
+  opacity: 0.9;
+  /* filter: blur(20px); */
 }
-
 
 /* 卡片标题样式 */
 
-.n-card>.n-card-header {
-    width: 60%;
-    text-align: left;
+.n-card > .n-card-header {
+  width: 60%;
+  text-align: left;
+  font-size: 24px;
 }
 
-
-/* 卡片文本样式 */
-
-.text-Skeleton,
-.n-card>.n-card__content {
-    text-align: left;
-    width: 80%;
+/* 渐变文字 */
+.n-gradient-text{
+  font-weight:600;
 }
 
+/* 卡片内容样式 */
+
+.text-Skeleton {
+  text-align: left;
+  width: 60%;
+}
+
+.n-card > .n-card__content {
+  text-align: left;
+  width: 100%;
+}
 
 /* 卡片图片样式 */
 
 .imgSkeleton {
-    position: absolute;
-    left: 67%;
-    height: 78%;
-    width: 30%;
-    bottom: 11%;
+  position: absolute;
+  left: 67%;
+  height: 78%;
+  width: 30%;
+  bottom: 11%;
+  display: block;
+}
+
+.imgSkeleton > img {
+  height: 100%;
+  width: 100%;
+
 }
 
 #refLeft,
 #refCenter,
 #refRigth {
-    /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
-    padding: 0 2% 0 2%;
+  /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
+  padding: 0 2% 0 2%;
 }

@@ -5,12 +5,13 @@
       <n-layout-content content-style="padding: 24px;">
         <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
           <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
-            <div >
+            <div>
               <n-card v-for="k in 10" class="cardStyle"></n-card>
             </div>
           </n-grid-item>
           <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
-            <div >
+            <div>
+              <!-- 轮播图 -->
               <n-carousel autoplay trigger="hover" show-arrow>
                 <img
                   class="carousel-img"
@@ -34,7 +35,14 @@
                 <n-card v-for="i in cardLen" hoverable class="cardStyle">
                   <template #header :key="i" class="header-Skeleton">
                     <n-skeleton text v-if="loading" width="60%" />
-                    <template v-else>I'm OK</template>
+                    <template v-else>
+                      <!-- 标题渐变文字 -->
+                      <n-gradient-text
+                        gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+                      >
+                        I'm OK
+                      </n-gradient-text>
+                    </template>
                   </template>
                   <n-skeleton
                     class="text-Skeleton"
@@ -42,24 +50,36 @@
                     v-if="loading"
                     :repeat="6"
                   />
+                  <!-- 内容渐变文字 -->
                   <template v-else class="text-Skeleton">
-                    不要忘了留姓名
-                    <br />电话和其他事情 <br />不要说的太快免得我没写下你大名
-                    <br />或许你不再打来 <br />我却等到头发白
-                    <br />希望有一天你会打来
+                    <n-gradient-text type="info">
+                      不要忘了留姓名
+                      <br />电话和其他事情 <br />不要说的太快免得我没写下你大名
+                      <br />或许你不再打来 <br />我却等到头发白
+                      <br />希望有一天你会打来
+                    </n-gradient-text>
                   </template>
-                  <n-skeleton 
-                    class="imgSkeleton"
-                    v-if="loading"
-                  />
+                  <!-- 图片骨架 -->
+                  <n-skeleton class="imgSkeleton" v-if="loading" />
+                  <!-- 图片 -->
+                  <template class="imgSkeleton" v-else>
+                    <n-image
+                      class="imgSkeleton"
+                      object-fit="contain"
+                      src="https://s3.mashiro.top/view/2018/01/03/sakura.pn"
+                    />
+                    <!--  src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg" -->
+                  </template>
                 </n-card>
               </n-space>
             </div>
           </n-grid-item>
           <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
-            <div >
+            <div>
               <n-card v-for="k in 10" hoverable class="cardStyle"></n-card>
             </div>
+            <n-back-top show to="body" :bottom="220" :visibility-height="10">
+            </n-back-top>
           </n-grid-item>
         </n-grid>
       </n-layout-content>
@@ -101,6 +121,7 @@ export default defineComponent({
   },
   setup() {
     const loadingBar = useLoadingBar();
+    loadingBar.start();
     onMounted(() => {
       console.log("onMounted---");
       let clientWidth = ref(document.body.clientWidth).value;
@@ -124,16 +145,15 @@ export default defineComponent({
     });
     // 不要忘了在return中添加refDiv
     return {
-      loading() {
-        loadingBar.start();
-      },
       loading: ref(true), //加载动画
+      show: ref(true),
       refLeft, //ref左侧标识
       refCenter, //ref中间侧标识
       refRigth, //ref右侧标识
       LeftSpan, //左侧Span
       CenterSpan, //中间Span
       RigthSpan, //右侧Span
+      show: () => scrollContainerRef.value,
     };
   },
   mounted() {
