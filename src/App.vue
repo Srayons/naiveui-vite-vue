@@ -5,13 +5,12 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted,computed } from "vue";
 import index from "./views/index.vue";
+
 export default defineComponent({
   components: {
     index,
-  }
+  },
 });
-
-
 </script>

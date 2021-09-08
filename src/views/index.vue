@@ -1,6 +1,6 @@
 <template>
-  <n-space vertical size="large">
-    <n-layout>
+  <n-space vertical size="large" >
+    <n-layout >
       <pub-header></pub-header>
       <n-layout-content content-style="padding: 24px;">
         <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
@@ -31,7 +31,7 @@
                 />
               </n-carousel>
               <n-space vertical>
-                <n-switch @click="add" v-model:value="loading" />
+                <n-switch  v-model:value="loading" />
                 <n-card v-for="i in cardLen" hoverable class="cardStyle">
                   <template #header :key="i" class="header-Skeleton">
                     <n-skeleton text v-if="loading" width="60%" />
@@ -78,17 +78,16 @@
             <div>
               <n-card v-for="k in 10" hoverable class="cardStyle"></n-card>
             </div>
-            <n-back-top show to="body" :bottom="220" :visibility-height="10">
-            </n-back-top>
           </n-grid-item>
         </n-grid>
       </n-layout-content>
       <pub-footer></pub-footer>
     </n-layout>
   </n-space>
+  <n-back-top :listen-to="scroll" :show="showBackTop" to="body" :bottom="100" :visibility-height="300"></n-back-top>
 </template>
 <script>
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, ref, onMounted,onUpdated } from "vue";
 import { useLoadingBar } from "naive-ui";
 import PubHeader from "../components/Header.vue";
 import PubFooter from "../components/Footer.vue";
@@ -96,6 +95,7 @@ import PubFooter from "../components/Footer.vue";
 const refLeft = ref(null);
 const refCenter = ref(null);
 const refRigth = ref(null);
+const showBackTop = ref(true);
 
 const LeftSpan = ref("1");
 const CenterSpan = ref("3");
@@ -121,12 +121,14 @@ export default defineComponent({
   },
   setup() {
     const loadingBar = useLoadingBar();
+    //开始加载动画
     loadingBar.start();
+    //页面加载完
     onMounted(() => {
-      console.log("onMounted---");
+      console.log("finish")
+      loadingBar.finish();
       let clientWidth = ref(document.body.clientWidth).value;
       //更改属性
-      // refCenter.value.$el.attributes.style.value="display:none;"
       if (
         ref(document.body.clientWidth).value > 1280 &&
         ref(document.body.clientWidth).value < 1536
@@ -134,7 +136,6 @@ export default defineComponent({
         console.log("窗小于1536");
         refLeft.value.$el.attributes.style.value = "display:none;";
         CenterSpan.value = "4";
-        // refRigth.value.$el.attributes.style.value = "display:none;";
       }
       if (ref(document.body.clientWidth).value < 1280) {
         console.log("窗口小于1280");
@@ -143,6 +144,26 @@ export default defineComponent({
         refRigth.value.$el.attributes.style.value = "display:none;";
       }
     });
+
+
+    //页面升级
+    onUpdated(()=>{
+      console.log("onUpdated=====")
+    })
+
+    //滚动条事件
+    window.onscroll = () => {
+      let scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+
+      if (scrollTop > 200) {
+        showBackTop.value = true;
+      } else {
+        showBackTop.value = false;
+      }
+    };
     // 不要忘了在return中添加refDiv
     return {
       loading: ref(true), //加载动画
@@ -153,13 +174,13 @@ export default defineComponent({
       LeftSpan, //左侧Span
       CenterSpan, //中间Span
       RigthSpan, //右侧Span
-      show: () => scrollContainerRef.value,
+      scroll: scroll, //回到顶部
+      showBackTop,
     };
   },
   mounted() {
     var str3 = hex_md5("adc");
     console.log(str3);
-    this.setUI();
     // 获取当前浏览器宽高
     this.screenWidth = document.body.clientWidth;
     this.screenHeight = document.body.clientHeight;
@@ -191,16 +212,7 @@ export default defineComponent({
         }
       })();
     };
-  },
-  methods: {
-    setUI() {
-      console.log(this.$refs);
-      // this.$refs.UI.style.setProperty("--colors",this.colors);//给变量赋值
-    },
-    add: function () {
-      // console.log(this.$refs)
-    },
-  },
+  }
 });
 </script>
 
