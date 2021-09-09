@@ -80,8 +80,8 @@
 }
 
 /* 渐变文字 */
-.n-gradient-text{
-  font-weight:600;
+.n-gradient-text {
+  font-weight: 600;
 }
 
 /* 卡片内容样式 */
@@ -110,12 +110,64 @@
 .imgSkeleton > img {
   height: 100%;
   width: 100%;
-
 }
 
+/* 布局面板样式 */
 #refLeft,
 #refCenter,
 #refRigth {
   /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
   padding: 0 2% 0 2%;
 }
+
+/* 回到顶部样式 */
+.n-back-top,.n-back-top:hover {
+  box-shadow: unset;
+  background-color: unset;
+  animation: backTtop 2s linear infinite;
+  animation-direction: alternate;
+
+  /* Safari and Chrome */
+  -webkit-animation: backTtop 2s linear infinite;
+  -webkit-animation-direction: alternate;
+}
+
+
+/* 置顶动画 start*/
+@keyframes backTtop {
+  0% {
+    top: 0px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 10px;
+  }
+  75% {
+    top: 18px;
+  }
+  100% {
+    top: 20px;
+  }
+}
+
+@-webkit-keyframes backTtop /*Safari and Chrome*/ {
+  0% {
+    top: 0px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 10px;
+  }
+  75% {
+    top: 18px;
+  }
+  100% {
+    top: 20px;
+  }
+}
+
+/* 置顶动画 end*/
