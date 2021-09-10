@@ -3,7 +3,7 @@
     <n-layout>
       <pub-header></pub-header>
       <n-layout-content content-style="padding: 24px;">
-        <n-grid cols="1 s:1 m:1 l:6 xl:6 2xl:6" responsive="screen">
+        <n-grid cols="1 s:1 m:1 l:1 xl:6 2xl:6" responsive="screen">
           <!-- 左侧布局 -->
           <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
             <leftIndex></leftIndex>
@@ -30,19 +30,21 @@
     :visibility-height="500"
   >
     <div>
-      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
+      <img
+        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png"
+      />
     </div>
   </n-back-top>
 </template>
 <script>
-import { defineComponent, ref, onMounted, onUpdated } from "vue";
+import { defineComponent, ref, onMounted, onUpdated, nextTick } from "vue";
 import { useLoadingBar } from "naive-ui";
 import PubHeader from "../components/Header.vue";
 import PubFooter from "../components/Footer.vue";
 import leftIndex from "./index/leftIndex.vue";
 import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
-import api from "/@/api/index.js";
+// import api from "/@/api/index.js";
 
 export default defineComponent({
   components: {
@@ -78,46 +80,52 @@ export default defineComponent({
       let element = document.getElementById("backTop");
 
       // let clientWidth = ref(document.body.clientWidth).value;
-      //加载完毕执行响应布局
-      if (ref(screenWidth).value > 1536) {
-        console.log("窗口大于1536");
-        CenterSpan.value = "3";
-        LeftSpan.value = "1";
-        RigthSpan.value = "2";
 
-        if (element) {
-          //更改返回置顶高度
-          element.style.setProperty("--backTopHeigth", "90%");
+      nextTick(() => {
+        //加载完毕执行响应布局
+        if (ref(screenWidth).value > 1536) {
+          console.log("窗口大于1536");
+          CenterSpan.value = "3";
+          LeftSpan.value = "1";
+          RigthSpan.value = "2";
+
+          if (element) {
+            //更改返回置顶高度
+            element.style.setProperty("--backTopHeigth", "90%");
+          }
+
+          // refLeft.value.$el.attributes.style.value = "display:none;";
         }
+        if (ref(screenWidth).value > 1280 && ref(screenWidth).value < 1536) {
+          console.log("窗口小于1536");
 
-        // refLeft.value.$el.attributes.style.value = "display:none;";
-      }
-      if (ref(screenWidth).value > 1280 && ref(screenWidth).value < 1536) {
-        console.log("窗口小于1536");
+          // CenterSpan.value = "4";
+          // refLeft.value.$el.attributes.style.value = "display:none;";
+          // document.getElementById("refLeft").style = "display:none;";
 
-        //  CenterSpan.value = "3";
-        //  RigthSpan.value = "3";
-        // refLeft.value.$el.attributes.style.value = "display:none;";
-        // document.getElementById("refLeft").style = "display:none;";
+          //  CenterSpan.value = "3";
+          //  RigthSpan.value = "3";
+          // refLeft.value.$el.attributes.style.value = "display:none;";
+          // document.getElementById("refLeft").style = "display:none;";
 
-
-        if (element) {
-          //更改返回置顶高度
-          element.style.setProperty("--backTopHeigth", "60%");
+          if (element) {
+            //更改返回置顶高度
+            element.style.setProperty("--backTopHeigth", "60%");
+          }
         }
-      }
-      if (ref(screenWidth).value < 1280) {
-        console.log("窗口小于1280");
-        CenterSpan.value = "3";
+        if (ref(screenWidth).value < 1280) {
+          console.log("窗口小于1280");
+          CenterSpan.value = "3";
 
-        if (element) {
-          //更改返回置顶高度
-          element.style.setProperty("--backTopHeigth", "55%");
+          if (element) {
+            //更改返回置顶高度
+            element.style.setProperty("--backTopHeigth", "55%");
+          }
+
+          refLeft.value.$el.attributes.style.value = "display:none;";
+          refRigth.value.$el.attributes.style.value = "display:none;";
         }
-
-        refLeft.value.$el.attributes.style.value = "display:none;";
-        refRigth.value.$el.attributes.style.value = "display:none;";
-      }
+      });
 
       //滚动条事件
       window.onscroll = () => {
