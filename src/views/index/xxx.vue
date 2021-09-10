@@ -27,7 +27,7 @@
           <template v-else>
             <!-- 标题渐变文字 -->
             <n-gradient-text
-              class="h-gradient-text"
+              id="h-gradient-text"
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
             >
               I'm OK
@@ -90,14 +90,14 @@ export default defineComponent({
           for (let index = 0; index < el.length; index++) {
             /* 多行超出变省略号 */
             //设置不强制换行
-            el[index].style.setProperty("--h-white-space", "unset");
+            el[index].style.setProperty("white-space", "unset");
             //将对象作为弹性伸缩盒子模型显示
-            el[index].style.setProperty("--h-display", "-webkit-box");
+            el[index].style.setProperty("display", "-webkit-box");
             //设置超出隐藏
-            el[index].style.setProperty("--h-overflow", "hidden");
+            el[index].style.setProperty("overflow", "hidden");
             /* 几行超出 */
-            el[index].style.setProperty("--h--webkit-line-clamp", "6");
-            el[index].style.setProperty("--h--webkit-box-orient", "vertical");
+            el[index].style.setProperty("-webkit-line-clamp", "6");
+            el[index].style.setProperty("-webkit-box-orient", "vertical");
           }
         }
       } else {
