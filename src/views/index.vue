@@ -30,9 +30,7 @@
     :visibility-height="500"
   >
     <div>
-      <img
-        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png"
-      />
+      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
     </div>
   </n-back-top>
 </template>
@@ -71,8 +69,6 @@ export default defineComponent({
 
     onMounted(() => {
       console.log("finish");
-      //结束加载条
-      loadingBar.finish();
 
       // 获取当前浏览器宽高
       let screenWidth = document.body.clientWidth;
@@ -82,6 +78,8 @@ export default defineComponent({
       // let clientWidth = ref(document.body.clientWidth).value;
 
       nextTick(() => {
+        //结束加载条
+        loadingBar.finish();
         //加载完毕执行响应布局
         if (ref(screenWidth).value > 1536) {
           console.log("窗口大于1536");
