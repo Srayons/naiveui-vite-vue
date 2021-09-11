@@ -131,7 +131,13 @@ export default defineComponent({
           window.pageYOffset ||
           document.documentElement.scrollTop ||
           document.body.scrollTop;
-
+        console.log(scrollTop);
+        if (scrollTop == 0) {
+          document.getElementById("nLayoutHeader").children[0].style.setProperty("opacity","0")
+        }
+        if (scrollTop >= 78) {
+          document.getElementById("nLayoutHeader").children[0].style.setProperty("opacity","1")
+        }
         if (scrollTop > 200) {
           showBackTop.value = true;
         } else {
