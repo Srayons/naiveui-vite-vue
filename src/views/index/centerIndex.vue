@@ -148,7 +148,7 @@
                 to: 'rgb(170, 170, 170)'
               }"
                 style="margin-left: 5px;"
-                v-text="grad.commont"
+                v-text="grad.like"
               ></n-gradient-text>
               <!-- 10条评论 -->
             </span>
