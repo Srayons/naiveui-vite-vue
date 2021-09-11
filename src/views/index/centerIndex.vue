@@ -57,7 +57,45 @@
           </a>
         </template>
         <template #action>
-          <!-- 热度 -->
+          <div class="iconTextDivLeft">
+            <!-- 标签 -->
+            <span class="iconText">
+              <n-icon size="16">
+                <PricetagsOutline></PricetagsOutline>
+              </n-icon>
+              <n-gradient-text
+                type="info"
+                :gradient="{
+                deg: 180,
+                from: 'rgb(85, 85, 85)',
+                to: 'rgb(170, 170, 170)'
+              }"
+                style="margin-left: 5px;"
+                v-text="grad.tag"
+              ></n-gradient-text>
+              <!-- 10条评论 -->
+            </span>
+            <!-- 发布日期 -->
+            <span class="iconText iconTimeText">
+              <n-icon size="16">
+                <TimeOutline></TimeOutline>
+              </n-icon>
+              <n-gradient-text
+                type="info"
+                :gradient="{
+                deg: 180,
+                from: 'rgb(85, 85, 85)',
+                to: 'rgb(170, 170, 170)'
+              }"
+                style="margin-left: 5px;"
+                v-text="grad.dateTime"
+              ></n-gradient-text>
+              <!-- 发布于 2021-08-21 -->
+            </span>
+          </div>
+
+          <div class="iconTextDivRight">
+<!-- 热度 -->
           <span class="iconText">
             <n-icon size="16">
               <EyeOutline></EyeOutline>
@@ -90,23 +128,9 @@
             ></n-gradient-text>
             <!-- 10条评论 -->
           </span>
-          <!-- 发布日期 -->
-          <span class="iconText iconTimeText">
-            <n-icon size="16">
-              <TimeOutline></TimeOutline>
-            </n-icon>
-            <n-gradient-text
-              type="info"
-              :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-              style="margin-left: 5px;"
-              v-text="grad.dateTime"
-            ></n-gradient-text>
-            <!-- 发布于 2021-08-21 -->
-          </span>
+          </div>
+
+          
         </template>
         <!-- 图片骨架 -->
         <n-skeleton class="imgSkeleton" v-if="loading" />
@@ -136,17 +160,19 @@ import {
   reactive,
   nextTick,
 } from "vue";
-//小眼睛、信息、时间
+//小眼睛、信息、时间、标签
 import {
   EyeOutline,
   EllipsisHorizontalCircle,
   TimeOutline,
+  PricetagsOutline,
 } from "@vicons/ionicons5";
 export default defineComponent({
   components: {
     EyeOutline,
     EllipsisHorizontalCircle,
     TimeOutline,
+    PricetagsOutline,
   },
   setup() {
     const cardLen = reactive([]);
@@ -160,9 +186,11 @@ export default defineComponent({
     const GradientTexts = reactive([]);
     let data = {
       title: "博客系统4.2发布",
-      vitisy: "920热度",
-      commont: "10条评论",
-      dateTime: "发布于 2021-08-21",
+      vitisy: "0.92k",
+      commont: "10",
+      tag: "Java",
+      like: "60k",
+      dateTime: "2021-08-21",
       content:
         "拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之",
     };

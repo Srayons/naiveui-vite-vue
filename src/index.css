@@ -73,6 +73,9 @@
     overflow: hidden;
 }
 
+
+/* 卡片整体样式鼠标悬浮样式 */
+
 .cardStyle:hover {
     opacity: 0.8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -89,11 +92,56 @@
 }
 
 
+/* 卡片内容样式 */
+
+.n-card>.n-card__content {
+    text-align: left;
+    width: 60%;
+    font-size: 16px;
+}
+
+
 /* 渐变文字 */
 
 .n-gradient-text {
     font-weight: 600;
     height: 100%;
+}
+
+
+/* 动作样式 */
+
+.n-card>.n-card__action {
+    background-color: #fff;
+    width: 60%;
+}
+
+
+/* 图标右边的文本 */
+
+.iconText {
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.iconTextDivLeft {
+    /* width: 15%;
+    display: block;
+    line-height: 35px;
+    height: 35px;
+    font-size: 14px;
+    float: left; */
+    width: 60%;
+    height: 38px;
+    text-align: left;
+}
+
+.iconTextDivRight {
+    width: 40%;
+}
+
+.n-icon {
+    color: rgb(0, 0, 0);
 }
 
 
@@ -109,49 +157,26 @@
 } */
 
 
-/* 图标右边的文本 */
-
-.iconText {
-    width: 25%;
-    display: inline-block;
-    line-height: 35px;
-    height: 35px;
-    font-size: 14px;
-}
-
-.n-icon {
+/* font {
     color: rgb(0, 0, 0);
-}
+} */
 
-font {
-    color: rgb(0, 0, 0);
-}
 
-.iconTimeText {
+/* .iconTimeText {
     width: 40%;
     float: right;
-}
-
-.n-card>.n-card__action {
-    background-color: #fff;
-}
+} */
 
 
-/* 卡片内容样式 */
+/* 卡片内容骨架样式 */
 
 .text-Skeleton {
     text-align: left;
     width: 100%;
 }
 
-.n-card>.n-card__content {
-    text-align: left;
-    width: 60%;
-    font-size: 16px;
-}
 
-
-/* 卡片图片样式 */
+/* 卡片图片骨架样式 */
 
 .imgSkeleton {
     position: absolute;
