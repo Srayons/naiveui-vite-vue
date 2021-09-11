@@ -87,7 +87,7 @@
 
 .n-card>.n-card-header {
     width: 60%;
-    text-align: left;
+    text-align: center;
     font-size: 28px;
 }
 
@@ -132,7 +132,6 @@
     font-size: 14px;
     float: left; */
     width: 60%;
-    height: 38px;
     text-align: left;
 }
 
@@ -140,8 +139,14 @@
     width: 40%;
 }
 
+.iconTextDivLeft,
+.iconTextDivRight {
+    display: inline-block;
+}
+
 .n-icon {
     color: rgb(0, 0, 0);
+    vertical-align: -3px;
 }
 
 

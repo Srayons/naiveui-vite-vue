@@ -41,7 +41,14 @@
 
         <!-- 内容渐变文字 -->
         <template v-else class="text-Skeleton">
-          <a href="#" style="text-decoration: none;">
+          <a
+            href="#"
+            style="
+            text-decoration:none;
+            display: block;
+            height: 120px;
+            text-indent: 2em;"
+          >
             <n-gradient-text
               ref="cGradientText"
               class="c-gradient-text"
@@ -95,42 +102,57 @@
           </div>
 
           <div class="iconTextDivRight">
-<!-- 热度 -->
-          <span class="iconText">
-            <n-icon size="16">
-              <EyeOutline></EyeOutline>
-            </n-icon>
-            <n-gradient-text
-              type="info"
-              :gradient="{
+            <!-- 热度 -->
+            <span class="iconText">
+              <n-icon size="16">
+                <EyeOutline></EyeOutline>
+              </n-icon>
+              <n-gradient-text
+                type="info"
+                :gradient="{
                 deg: 180,
                 from: 'rgb(85, 85, 85)',
                 to: 'rgb(170, 170, 170)'
               }"
-              style="margin-left: 5px;"
-              v-text="grad.vitisy"
-            ></n-gradient-text>
-          </span>
-          <!-- 评论 -->
-          <span class="iconText">
-            <n-icon size="16">
-              <EllipsisHorizontalCircle></EllipsisHorizontalCircle>
-            </n-icon>
-            <n-gradient-text
-              type="info"
-              :gradient="{
+                style="margin-left: 5px;"
+                v-text="grad.vitisy"
+              ></n-gradient-text>
+            </span>
+            <!-- 评论 -->
+            <span class="iconText">
+              <n-icon size="16">
+                <EllipsisHorizontalCircle></EllipsisHorizontalCircle>
+              </n-icon>
+              <n-gradient-text
+                type="info"
+                :gradient="{
                 deg: 180,
                 from: 'rgb(85, 85, 85)',
                 to: 'rgb(170, 170, 170)'
               }"
-              style="margin-left: 5px;"
-              v-text="grad.commont"
-            ></n-gradient-text>
-            <!-- 10条评论 -->
-          </span>
+                style="margin-left: 5px;"
+                v-text="grad.commont"
+              ></n-gradient-text>
+              <!-- 10条评论 -->
+            </span>
+            <!-- 点赞 -->
+            <span class="iconText">
+              <n-icon size="16">
+                <ThumbsUpOutline></ThumbsUpOutline>
+              </n-icon>
+              <n-gradient-text
+                type="info"
+                :gradient="{
+                deg: 180,
+                from: 'rgb(85, 85, 85)',
+                to: 'rgb(170, 170, 170)'
+              }"
+                style="margin-left: 5px;"
+                v-text="grad.commont"
+              ></n-gradient-text>
+              <!-- 10条评论 -->
+            </span>
           </div>
-
-          
         </template>
         <!-- 图片骨架 -->
         <n-skeleton class="imgSkeleton" v-if="loading" />
@@ -166,6 +188,7 @@ import {
   EllipsisHorizontalCircle,
   TimeOutline,
   PricetagsOutline,
+  ThumbsUpOutline,
 } from "@vicons/ionicons5";
 export default defineComponent({
   components: {
@@ -173,6 +196,7 @@ export default defineComponent({
     EllipsisHorizontalCircle,
     TimeOutline,
     PricetagsOutline,
+    ThumbsUpOutline,
   },
   setup() {
     const cardLen = reactive([]);
