@@ -1,18 +1,45 @@
 <template>
   <div id="nLayoutHeader">
     <n-layout-header>
+      <!-- 目录 -->
       <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
+      <div id="A-h-gradint">
+        <!-- 渐变文字 -->
+        <n-gradient-text
+          gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+        >Vogelfrei ——MrSong's Blog</n-gradient-text>
+      </div>
+      <div id="A-h-icon">
+        <!-- 右侧搜索和登录 -->
+        <n-space justify="center">
+          <!-- SearchCircleIcon -->
+          <n-icon size="38">
+            <SearchCircleIcon></SearchCircleIcon>
+          </n-icon>
+          <!-- PersonCircleIcon -->
+          <n-icon size="38">
+            <PersonCircleIcon></PersonCircleIcon>
+          </n-icon>
+        </n-space>
+      </div>
     </n-layout-header>
+
+    <div>
+      <figure id="h-figure" style="margin: 0;
+          height: 969px;"></figure>
+    </div>
   </div>
 </template>
 
 <script>
-import { defineComponent, h, ref } from "vue";
+import { defineComponent, h, ref, onMounted, nextTick } from "vue";
 import { NIcon } from "naive-ui";
 import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
   WineOutline as WineIcon,
+  SearchCircleOutline as SearchCircleIcon,
+  PersonCircleOutline as PersonCircleIcon,
 } from "@vicons/ionicons5";
 
 function renderIcon(icon) {
@@ -20,6 +47,81 @@ function renderIcon(icon) {
 }
 
 const menuOptions = [
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href:
+            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          target: "_blank",
+          rel: "noopenner noreferrer",
+        },
+        "且听风吟"
+      ),
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href:
+            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          target: "_blank",
+          rel: "noopenner noreferrer",
+        },
+        "且听风吟"
+      ),
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href:
+            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          target: "_blank",
+          rel: "noopenner noreferrer",
+        },
+        "且听风吟"
+      ),
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href:
+            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          target: "_blank",
+          rel: "noopenner noreferrer",
+        },
+        "且听风吟"
+      ),
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
+  {
+    label: () =>
+      h(
+        "a",
+        {
+          href:
+            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          target: "_blank",
+          rel: "noopenner noreferrer",
+        },
+        "且听风吟"
+      ),
+    key: "hear-the-wind-sing",
+    icon: renderIcon(BookIcon),
+  },
   {
     label: () =>
       h(
@@ -87,7 +189,19 @@ const menuOptions = [
 ];
 
 export default defineComponent({
+  components: {
+    SearchCircleIcon,
+    PersonCircleIcon,
+  },
   setup() {
+    onMounted(() => {
+      let LHeader = document.getElementById("nLayoutHeader").children[0];
+      nextTick(() => {
+        
+        
+      });
+    });
+
     return {
       activeKey: ref(null),
       menuOptions,

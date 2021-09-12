@@ -42,6 +42,7 @@ import PubFooter from "../components/Footer.vue";
 import leftIndex from "./index/leftIndex.vue";
 import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
+
 // import api from "/@/api/index.js";
 
 export default defineComponent({
@@ -54,9 +55,6 @@ export default defineComponent({
   },
   setup() {
     const loadingBar = useLoadingBar();
-    //开始加载动画
-    loadingBar.start();
-
     const refLeft = ref(null);
     const LeftSpan = ref("1");
 
@@ -69,7 +67,6 @@ export default defineComponent({
 
     onMounted(() => {
       console.log("finish");
-
       // 获取当前浏览器宽高
       let screenWidth = document.body.clientWidth;
       let screenHeight = document.body.clientHeight;
@@ -78,8 +75,9 @@ export default defineComponent({
       // let clientWidth = ref(document.body.clientWidth).value;
 
       nextTick(() => {
-        //结束加载条
-        loadingBar.finish();
+        //开始加载动画
+        // loadingBar.start();
+
         //加载完毕执行响应布局
         if (ref(screenWidth).value > 1536) {
           console.log("窗口大于1536");
@@ -123,6 +121,62 @@ export default defineComponent({
           refLeft.value.$el.attributes.style.value = "display:none;";
           refRigth.value.$el.attributes.style.value = "display:none;";
         }
+
+        let LHeader = document.getElementById("nLayoutHeader").children[0];
+
+        let scrollTop0 =
+          window.pageYOffset ||
+          document.documentElement.scrollTop ||
+          document.body.scrollTop;
+        let hFigure = document.getElementById("h-figure");
+        // console.log(scrollTop);
+
+        //鼠标移入事件
+        LHeader.onmouseover = () => {
+          console.log("LHeader-onmouseover");
+          //当滚动条不移动则为完全不透明
+          if (scrollTop0 == 0) {
+            LHeader.style.setProperty("opacity", "1");
+          }
+        };
+
+        //鼠标移入事件
+        hFigure.onmouseover = () => {
+          console.log("binderFollowerContent-onmouseover");
+          //当滚动条不移动则为完全不透明
+          if (scrollTop0 == 0) {
+            LHeader.style.setProperty("opacity", "0");
+          }
+        };
+        //鼠标移出事件
+        LHeader.onmouseout = () => {
+          let LHeaderChild = document.getElementsByClassName("n-submenu")[0];
+          let binderFollowerContent = document.getElementsByClassName(
+            "n-dropdown-menu n-popover n-dropdown"
+          )[0];
+          console.log(LHeaderChild);
+          console.log(binderFollowerContent);
+          if (LHeaderChild && binderFollowerContent) {
+            console.log("LHeader-onmouseout");
+            //鼠标移入事件
+            LHeaderChild.onmouseover = () => {
+              console.log("LHeaderChild-onmouseover");
+              //当滚动条不移动则为完全不透明
+              if (scrollTop0 == 0) {
+                LHeader.style.setProperty("opacity", "1");
+              }
+            };
+            return;
+          }
+          //当滚动条不移动则为完全透明
+          if (scrollTop0 == 0) {
+            LHeader.style.setProperty("opacity", "0");
+          }
+        };
+
+        console.log("nextTick");
+        //结束加载条
+        loadingBar.finish();
       });
 
       //滚动条事件
@@ -131,13 +185,54 @@ export default defineComponent({
           window.pageYOffset ||
           document.documentElement.scrollTop ||
           document.body.scrollTop;
-        console.log(scrollTop);
+        let LHeader = document.getElementById("nLayoutHeader").children[0];
+        let hFigure = document.getElementById("h-figure");
+        // console.log(scrollTop);
+        let LHeaderChild = document.getElementsByClassName("n-submenu")[0];
+        let binderFollowerContent = document.getElementsByClassName(
+          "n-dropdown-menu n-popover n-dropdown"
+        )[0];
+
+        //鼠标移入事件
+        LHeader.onmouseover = () => {
+          //当滚动条不移动则为完全不透明
+          if (scrollTop == 0) {
+            LHeader.style.setProperty("opacity", "1");
+          }
+        };
+        //鼠标移出事件
+        LHeader.onmouseout = () => {
+          if (LHeaderChild && binderFollowerContent) {
+            //当滚动条不移动则为完全透明
+            if (scrollTop == 0) {
+              LHeader.style.setProperty("opacity", "0");
+            }
+            //鼠标移入事件
+            LHeaderChild.onmouseover = () => {
+              //当滚动条不移动则为完全不透明
+              if (scrollTop == 0) {
+                LHeader.style.setProperty("opacity", "1");
+              }
+            };
+          }
+        };
+
+        //鼠标移入事件
+        hFigure.onmouseover = () => {
+          //当滚动条不移动则为完全不透明
+          if (scrollTop == 0) {
+            LHeader.style.setProperty("opacity", "0");
+          }
+        };
+        //当滚动条不移动则为完全透明
         if (scrollTop == 0) {
-          document.getElementById("nLayoutHeader").children[0].style.setProperty("opacity","0")
+          LHeader.style.setProperty("opacity", "0");
         }
-        if (scrollTop >= 78) {
-          document.getElementById("nLayoutHeader").children[0].style.setProperty("opacity","1")
+        //当滚动条移动距离大于1则为完全不透明
+        if (scrollTop > 1) {
+          LHeader.style.setProperty("opacity", "1");
         }
+        //当滚动条移动距离大于200则显示置顶按钮，反之则不显示
         if (scrollTop > 200) {
           showBackTop.value = true;
         } else {
@@ -193,6 +288,10 @@ export default defineComponent({
           }
         })();
       };
+    });
+
+    onUpdated(() => {
+      console.log("onUpdated");
     });
 
     return {
