@@ -5,15 +5,13 @@
     text-align: center;
     color: #2c3e50;
     background-image: url("/img/plaid2dbf8.jpg");
-    /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
-    /* margin-top: 60px; */
+    /* background-image    : url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
+    /* margin-top          : 60px; */
 }
-
 
 /* 布局样式 start */
 
-.n-layout-header,
-.n-layout-footer {
+.n-layout-header, .n-layout-footer {
     background: rgba(128, 128, 128, 0.2);
     /* padding: 10px; */
     padding: 20px 0;
@@ -29,9 +27,8 @@
     height: 78px;
 }
 
-
 /* .n-layout-header:hover {
-    opacity: 1;
+opacity: 1;
 } */
 
 #A-h-gradint {
@@ -63,6 +60,60 @@
     background-position: center center;
 }
 
+.focusinfo {
+    position: relative;
+    max-width: 800px;
+    padding: 0 10px;
+    top: 49.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 30;
+    /* -webkit-transition: .4s ease all;
+    -moz-transition: .4s ease all;
+    -o-transition: .4s ease all;
+    transition: .4s ease all; */
+}
+
+.n-avatar img, .n-avatar {
+    /* box-shadow: inset 0 0 10px #000; */
+    opacity: 1;
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    /* animation: rotate-avatar .5s linear;
+    animation-direction: alternate;
+    -webkit-animation: rotate-avatar .5s linear;
+    -webkit-animation-direction: alternate; */
+} 
+
+.n-avatar:hover {
+    animation: rotate-avatar .5s linear;
+    animation-direction: alternate;
+    -webkit-animation: rotate-avatar .5s linear;
+    -webkit-animation-direction: alternate;
+}
+
+/* Safari and Chrome */
+
+.header-info {
+    width: 63%;
+    margin: auto;
+    font-size: 16px;
+    color: #eaeadf;
+    background: rgb(0 0 0 / 14%);
+    padding: 15px;
+    margin-top: 22px;
+    letter-spacing: 0;
+    line-height: 30px;
+    border-radius: 10px;
+    box-sizing: initial;
+    white-space: nowrap;
+}
+
 .n-layout-sider {
     background: rgba(128, 128, 128, 0.3);
 }
@@ -73,9 +124,7 @@
     background-image: url("/img/plaid2dbf8.jpg");
 }
 
-
 /* 布局样式 end*/
-
 
 /* 轮播图 */
 
@@ -89,7 +138,6 @@
     border-radius: 10px;
 }
 
-
 /* 卡片 */
 
 .n-card {
@@ -97,9 +145,8 @@
     max-height: 100%;
     padding: 0 5% 0 5;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-    /* height: 300px; */
+    /* height    : 300px; */
 }
-
 
 /* 卡片整体样式 */
 
@@ -111,15 +158,13 @@
     overflow: hidden;
 }
 
-
 /* 卡片整体样式鼠标悬浮样式 */
 
 .cardStyle:hover {
     opacity: 0.8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* filter: blur(20px); */
+    /* filter : blur(20px); */
 }
-
 
 /* 卡片标题样式 */
 
@@ -129,7 +174,6 @@
     font-size: 28px;
 }
 
-
 /* 卡片内容样式 */
 
 .n-card>.n-card__content {
@@ -138,7 +182,6 @@
     font-size: 16px;
 }
 
-
 /* 渐变文字 */
 
 .n-gradient-text {
@@ -146,14 +189,12 @@
     height: 100%;
 }
 
-
 /* 动作样式 */
 
 .n-card>.n-card__action {
     background-color: #fff;
     width: 60%;
 }
-
 
 /* 图标右边的文本 */
 
@@ -164,11 +205,11 @@
 
 .iconTextDivLeft {
     /* width: 15%;
-    display: block;
-    line-height: 35px;
-    height: 35px;
-    font-size: 14px;
-    float: left; */
+display: block;
+line-height: 35px;
+height: 35px;
+font-size: 14px;
+float: left; */
     width: 60%;
     text-align: left;
 }
@@ -177,8 +218,7 @@
     width: 40%;
 }
 
-.iconTextDivLeft,
-.iconTextDivRight {
+.iconTextDivLeft, .iconTextDivRight {
     display: inline-block;
 }
 
@@ -187,29 +227,24 @@
     vertical-align: -3px;
 }
 
-
 /* 卡片内容的渐变文字样式 （弃用）*/
 
-
 /* .c-gradient-text {
-  white-space: unset;
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-line-clamp: 6;
-  -webkit-box-orient: vertical;
+white-space: unset;
+display: -webkit-box;
+overflow: hidden;
+-webkit-line-clamp: 6;
+-webkit-box-orient: vertical;
 } */
-
 
 /* font {
-    color: rgb(0, 0, 0);
+color: rgb(0, 0, 0);
 } */
-
 
 /* .iconTimeText {
-    width: 40%;
-    float: right;
+width: 40%;
+float: right;
 } */
-
 
 /* 卡片内容骨架样式 */
 
@@ -217,7 +252,6 @@
     text-align: left;
     width: 100%;
 }
-
 
 /* 卡片图片骨架样式 */
 
@@ -229,7 +263,7 @@
     bottom: 0%;
     display: block;
     overflow: hidden;
-    /* z-index: -1; */
+    /* z-index   : -1; */
     border-radius: 0 10px 10px 0;
 }
 
@@ -243,7 +277,6 @@
     border-radius: 0 10px 10px 0;
 }
 
-
 /* 悬浮卡片放大 */
 
 .n-card:hover img {
@@ -254,21 +287,16 @@
     opacity: 0.8;
 }
 
-
 /* 布局面板样式 */
 
-#refLeft,
-#refCenter,
-#refRigth {
+#refLeft, #refCenter, #refRigth {
     /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
     padding: 0 2% 0 2%;
 }
 
-
 /* 回到顶部样式 */
 
-.n-back-top,
-.n-back-top:hover {
+.n-back-top, .n-back-top:hover {
     box-shadow: unset;
     background-color: unset;
     animation: backTtop 2s linear infinite;
@@ -277,7 +305,6 @@
     -webkit-animation: backTtop 2s linear infinite;
     -webkit-animation-direction: alternate;
 }
-
 
 /* 置顶动画 start*/
 
@@ -302,7 +329,7 @@
 @-webkit-keyframes backTtop
 /*Safari and Chrome*/
 
-{
+    {
     0% {
         top: 0px;
     }
@@ -320,5 +347,107 @@
     }
 }
 
-
 /* 置顶动画 end*/
+
+@keyframes rotate-avatar {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(45deg);
+    }
+    25% {
+        -webkit-transform: rotate(90deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(135deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(225deg);
+    }
+    75% {
+        -webkit-transform: rotate(270deg);
+    }
+    87.5% {
+        -webkit-transform: rotate(315deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes rotate-avatar
+/*Safari and Chrome*/
+
+    {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    12.5% {
+        -webkit-transform: rotate(45deg);
+    }
+    25% {
+        -webkit-transform: rotate(90deg);
+    }
+    37.5% {
+        -webkit-transform: rotate(135deg);
+    }
+    50% {
+        -webkit-transform: rotate(180deg);
+    }
+    62.5% {
+        -webkit-transform: rotate(225deg);
+    }
+    75% {
+        -webkit-transform: rotate(270deg);
+    }
+    87.5% {
+        -webkit-transform: rotate(315deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+/* 导航栏隐藏动画 start*/
+
+@keyframes hide-detail {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-webkit-keyframes hide-detail {
+    0% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0.75;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    75% {
+        opacity: 0.25;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* 导航栏隐藏动画 end*/

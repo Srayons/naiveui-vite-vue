@@ -24,10 +24,39 @@
       </div>
     </n-layout-header>
 
-    <div>
-      <figure id="h-figure" style="margin: 0;
-          height: 969px;"></figure>
-    </div>
+    <figure id="h-figure" style="margin: 0;
+          height: 969px;">
+      <div class="focusinfo">
+        <div class="header-tou">
+          <n-avatar
+            round
+            :size="150"
+            src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg"
+          />
+          <!-- <img src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg" /> -->
+        </div>
+        <div class="header-info">
+          <p>
+            <!-- 渐变文字 -->
+            <n-gradient-text
+              gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+            >Vogelfrei ——MrSong's Blog</n-gradient-text>
+          </p>
+          <div class="top-social_v2">
+            <li>
+              <a
+                href="https://space.bilibili.com/343147393"
+                target="_blank"
+                class="social-bili"
+                title="bilibili"
+              >
+                <img src="http://sakura.xiaoyou66.com/themes/sakura/static/image/sns/bilibili.png" />
+              </a>
+            </li>
+          </div>
+        </div>
+      </div>
+    </figure>
   </div>
 </template>
 
@@ -197,8 +226,18 @@ export default defineComponent({
     onMounted(() => {
       let LHeader = document.getElementById("nLayoutHeader").children[0];
       nextTick(() => {
-        
-        
+        let Navatar = document.getElementsByClassName("header-tou")[0];
+        //鼠标移入事件
+        Navatar.onmouseover = () => {
+          console.log("Navatar-onmouseover");
+          console.log(Navatar);
+          Navatar.style.setProperty("display", "none;");
+        };
+
+        //鼠标移入事件
+        Navatar.onmouseout = () => {
+          console.log("Navatar-onmouseout");
+        };  
       });
     });
 

@@ -29,6 +29,7 @@ import {
     NLayoutFooter,
     NSwitch,
     NIcon,
+    NAvatar,
 } from 'naive-ui'
 
 const naive = create({
@@ -50,7 +51,8 @@ const naive = create({
         NBackTop,
         NLayoutFooter,
         NSwitch,
-        NIcon
+        NIcon,
+        NAvatar,
     ]
 })
 

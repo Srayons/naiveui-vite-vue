@@ -124,6 +124,8 @@ export default defineComponent({
 
         let LHeader = document.getElementById("nLayoutHeader").children[0];
 
+        let Navatar = document.getElementsByClassName("header-tou")[0];
+
         let scrollTop0 =
           window.pageYOffset ||
           document.documentElement.scrollTop ||
@@ -131,11 +133,14 @@ export default defineComponent({
         let hFigure = document.getElementById("h-figure");
         // console.log(scrollTop);
 
+        
+
         //鼠标移入事件
         LHeader.onmouseover = () => {
           console.log("LHeader-onmouseover");
           //当滚动条不移动则为完全不透明
           if (scrollTop0 == 0) {
+            LHeader.style.setProperty("animation", "unset");
             LHeader.style.setProperty("opacity", "1");
           }
         };
@@ -145,6 +150,7 @@ export default defineComponent({
           console.log("binderFollowerContent-onmouseover");
           //当滚动条不移动则为完全不透明
           if (scrollTop0 == 0) {
+            LHeader.style.setProperty("animation", "hide-detail 1s linear");
             LHeader.style.setProperty("opacity", "0");
           }
         };
@@ -163,6 +169,7 @@ export default defineComponent({
               console.log("LHeaderChild-onmouseover");
               //当滚动条不移动则为完全不透明
               if (scrollTop0 == 0) {
+                LHeader.style.setProperty("animation", "unset");
                 LHeader.style.setProperty("opacity", "1");
               }
             };
@@ -170,6 +177,7 @@ export default defineComponent({
           }
           //当滚动条不移动则为完全透明
           if (scrollTop0 == 0) {
+            LHeader.style.setProperty("animation", "hide-detail 1s linear");
             LHeader.style.setProperty("opacity", "0");
           }
         };
@@ -197,6 +205,7 @@ export default defineComponent({
         LHeader.onmouseover = () => {
           //当滚动条不移动则为完全不透明
           if (scrollTop == 0) {
+            LHeader.style.setProperty("animation", "unset");
             LHeader.style.setProperty("opacity", "1");
           }
         };
@@ -205,12 +214,14 @@ export default defineComponent({
           if (LHeaderChild && binderFollowerContent) {
             //当滚动条不移动则为完全透明
             if (scrollTop == 0) {
+              LHeader.style.setProperty("animation", "hide-detail 1s linear");
               LHeader.style.setProperty("opacity", "0");
             }
             //鼠标移入事件
             LHeaderChild.onmouseover = () => {
               //当滚动条不移动则为完全不透明
               if (scrollTop == 0) {
+                LHeader.style.setProperty("animation", "unset");
                 LHeader.style.setProperty("opacity", "1");
               }
             };
@@ -219,17 +230,21 @@ export default defineComponent({
 
         //鼠标移入事件
         hFigure.onmouseover = () => {
-          //当滚动条不移动则为完全不透明
+          //当滚动条不移动则为完全透明
           if (scrollTop == 0) {
+            //animation: hide-detail 1s linear ;
+            LHeader.style.setProperty("animation", "hide-detail 1s linear");
             LHeader.style.setProperty("opacity", "0");
           }
         };
         //当滚动条不移动则为完全透明
         if (scrollTop == 0) {
+          LHeader.style.setProperty("animation", "hide-detail 1s linear");
           LHeader.style.setProperty("opacity", "0");
         }
         //当滚动条移动距离大于1则为完全不透明
         if (scrollTop > 1) {
+          LHeader.style.setProperty("animation", "unset");
           LHeader.style.setProperty("opacity", "1");
         }
         //当滚动条移动距离大于200则显示置顶按钮，反之则不显示
