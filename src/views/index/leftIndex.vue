@@ -40,7 +40,7 @@
           >音乐</n-gradient-text>
         </n-divider>
         <!--  -->
-        <aplayer :music="videoUpload.music"></aplayer>
+        <div id="aplayer"></div>
       </n-card>
     </n-space>
   </div>
@@ -61,36 +61,49 @@ import {
   PlayOutline,
 } from "@vicons/ionicons5";
 
-import aplayer from "vue3-aplayer";
+// import 'aplayer/dist/aplayer.min.css';
+import APlayer from "aplayer";
 export default defineComponent({
   components: {
     PersonOutline,
     PaperPlaneOutline,
     PlayOutline,
-    aplayer,
   },
   setup() {
-      const videoUpload = {
-        progress: false,
-        progressPercent: 0,
-        successPercent: 0,
-        music: {
-          theme:"pic",
-          title: "东西（Cover：林俊呈）",
-          artist: "纳豆",
-          src: "https://cdn.moefe.org/music/mp3/thing.mp3",
-          pic: "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
-          lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
-        },
-      }
+    // const videoUpload = {
+    //   progress: false,
+    //   progressPercent: 0,
+    //   successPercent: 0,
+    //   music: {
+    //     theme:"pic",
+    //     title: "东西（Cover：林俊呈）",
+    //     artist: "纳豆",
+    //     src: "https://cdn.moefe.org/music/mp3/thing.mp3",
+    //     pic: "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
+    //     lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
+    //   },
+    // }
+    const ap = reactive();
     //页面加载完
     onMounted(() => {
-      
+      const options = {
+        container: document.getElementById("aplayer"),
+        audio: [
+          {
+            name: "东西（Cover：林俊呈）",
+            artist: "纳豆",
+            url: "https://cdn.moefe.org/music/mp3/thing.mp3",
+            cover:
+              "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
+          },
+        ],
+      };
+      ap.value = new APlayer(options);
     });
 
     return {
-      LeftSpan:ref("1"),
-      videoUpload
+      LeftSpan: ref("1"),
+      ap,
     };
   },
 });

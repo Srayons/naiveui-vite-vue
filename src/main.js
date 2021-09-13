@@ -33,9 +33,6 @@ import {
     NDivider,
 } from 'naive-ui'
 
-import vue3Aplayer from 'vue3-aplayer'
-
-
 const naive = create({
     components: [
         NButton,
@@ -61,12 +58,14 @@ const naive = create({
     ]
 })
 
-
+import vue3Aplayer from 'vue3-aplayer'
+import aplayer from 'aplayer';
+import 'aplayer/dist/APlayer.min.css'
 // import vue3videoPlay from 'vue3-video-play'; // 引入组件
 // import 'vue3-video-play/dist/'; // 引入css
 
 const app = createApp(App)
 
-app.use(naive,vue3Aplayer);
+app.use(naive,aplayer);
 
 app.mount('#app')
