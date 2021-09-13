@@ -33,7 +33,7 @@ import {
     NDivider,
 } from 'naive-ui'
 
-import vueAplayer from 'vue-aplayer'
+import vue3Aplayer from 'vue3-aplayer'
 
 
 const naive = create({
@@ -62,11 +62,11 @@ const naive = create({
 })
 
 
-import vue3videoPlay from 'vue3-video-play'; // 引入组件
-import 'vue3-video-play/dist/style.css'; // 引入css
+// import vue3videoPlay from 'vue3-video-play'; // 引入组件
+// import 'vue3-video-play/dist/'; // 引入css
 
 const app = createApp(App)
 
-app.use(naive,vueAplayer,vue3videoPlay);
+app.use(naive,vue3Aplayer);
 
 app.mount('#app')
