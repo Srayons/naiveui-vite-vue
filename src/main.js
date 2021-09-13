@@ -30,7 +30,11 @@ import {
     NSwitch,
     NIcon,
     NAvatar,
+    NDivider,
 } from 'naive-ui'
+
+import vueAplayer from 'vue-aplayer'
+
 
 const naive = create({
     components: [
@@ -53,9 +57,16 @@ const naive = create({
         NSwitch,
         NIcon,
         NAvatar,
+        NDivider,
     ]
 })
 
+
+import vue3videoPlay from 'vue3-video-play'; // 引入组件
+import 'vue3-video-play/dist/style.css'; // 引入css
+
 const app = createApp(App)
-app.use(naive)
+
+app.use(naive,vueAplayer,vue3videoPlay);
+
 app.mount('#app')

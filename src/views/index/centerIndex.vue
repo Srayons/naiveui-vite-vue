@@ -1,6 +1,25 @@
 <template>
-  <div>
+  <div
+    style="
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 0 20px;
+      width: auto;
+      border-radius: 10px;
+    "
+  >
     <n-space vertical size="large">
+      <!-- 最热文章 -->
+      <n-divider title-placement="left" dashed>
+        <n-icon size="22">
+          <BookmarkOutline></BookmarkOutline>
+        </n-icon>
+        <n-gradient-text
+          style="margin-left: 6px"
+          gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+        >
+          最热文章
+        </n-gradient-text>
+      </n-divider>
       <!-- 轮播图 -->
       <n-carousel autoplay trigger="hover" show-arrow>
         <img
@@ -21,12 +40,27 @@
         />
       </n-carousel>
       <!-- <n-switch v-model:value="loading" /> -->
-      <n-card v-for="(grad,index) in GradientTexts" hoverable class="cardStyle">
+      <!-- 最热文章 -->
+      <n-divider title-placement="left" dashed>
+        <n-icon size="22">
+          <BookmarkOutline></BookmarkOutline>
+        </n-icon>
+        <n-gradient-text
+          gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+          style="margin-left: 6px"
+          >最新文章</n-gradient-text
+        >
+      </n-divider>
+      <n-card
+        v-for="(grad, index) in GradientTexts"
+        hoverable
+        class="cardStyle"
+      >
         <template #header :key="i" class="header-Skeleton">
           <n-skeleton text v-if="loading" width="60%" />
           <template v-else>
             <!-- 标题渐变文字 -->
-            <a href="#" style="text-decoration: none;">
+            <a href="#" style="text-decoration: none">
               <n-gradient-text
                 ref="hGradientText"
                 class="h-gradient-text"
@@ -44,22 +78,27 @@
           <a
             href="#"
             style="
-            text-decoration:none;
-            display: block;
-            height: 120px;
-            text-indent: 2em;"
+              text-decoration: none;
+              display: block;
+              height: 120px;
+              text-indent: 2em;
+            "
           >
             <n-gradient-text
               ref="cGradientText"
               class="c-gradient-text"
               type="info"
               :gradient="{
-              deg: 180,
-              from: 'rgb(85, 85, 85)',
-              to: 'rgb(170, 170, 170)'
-            }"
-              v-text="grad.content"
-            ></n-gradient-text>
+                deg: 180,
+                from: 'rgb(85, 85, 85)',
+                to: 'rgb(170, 170, 170)',
+              }"
+            >
+              {{ grad.content }}
+            </n-gradient-text>
+            <n-icon size="30" style="text-indent: 0.5em; margin-top: 15px">
+              <EllipsisHorizontal></EllipsisHorizontal>
+            </n-icon>
             <!-- 拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之 -->
           </a>
         </template>
@@ -73,11 +112,11 @@
               <n-gradient-text
                 type="info"
                 :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-                style="margin-left: 5px;"
+                  deg: 180,
+                  from: 'rgb(85, 85, 85)',
+                  to: 'rgb(170, 170, 170)',
+                }"
+                style="margin-left: 5px"
                 v-text="grad.tag"
               ></n-gradient-text>
               <!-- 10条评论 -->
@@ -90,11 +129,11 @@
               <n-gradient-text
                 type="info"
                 :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-                style="margin-left: 5px;"
+                  deg: 180,
+                  from: 'rgb(85, 85, 85)',
+                  to: 'rgb(170, 170, 170)',
+                }"
+                style="margin-left: 5px"
                 v-text="grad.dateTime"
               ></n-gradient-text>
               <!-- 发布于 2021-08-21 -->
@@ -110,11 +149,11 @@
               <n-gradient-text
                 type="info"
                 :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-                style="margin-left: 5px;"
+                  deg: 180,
+                  from: 'rgb(85, 85, 85)',
+                  to: 'rgb(170, 170, 170)',
+                }"
+                style="margin-left: 5px"
                 v-text="grad.vitisy"
               ></n-gradient-text>
             </span>
@@ -126,11 +165,11 @@
               <n-gradient-text
                 type="info"
                 :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-                style="margin-left: 5px;"
+                  deg: 180,
+                  from: 'rgb(85, 85, 85)',
+                  to: 'rgb(170, 170, 170)',
+                }"
+                style="margin-left: 5px"
                 v-text="grad.commont"
               ></n-gradient-text>
               <!-- 10条评论 -->
@@ -143,11 +182,11 @@
               <n-gradient-text
                 type="info"
                 :gradient="{
-                deg: 180,
-                from: 'rgb(85, 85, 85)',
-                to: 'rgb(170, 170, 170)'
-              }"
-                style="margin-left: 5px;"
+                  deg: 180,
+                  from: 'rgb(85, 85, 85)',
+                  to: 'rgb(170, 170, 170)',
+                }"
+                style="margin-left: 5px"
                 v-text="grad.like"
               ></n-gradient-text>
               <!-- 10条评论 -->
@@ -159,7 +198,7 @@
         <!-- 图片 -->
         <template class="imgSkeleton" v-else>
           <div class="imgSkeleton">
-            <img :src="srcUrl+(((index+7*3)-3)+5)+'.jpg'" />
+            <img :src="srcUrl + (index + 7 * 8 - 3 + 5) + '.jpg'" />
           </div>
           <!-- <n-image
             class="imgSkeleton"
@@ -182,13 +221,15 @@ import {
   reactive,
   nextTick,
 } from "vue";
-//小眼睛、信息、时间、标签
+//小眼睛、信息、时间、标签、点赞、书签、三个点
 import {
   EyeOutline,
   EllipsisHorizontalCircle,
   TimeOutline,
   PricetagsOutline,
   ThumbsUpOutline,
+  BookmarkOutline,
+  EllipsisHorizontal,
 } from "@vicons/ionicons5";
 export default defineComponent({
   components: {
@@ -197,6 +238,8 @@ export default defineComponent({
     TimeOutline,
     PricetagsOutline,
     ThumbsUpOutline,
+    BookmarkOutline,
+    EllipsisHorizontal,
   },
   setup() {
     const cardLen = reactive([]);
@@ -216,7 +259,7 @@ export default defineComponent({
       like: "60k",
       dateTime: "2021-08-21",
       content:
-        "拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之",
+        "拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之拖了挺久了，最近又花了点时间去写，总算把本版的功能写完了，同时也修复了大量的bug 部署系统更新 之",
     };
     // GradientTexts.length = 5;
     for (let index = 0; index < 5; index++) {
@@ -242,6 +285,7 @@ export default defineComponent({
               /* 几行超出 */
               el[index].style.setProperty("-webkit-line-clamp", "3");
               el[index].style.setProperty("-webkit-box-orient", "vertical");
+              el[index].style.setProperty("height", "auto");
             }
           }
         });

@@ -1,30 +1,31 @@
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    background-image: url("/img/plaid2dbf8.jpg");
-    /* background-image    : url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
-    /* margin-top          : 60px; */
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  background-image: url("/img/plaid2dbf8.jpg");
+  /* background-image    : url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
+  /* margin-top          : 60px; */
 }
 
 /* 布局样式 start */
 
-.n-layout-header, .n-layout-footer {
-    background: rgba(128, 128, 128, 0.2);
-    /* padding: 10px; */
-    padding: 20px 0;
+.n-layout-header,
+.n-layout-footer {
+  background: rgba(128, 128, 128, 0.2);
+  /* padding: 10px; */
+  padding: 20px 0;
 }
 
 .n-layout-header {
-    position: fixed;
-    left: 0;
-    background: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
-    z-index: 1;
-    opacity: 0;
-    height: 78px;
+  position: fixed;
+  left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 1px 40px -8px rgb(0 0 0 / 50%);
+  z-index: 10;
+  opacity: 0;
+  height: 78px;
 }
 
 /* .n-layout-header:hover {
@@ -32,96 +33,97 @@ opacity: 1;
 } */
 
 #A-h-gradint {
-    /* margin-top: 5px; */
-    margin-left: 45px;
-    font-size: 20px;
-    float: left;
-    width: 0px;
+  /* margin-top: 5px; */
+  margin-left: 45px;
+  font-size: 20px;
+  float: left;
+  width: 0px;
 }
 
-[v-placement="bottom"]>.n-popover {
-    margin-top: 8px;
+[v-placement="bottom"] > .n-popover {
+  margin-top: 8px;
 }
 
 #A-h-icon {
-    float: right;
-    margin-right: 30px;
+  float: right;
+  margin-right: 30px;
 }
 
 #h-figure {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    z-index: -1;
-    background-image: url(/img/VlmhX.png);
-    background-position: center center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+  background-image: url(/img/VlmhX.png);
+  background-position: center center;
 }
 
 .focusinfo {
-    position: relative;
-    max-width: 800px;
-    padding: 0 10px;
-    top: 49.3%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 30;
-    /* -webkit-transition: .4s ease all;
+  position: relative;
+  max-width: 800px;
+  padding: 0 10px;
+  top: 49.3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1;
+  /* -webkit-transition: .4s ease all;
     -moz-transition: .4s ease all;
     -o-transition: .4s ease all;
     transition: .4s ease all; */
 }
 
-.n-avatar img, .n-avatar {
-    /* box-shadow: inset 0 0 10px #000; */
-    opacity: 1;
-    transform: rotate(0deg);
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    /* animation: rotate-avatar .5s linear;
+.n-avatar img,
+.n-avatar {
+  /* box-shadow: inset 0 0 10px #000; */
+  opacity: 1;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  /* animation: rotate-avatar .5s linear;
     animation-direction: alternate;
     -webkit-animation: rotate-avatar .5s linear;
     -webkit-animation-direction: alternate; */
-} 
+}
 
 .n-avatar:hover {
-    animation: rotate-avatar .5s linear;
-    animation-direction: alternate;
-    -webkit-animation: rotate-avatar .5s linear;
-    -webkit-animation-direction: alternate;
+  animation: rotate-avatar 0.5s linear;
+  animation-direction: alternate;
+  -webkit-animation: rotate-avatar 0.5s linear;
+  -webkit-animation-direction: alternate;
 }
 
 /* Safari and Chrome */
 
 .header-info {
-    width: 63%;
-    margin: auto;
-    font-size: 16px;
-    color: #eaeadf;
-    background: rgb(0 0 0 / 14%);
-    padding: 15px;
-    margin-top: 22px;
-    letter-spacing: 0;
-    line-height: 30px;
-    border-radius: 10px;
-    box-sizing: initial;
-    white-space: nowrap;
+  width: 63%;
+  margin: auto;
+  font-size: 16px;
+  color: #eaeadf;
+  background: rgb(0 0 0 / 14%);
+  padding: 15px;
+  margin-top: 22px;
+  letter-spacing: 0;
+  line-height: 30px;
+  border-radius: 10px;
+  box-sizing: initial;
+  white-space: nowrap;
 }
 
 .n-layout-sider {
-    background: rgba(128, 128, 128, 0.3);
+  background: rgba(128, 128, 128, 0.3);
 }
 
 .n-layout-content {
-    /* background: #eaeaea; */
-    /* margin-top: 62px; */
-    background-image: url("/img/plaid2dbf8.jpg");
+  /* background: #eaeaea; */
+  /* margin-top: 62px; */
+  background-image: url("/img/plaid2dbf8.jpg");
 }
 
 /* 布局样式 end*/
@@ -129,102 +131,110 @@ opacity: 1;
 /* 轮播图 */
 
 .carousel-img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
 }
 
 .n-carousel {
-    border-radius: 10px;
+  border-radius: 10px;
+}
+
+
+/* 分割线 */
+.n-divider.n-divider--title-position-left
+  .n-divider__line.n-divider__line--left {
+  width: 0px;
 }
 
 /* 卡片 */
 
 .n-card {
-    max-width: 100%;
-    max-height: 100%;
-    padding: 0 5% 0 5;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-    /* height    : 300px; */
+  max-width: 100%;
+  max-height: 100%;
+  padding: 0 5% 0 5;
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+  /* height    : 300px; */
 }
 
 /* 卡片整体样式 */
 
 .cardStyle {
-    max-width: 100%;
-    margin-bottom: 15px;
-    opacity: 0.8;
-    border-radius: 10px;
-    overflow: hidden;
+  max-width: 100%;
+  margin-bottom: 15px;
+  opacity: 1;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* 卡片整体样式鼠标悬浮样式 */
 
 .cardStyle:hover {
-    opacity: 0.8;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /* filter : blur(20px); */
+  opacity: 1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* filter : blur(20px); */
 }
 
 /* 卡片标题样式 */
 
-.n-card>.n-card-header {
-    width: 60%;
-    text-align: center;
-    font-size: 28px;
+.n-card > .n-card-header {
+  width: 60%;
+  text-align: center;
+  font-size: 28px;
 }
 
 /* 卡片内容样式 */
 
-.n-card>.n-card__content {
-    text-align: left;
-    width: 60%;
-    font-size: 16px;
+.n-card > .n-card__content {
+  text-align: left;
+  width: 60%;
+  font-size: 16px;
 }
 
 /* 渐变文字 */
 
 .n-gradient-text {
-    font-weight: 600;
-    height: 100%;
+  font-weight: 600;
+  height: 100%;
 }
 
 /* 动作样式 */
 
-.n-card>.n-card__action {
-    background-color: #fff;
-    width: 60%;
+.n-card > .n-card__action {
+  background-color: #fff;
+  width: 60%;
 }
 
 /* 图标右边的文本 */
 
 .iconText {
-    font-size: 14px;
-    margin-left: 8px;
+  font-size: 14px;
+  margin-left: 8px;
 }
 
 .iconTextDivLeft {
-    /* width: 15%;
+  /* width: 15%;
 display: block;
 line-height: 35px;
 height: 35px;
 font-size: 14px;
 float: left; */
-    width: 60%;
-    text-align: left;
+  width: 60%;
+  text-align: left;
 }
 
 .iconTextDivRight {
-    width: 40%;
+  width: 40%;
 }
 
-.iconTextDivLeft, .iconTextDivRight {
-    display: inline-block;
+.iconTextDivLeft,
+.iconTextDivRight {
+  display: inline-flex;
 }
 
 .n-icon {
-    color: rgb(0, 0, 0);
-    vertical-align: -3px;
+  color: rgb(0, 0, 0);
+  vertical-align: -3px;
 }
 
 /* 卡片内容的渐变文字样式 （弃用）*/
@@ -249,205 +259,204 @@ float: right;
 /* 卡片内容骨架样式 */
 
 .text-Skeleton {
-    text-align: left;
-    width: 100%;
+  text-align: left;
+  width: 100%;
 }
 
 /* 卡片图片骨架样式 */
 
 .imgSkeleton {
-    position: absolute;
-    left: 59%;
-    height: 100%;
-    width: 63%;
-    bottom: 0%;
-    display: block;
-    overflow: hidden;
-    /* z-index   : -1; */
-    border-radius: 0 10px 10px 0;
+  position: absolute;
+  left: 59%;
+  height: 100%;
+  width: 63%;
+  bottom: 0%;
+  display: block;
+  overflow: hidden;
+  /* z-index   : -1; */
+  border-radius: 0 10px 10px 0;
 }
 
-.imgSkeleton>img {
-    height: 100%;
-    width: 100%;
-    /* object-fit: contain; */
-    object-fit: fill;
-    /* 移出图片缩小 */
-    transition: all 0.6s ease;
-    border-radius: 0 10px 10px 0;
+.imgSkeleton > img {
+  height: 100%;
+  width: 100%;
+  /* object-fit: contain; */
+  object-fit: fill;
+  /* 移出图片缩小 */
+  transition: all 0.6s ease;
+  border-radius: 0 10px 10px 0;
 }
 
 /* 悬浮卡片放大 */
 
 .n-card:hover img {
-    transform: scale(1.2, 1.2);
-    transition: all 0.6s ease;
-    border-radius: 0 10px 10px 0;
-    /* 透明度 值降低可以增加透明度 使其能够隐约显示父容器的背景色 */
-    opacity: 0.8;
+  transform: scale(1.2, 1.2);
+  transition: all 0.6s ease;
+  border-radius: 0 10px 10px 0;
+  /* 透明度 值降低可以增加透明度 使其能够隐约显示父容器的背景色 */
+  opacity: 0.8;
 }
 
 /* 布局面板样式 */
 
-#refLeft, #refCenter, #refRigth {
-    /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
-    padding: 0 2% 0 2%;
+#refLeft,
+#refCenter,
+#refRigth {
+  /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
+  padding: 0 2% 0 2%;
 }
 
 /* 回到顶部样式 */
 
-.n-back-top, .n-back-top:hover {
-    box-shadow: unset;
-    background-color: unset;
-    animation: backTtop 2s linear infinite;
-    animation-direction: alternate;
-    /* Safari and Chrome */
-    -webkit-animation: backTtop 2s linear infinite;
-    -webkit-animation-direction: alternate;
+.n-back-top,
+.n-back-top:hover {
+  box-shadow: unset;
+  background-color: unset;
+  animation: backTtop 2s linear infinite;
+  animation-direction: alternate;
+  /* Safari and Chrome */
+  -webkit-animation: backTtop 2s linear infinite;
+  -webkit-animation-direction: alternate;
 }
 
 /* 置顶动画 start*/
 
 @keyframes backTtop {
-    0% {
-        top: 0px;
-    }
-    25% {
-        top: 2px;
-    }
-    50% {
-        top: 10px;
-    }
-    75% {
-        top: 18px;
-    }
-    100% {
-        top: 20px;
-    }
+  0% {
+    top: 0px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 10px;
+  }
+  75% {
+    top: 18px;
+  }
+  100% {
+    top: 20px;
+  }
 }
 
 @-webkit-keyframes backTtop
-/*Safari and Chrome*/
-
-    {
-    0% {
-        top: 0px;
-    }
-    25% {
-        top: 2px;
-    }
-    50% {
-        top: 10px;
-    }
-    75% {
-        top: 18px;
-    }
-    100% {
-        top: 20px;
-    }
+/*Safari and Chrome*/ {
+  0% {
+    top: 0px;
+  }
+  25% {
+    top: 2px;
+  }
+  50% {
+    top: 10px;
+  }
+  75% {
+    top: 18px;
+  }
+  100% {
+    top: 20px;
+  }
 }
 
 /* 置顶动画 end*/
 
 @keyframes rotate-avatar {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-    12.5% {
-        -webkit-transform: rotate(45deg);
-    }
-    25% {
-        -webkit-transform: rotate(90deg);
-    }
-    37.5% {
-        -webkit-transform: rotate(135deg);
-    }
-    50% {
-        -webkit-transform: rotate(180deg);
-    }
-    62.5% {
-        -webkit-transform: rotate(225deg);
-    }
-    75% {
-        -webkit-transform: rotate(270deg);
-    }
-    87.5% {
-        -webkit-transform: rotate(315deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12.5% {
+    -webkit-transform: rotate(45deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  37.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  62.5% {
+    -webkit-transform: rotate(225deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  87.5% {
+    -webkit-transform: rotate(315deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @-webkit-keyframes rotate-avatar
-/*Safari and Chrome*/
-
-    {
-    0% {
-        -webkit-transform: rotate(0deg);
-    }
-    12.5% {
-        -webkit-transform: rotate(45deg);
-    }
-    25% {
-        -webkit-transform: rotate(90deg);
-    }
-    37.5% {
-        -webkit-transform: rotate(135deg);
-    }
-    50% {
-        -webkit-transform: rotate(180deg);
-    }
-    62.5% {
-        -webkit-transform: rotate(225deg);
-    }
-    75% {
-        -webkit-transform: rotate(270deg);
-    }
-    87.5% {
-        -webkit-transform: rotate(315deg);
-    }
-    100% {
-        -webkit-transform: rotate(360deg);
-    }
+/*Safari and Chrome*/ {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  12.5% {
+    -webkit-transform: rotate(45deg);
+  }
+  25% {
+    -webkit-transform: rotate(90deg);
+  }
+  37.5% {
+    -webkit-transform: rotate(135deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  62.5% {
+    -webkit-transform: rotate(225deg);
+  }
+  75% {
+    -webkit-transform: rotate(270deg);
+  }
+  87.5% {
+    -webkit-transform: rotate(315deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 /* 导航栏隐藏动画 start*/
 
 @keyframes hide-detail {
-    0% {
-        opacity: 1;
-    }
-    25% {
-        opacity: 0.75;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    75% {
-        opacity: 0.25;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes hide-detail {
-    0% {
-        opacity: 1;
-    }
-    25% {
-        opacity: 0.75;
-    }
-    50% {
-        opacity: 0.5;
-    }
-    75% {
-        opacity: 0.25;
-    }
-    100% {
-        opacity: 0;
-    }
+  0% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.25;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* 导航栏隐藏动画 end*/

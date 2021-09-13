@@ -3,7 +3,7 @@
     <n-layout>
       <pub-header></pub-header>
       <n-layout-content content-style="padding: 24px;">
-        <n-grid cols="1 s:1 m:1 l:1 xl:6 2xl:6" responsive="screen">
+        <n-grid cols="1 s:1 m:1 l:7 xl:6 2xl:6" responsive="screen">
           <!-- 左侧布局 -->
           <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
             <leftIndex></leftIndex>
@@ -30,7 +30,9 @@
     :visibility-height="500"
   >
     <div>
-      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
+      <img
+        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png"
+      />
     </div>
   </n-back-top>
 </template>
@@ -78,6 +80,44 @@ export default defineComponent({
         //开始加载动画
         // loadingBar.start();
 
+        const keyCodeMap = {
+          // 91: true, // command
+          61: true,
+          107: true, // 数字键盘 +
+          109: true, // 数字键盘 -
+          173: true, // 火狐 - 号
+          187: true, // +
+          189: true, // -
+        };
+        // 覆盖ctrl||command + ‘+’/‘-’
+        document.onkeydown = function (event) {
+          const e = event || window.event;
+          const ctrlKey = e.ctrlKey || e.metaKey;
+          if (ctrlKey && keyCodeMap[e.keyCode]) {
+            e.preventDefault();
+          } else if (e.detail) {
+            // Firefox
+            event.returnValue = false;
+          }
+        };
+        // 覆盖鼠标滑动
+        document.body.addEventListener(
+          "wheel",
+          (e) => {
+            if (e.ctrlKey) {
+              if (e.deltaY < 0) {
+                e.preventDefault();
+                return false;
+              }
+              if (e.deltaY > 0) {
+                e.preventDefault();
+                return false;
+              }
+            }
+          },
+          { passive: false }
+        );
+
         //加载完毕执行响应布局
         if (ref(screenWidth).value > 1536) {
           console.log("窗口大于1536");
@@ -95,7 +135,7 @@ export default defineComponent({
         if (ref(screenWidth).value > 1280 && ref(screenWidth).value < 1536) {
           console.log("窗口小于1536");
 
-          // CenterSpan.value = "4";
+          CenterSpan.value = "4";
           // refLeft.value.$el.attributes.style.value = "display:none;";
           // document.getElementById("refLeft").style = "display:none;";
 
@@ -132,8 +172,6 @@ export default defineComponent({
           document.body.scrollTop;
         let hFigure = document.getElementById("h-figure");
         // console.log(scrollTop);
-
-        
 
         //鼠标移入事件
         LHeader.onmouseover = () => {
@@ -195,11 +233,32 @@ export default defineComponent({
           document.body.scrollTop;
         let LHeader = document.getElementById("nLayoutHeader").children[0];
         let hFigure = document.getElementById("h-figure");
-        // console.log(scrollTop);
+        // console.log(scrollTop);890
         let LHeaderChild = document.getElementsByClassName("n-submenu")[0];
         let binderFollowerContent = document.getElementsByClassName(
           "n-dropdown-menu n-popover n-dropdown"
         )[0];
+        //固定右面布局
+        let divRigth = document.getElementById("divRigth");
+        //固定左面布局
+        let divLeft = document.getElementById("divLeft");
+        if (scrollTop <= "890") {
+          //top: 95px;left: 1235px;position: fixed;
+          divRigth.style.setProperty("position", "unset");
+          divLeft.style.setProperty("position", "unset");
+        }
+        if (scrollTop > "890") {
+          //固定左面布局
+          divLeft.style.setProperty("position", "fixed");
+          divLeft.style.setProperty("top", "95px");
+          divLeft.style.setProperty("left", "30px");
+          //top: 147px;left: 1235px;position: fixed;
+          //固定右面布局
+          divRigth.style.setProperty("position", "fixed");
+          // divLeft.style.setProperty("width", "550px");
+          divRigth.style.setProperty("top", "95px");
+          divRigth.style.setProperty("left", "1274px");
+        }
 
         //鼠标移入事件
         LHeader.onmouseover = () => {
@@ -261,6 +320,32 @@ export default defineComponent({
           screenWidth = document.body.clientWidth;
           screenHeight = document.body.clientHeight;
           element = document.getElementById("backTop");
+
+          let scrollTop =
+            window.pageYOffset ||
+            document.documentElement.scrollTop ||
+            document.body.scrollTop;
+          //固定右面布局
+          let divRigth = document.getElementById("divRigth");
+          //固定左面布局
+          let divLeft = document.getElementById("divLeft");
+          if (scrollTop <= "890") {
+            //top: 95px;left: 1235px;position: fixed;
+            divRigth.style.setProperty("position", "unset");
+            divLeft.style.setProperty("position", "unset");
+          }
+          if (scrollTop > "890") {
+            //固定左面布局
+            divLeft.style.setProperty("position", "fixed");
+            divLeft.style.setProperty("top", "95px");
+            divLeft.style.setProperty("left", "30px");
+            //top: 147px;left: 1235px;position: fixed;
+            //固定右面布局
+            divRigth.style.setProperty("position", "fixed");
+            // divLeft.style.setProperty("width", "550px");
+            divRigth.style.setProperty("top", "95px");
+            divRigth.style.setProperty("left", "1274px");
+          }
           // console.log(this.screenWidth + "--" + this.screenHeight);
           //加载完毕执行响应布局
           if (ref(screenWidth).value > 1536) {
@@ -280,7 +365,7 @@ export default defineComponent({
             console.log("窗口小于1536");
 
             // refLeft.value.$el.attributes.style.value = "display:none;";
-            document.getElementById("refLeft").style = "display:none;";
+            // document.getElementById("refLeft").style = "display:none;";
 
             CenterSpan.value = "4";
 
