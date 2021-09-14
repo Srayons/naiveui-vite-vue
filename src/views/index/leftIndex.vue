@@ -10,7 +10,8 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >个人信息</n-gradient-text>
+            >个人信息</n-gradient-text
+          >
         </n-divider>
         <n-gradient-text
           ref="cGradientText"
@@ -37,10 +38,16 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >音乐</n-gradient-text>
+            >音乐</n-gradient-text
+          >
         </n-divider>
         <!--  -->
-        <div id="aplayer"></div>
+        <Aplayer
+          :music="videoUpload.music"
+          :showLrc="false"
+          :listFolded="false"
+          :list="lists"
+        ></Aplayer>
       </n-card>
     </n-space>
   </div>
@@ -60,50 +67,34 @@ import {
   PaperPlaneOutline,
   PlayOutline,
 } from "@vicons/ionicons5";
-
-// import 'aplayer/dist/aplayer.min.css';
-import APlayer from "aplayer";
+import Aplayer from "vue3-aplayer";
 export default defineComponent({
   components: {
     PersonOutline,
     PaperPlaneOutline,
     PlayOutline,
+    Aplayer,
   },
   setup() {
-    // const videoUpload = {
-    //   progress: false,
-    //   progressPercent: 0,
-    //   successPercent: 0,
-    //   music: {
-    //     theme:"pic",
-    //     title: "东西（Cover：林俊呈）",
-    //     artist: "纳豆",
-    //     src: "https://cdn.moefe.org/music/mp3/thing.mp3",
-    //     pic: "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
-    //     lrc: 'https://cdn.moefe.org/music/lrc/thing.lrc',
-    //   },
-    // }
-    const ap = reactive();
+    const lists = reactive([]);
+    let videoUpload = {
+      music: {
+        theme: "pic",
+        title: "东西（Cover：林俊呈）",
+        artist: "纳豆",
+        src: "https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3",
+        pic: "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
+        lrc: "https://cdn.moefe.org/music/lrc/thing.lrc",
+      },
+    };
     //页面加载完
-    onMounted(() => {
-      const options = {
-        container: document.getElementById("aplayer"),
-        audio: [
-          {
-            name: "东西（Cover：林俊呈）",
-            artist: "纳豆",
-            url: "https://cdn.moefe.org/music/mp3/thing.mp3",
-            cover:
-              "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
-          },
-        ],
-      };
-      ap.value = new APlayer(options);
-    });
+    onMounted(() => {});
 
     return {
       LeftSpan: ref("1"),
-      ap,
+      videoUpload,
+      lists
+      // ap,
     };
   },
 });
