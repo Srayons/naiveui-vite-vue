@@ -81,11 +81,11 @@ export default defineComponent({
     let videoUpload = {
       music: {
         // theme: "pic",
-        title: "起风了",
+        title: "新的心跳",
         artist: "---无",
-        src: "https://m7.music.126.net/20210917130326/8f9cfd3faba4a5f9fbd11fe34368efec/ymusic/0758/550f/545f/028d3b9421be8425d60dc57735cf6ebc.mp3",
+        src: "https://m704.music.126.net/20210917175323/4a2101534b5e5ccd2b8df442e5244b6c/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/10160599708/da03/b3d4/dc8f/0d7df5a9b3bfcf00dc7b9c5e02d77a34.m4a?authSecret=0000017bf315e4e91e880aaba07bed13",
         pic: "https://p1.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
-        lrc: "https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+        lrc: "http://localhost:9999/sync/getLyricById"//"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
       },
     };
     //页面加载完
