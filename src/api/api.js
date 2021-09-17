@@ -1,6 +1,6 @@
 import axios from 'axios'
 var $http = axios.create({
-    baseURL: 'https://wwww.baidu.com'//服务器地址
+    baseURL: location.origin//服务器地址
 });
 // 添加请求拦截器
 $http.interceptors.request.use(function (config) {

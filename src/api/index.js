@@ -1,11 +1,12 @@
 import axios from './api'
 let api = {}
-// 登陆
-api.login = function (data) {
+// GET
+api.GET = function (url,data,header) {
     return axios({
-        url: '/login',
-        method: 'POST',
-        data: data
+        url: url,
+        method: 'GET',
+        data: data,
+        header:header
     })
 }
 export default api

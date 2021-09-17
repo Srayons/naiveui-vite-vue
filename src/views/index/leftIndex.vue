@@ -44,9 +44,10 @@
         <!--  -->
         <Aplayer
           :music="videoUpload.music"
-          :showLrc="false"
+          :showLrc="true"
           :listFolded="false"
           :list="lists"
+          volume="0.8"
         ></Aplayer>
       </n-card>
     </n-space>
@@ -79,16 +80,19 @@ export default defineComponent({
     const lists = reactive([]);
     let videoUpload = {
       music: {
-        theme: "pic",
-        title: "东西（Cover：林俊呈）",
-        artist: "纳豆",
-        src: "https://moeplayer.b0.upaiyun.com/aplayer/secretbase.mp3",
-        pic: "https://p1.music.126.net/5zs7IvmLv7KahY3BFzUmrg==/109951163635241613.jpg?param=300y300",
-        lrc: "https://cdn.moefe.org/music/lrc/thing.lrc",
+        // theme: "pic",
+        title: "起风了",
+        artist: "---无",
+        src: "https://m7.music.126.net/20210917130326/8f9cfd3faba4a5f9fbd11fe34368efec/ymusic/0758/550f/545f/028d3b9421be8425d60dc57735cf6ebc.mp3",
+        pic: "https://p1.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
+        lrc: "https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
       },
     };
     //页面加载完
-    onMounted(() => {});
+    onMounted(() => {
+      //发送请求
+
+    });
 
     return {
       LeftSpan: ref("1"),
@@ -106,6 +110,7 @@ export default defineComponent({
 
 #divLeft .n-card {
   width: 300px;
+  padding-left: 10px
 }
 #divLeft .n-card > .n-card__content {
   width: 100%;
