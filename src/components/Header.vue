@@ -229,14 +229,14 @@ export default defineComponent({
         let Navatar = document.getElementsByClassName("header-tou")[0];
         //鼠标移入事件
         Navatar.onmouseover = () => {
-          console.log("Navatar-onmouseover");
-          console.log(Navatar);
+          // console.log("Navatar-onmouseover");
+          // console.log(Navatar);
           Navatar.style.setProperty("display", "none;");
         };
 
         //鼠标移入事件
         Navatar.onmouseout = () => {
-          console.log("Navatar-onmouseout");
+          // console.log("Navatar-onmouseout");
         };  
       });
     });

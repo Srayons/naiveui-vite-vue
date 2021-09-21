@@ -111,7 +111,7 @@ export default defineComponent({
       LeftCard.style.setProperty("--padding-left", "5px");
       //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
       getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
-        console.log(res);
+        // console.log(res);
         if (res.code == "1") {
           let data = res.data;
           for (let index = 0; index < data.length; index++) {
@@ -146,7 +146,7 @@ export default defineComponent({
       videoUpload,
       lists,
       volume,
-      repeatAll: "none-repeat",
+      repeatAll: "repeat-all",
     };
   },
 });

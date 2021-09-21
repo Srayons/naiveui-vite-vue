@@ -1,6 +1,6 @@
 // http/index.js
 import axios from 'axios'
-console.log(import.meta.env.VITE_ENV_BASE_URL) // 打印 VITE_ENV_BASE_URL 变量
+// console.log(import.meta.env.VITE_ENV_BASE_URL) // 打印 VITE_ENV_BASE_URL 变量
 //创建axios的一个实例 
 var instance = axios.create({
     baseURL: import.meta.env.VITE_ENV_BASE_URL, //接口统一域名'http://localhost:9999',

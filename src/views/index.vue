@@ -68,7 +68,7 @@ export default defineComponent({
     const showBackTop = ref(false);
 
     onMounted(() => {
-      console.log("finish");
+      // console.log("finish");
       // 获取当前浏览器宽高
       let screenWidth = document.body.clientWidth;
       let screenHeight = document.body.clientHeight;
@@ -119,7 +119,7 @@ export default defineComponent({
 
         //加载完毕执行响应布局
         if (ref(screenWidth).value > 1536) {
-          console.log("窗口大于1536");
+          // console.log("窗口大于1536");
           CenterSpan.value = "3";
           LeftSpan.value = "1";
           RigthSpan.value = "2";
@@ -132,7 +132,7 @@ export default defineComponent({
           // refLeft.value.$el.attributes.style.value = "display:none;";
         }
         if (ref(screenWidth).value > 1280 && ref(screenWidth).value < 1536) {
-          console.log("窗口小于1536");
+          // console.log("窗口小于1536");
 
           CenterSpan.value = "4";
           // refLeft.value.$el.attributes.style.value = "display:none;";
@@ -149,7 +149,7 @@ export default defineComponent({
           }
         }
         if (ref(screenWidth).value < 1280) {
-          console.log("窗口小于1280");
+          // console.log("窗口小于1280");
           CenterSpan.value = "3";
 
           if (element) {
@@ -174,7 +174,7 @@ export default defineComponent({
 
         //鼠标移入事件
         LHeader.onmouseover = () => {
-          console.log("LHeader-onmouseover");
+          // console.log("LHeader-onmouseover");
           //当滚动条不移动则为完全不透明
           if (scrollTop0 == 0) {
             LHeader.style.setProperty("animation", "unset");
@@ -184,7 +184,7 @@ export default defineComponent({
 
         //鼠标移入事件
         hFigure.onmouseover = () => {
-          console.log("binderFollowerContent-onmouseover");
+          // console.log("binderFollowerContent-onmouseover");
           //当滚动条不移动则为完全不透明
           if (scrollTop0 == 0) {
             LHeader.style.setProperty("animation", "hide-detail 1s linear");
@@ -197,13 +197,13 @@ export default defineComponent({
           let binderFollowerContent = document.getElementsByClassName(
             "n-dropdown-menu n-popover n-dropdown"
           )[0];
-          console.log(LHeaderChild);
-          console.log(binderFollowerContent);
+          // console.log(LHeaderChild);
+          // console.log(binderFollowerContent);
           if (LHeaderChild && binderFollowerContent) {
-            console.log("LHeader-onmouseout");
+            // console.log("LHeader-onmouseout");
             //鼠标移入事件
             LHeaderChild.onmouseover = () => {
-              console.log("LHeaderChild-onmouseover");
+              // console.log("LHeaderChild-onmouseover");
               //当滚动条不移动则为完全不透明
               if (scrollTop0 == 0) {
                 LHeader.style.setProperty("animation", "unset");
@@ -219,7 +219,7 @@ export default defineComponent({
           }
         };
 
-        console.log("nextTick");
+        // console.log("nextTick");
         //结束加载条
         loadingBar.finish();
       });
@@ -348,7 +348,7 @@ export default defineComponent({
           // console.log(this.screenWidth + "--" + this.screenHeight);
           //加载完毕执行响应布局
           if (ref(screenWidth).value > 1536) {
-            console.log("窗口大于1536");
+            // console.log("窗口大于1536");
             CenterSpan.value = "3";
             LeftSpan.value = "1";
             RigthSpan.value = "2";
@@ -361,7 +361,7 @@ export default defineComponent({
             // refLeft.value.$el.attributes.style.value = "display:none;";
           }
           if (ref(screenWidth).value > 1280 && ref(screenWidth).value < 1536) {
-            console.log("窗口小于1536");
+            // console.log("窗口小于1536");
 
             // refLeft.value.$el.attributes.style.value = "display:none;";
             // document.getElementById("refLeft").style = "display:none;";
@@ -374,7 +374,7 @@ export default defineComponent({
             }
           }
           if (ref(screenWidth).value < 1280) {
-            console.log("窗口小于1280");
+            // console.log("窗口小于1280");
             CenterSpan.value = "3";
 
             if (element) {
@@ -390,7 +390,7 @@ export default defineComponent({
     });
 
     onUpdated(() => {
-      console.log("onUpdated");
+      // console.log("onUpdated");
     });
 
     return {

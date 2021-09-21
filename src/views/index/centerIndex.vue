@@ -269,7 +269,7 @@ export default defineComponent({
     //页面加载完
     onMounted(() => {
       if (navigator.onLine) {
-        console.log("有网");
+        // console.log("有网");
         ref(loading).value = false;
         nextTick(() => {
           let el = document.getElementsByClassName("c-gradient-text");
@@ -290,7 +290,7 @@ export default defineComponent({
           }
         });
       } else {
-        console.log("没网");
+        // console.log("没网");
       }
       cardLen.length = 5;
       // updateSwitch();
@@ -298,7 +298,7 @@ export default defineComponent({
 
     //页面升级
     onUpdated(() => {
-      console.log("onUpdated=====");
+      // console.log("onUpdated=====");
     });
 
     // 不要忘了在return中添加refDiv
