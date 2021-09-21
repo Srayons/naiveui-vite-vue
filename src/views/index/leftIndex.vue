@@ -93,7 +93,7 @@ export default defineComponent({
       music: {
         // theme: "pic",
         title: "STAY",
-        artist: " ",
+        artist: "   The Kid LAROI",
         src: "https://music.163.com/song/media/outer/url?id=1859245776.mp3",
         pic:
           "https://p2.music.126.net/e5cvcdgeosDKTDrkTfZXnQ==/109951166155165682.jpg",
@@ -117,7 +117,7 @@ export default defineComponent({
           for (let index = 0; index < data.length; index++) {
             let musics = {
               title: data[index].mSname,
-              artist: " ",
+              artist: "   "+data[index].mArtist,
               src:
                 "https://music.163.com/song/media/outer/url?id=" +
                 data[index].mSid +
@@ -134,6 +134,7 @@ export default defineComponent({
       });
 
       nextTick(() => {
+        console.log('nextTick')
         let LeftCard = document.getElementById("divLeft").firstElementChild
           .children[1].firstElementChild;
         // console.log(LeftCard);
@@ -146,7 +147,7 @@ export default defineComponent({
       videoUpload,
       lists,
       volume,
-      repeatAll: "repeat-all",
+      repeatAll: 'list',
     };
   },
 });
