@@ -13,6 +13,7 @@ import {
     // component
     NButton,
     NLoadingBarProvider,
+    NMessageProvider,
     NSpace,
     NLayout,
     NLayoutHeader,
@@ -37,6 +38,7 @@ const naive = create({
     components: [
         NButton,
         NLoadingBarProvider,
+        NMessageProvider,
         NSpace,
         NLayout,
         NLayoutHeader,
@@ -58,6 +60,7 @@ const naive = create({
     ]
 })
 
+
 import vue3aplayer from 'vue3-aplayer'
 // import APlayer from "aplayer";
 // import meting from 'meting';
@@ -65,7 +68,9 @@ import vue3aplayer from 'vue3-aplayer'
 // import vue3videoPlay from 'vue3-video-play'; // 引入组件
 // import 'vue3-video-play/dist/'; // 引入css
 
-const app = createApp(App)
+const app = createApp(App);
+
+// app.config.globalProperties.$http = http
 
 app.use(naive,vue3aplayer);
 

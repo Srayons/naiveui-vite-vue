@@ -30,9 +30,7 @@
     :visibility-height="500"
   >
     <div>
-      <img
-        src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png"
-      />
+      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
     </div>
   </n-back-top>
 </template>
@@ -44,6 +42,7 @@ import PubFooter from "../components/Footer.vue";
 import leftIndex from "./index/leftIndex.vue";
 import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
+import { useMessage } from "naive-ui";
 
 // import api from "/@/api/index.js";
 
@@ -56,6 +55,7 @@ export default defineComponent({
     PubFooter,
   },
   setup() {
+    window.$message = useMessage();
     const loadingBar = useLoadingBar();
     const refLeft = ref(null);
     const LeftSpan = ref("1");
@@ -75,7 +75,6 @@ export default defineComponent({
       let element = document.getElementById("backTop");
 
       // let clientWidth = ref(document.body.clientWidth).value;
-
       nextTick(() => {
         //开始加载动画
         // loadingBar.start();

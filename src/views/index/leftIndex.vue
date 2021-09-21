@@ -10,8 +10,7 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >个人信息</n-gradient-text
-          >
+          >个人信息</n-gradient-text>
         </n-divider>
         <n-gradient-text
           ref="cGradientText"
@@ -38,16 +37,20 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >音乐</n-gradient-text
-          >
+          >音乐</n-gradient-text>
         </n-divider>
         <!--  -->
         <Aplayer
+          autoplay
           :music="videoUpload.music"
           :showLrc="true"
-          :listFolded="false"
+          :listFolded="true"
           :list="lists"
-          volume="0.8"
+          :volume="volume"
+          :mutex="true"
+          listMaxHeight="300px"
+          :repeat="repeatAll"
+          :shuffle="true"
         ></Aplayer>
       </n-card>
     </n-space>
@@ -58,6 +61,7 @@
 import {
   defineComponent,
   ref,
+  onBeforeMount,
   onMounted,
   onUpdated,
   reactive,
@@ -69,6 +73,14 @@ import {
   PlayOutline,
 } from "@vicons/ionicons5";
 import Aplayer from "vue3-aplayer";
+
+import { getSongsById, getParamsAndKey, PostByPlayerUrl } from "../../http/api";
+
+const lists = reactive([]);
+let volume = ref(0.8);
+let data = reactive([]);
+let videoUpload = {};
+
 export default defineComponent({
   components: {
     PersonOutline,
@@ -77,28 +89,64 @@ export default defineComponent({
     Aplayer,
   },
   setup() {
-    const lists = reactive([]);
     let videoUpload = {
       music: {
         // theme: "pic",
-        title: "新的心跳",
+        title: "STAY",
         artist: "---无",
-        src: "https://m704.music.126.net/20210917175323/4a2101534b5e5ccd2b8df442e5244b6c/jdyyaac/obj/w5rDlsOJwrLDjj7CmsOj/10160599708/da03/b3d4/dc8f/0d7df5a9b3bfcf00dc7b9c5e02d77a34.m4a?authSecret=0000017bf315e4e91e880aaba07bed13",
-        pic: "https://p1.music.126.net/diGAyEmpymX8G7JcnElncQ==/109951163699673355.jpg",
-        lrc: "http://localhost:9999/sync/getLyricById"//"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+        src: "https://music.163.com/song/media/outer/url?id=1859245776.mp3",
+        pic:
+          "https://p2.music.126.net/e5cvcdgeosDKTDrkTfZXnQ==/109951166155165682.jpg",
+        lrc:
+          import.meta.env.VITE_ENV_BASE_URL +
+          "/sync/getLyricById?id=1859245776",
       },
     };
+
     //页面加载完
     onMounted(() => {
-      //发送请求
+      let LeftCard = document.getElementById("divLeft").firstElementChild
+        .children[1].firstElementChild;
+      // console.log(LeftCard);
+      LeftCard.style.setProperty("--padding-left", "5px");
+      //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
+      getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
+        console.log(res);
+        if (res.code == "1") {
+          let data = res.data;
+          for (let index = 0; index < data.length; index++) {
+            let musics = {
+              title: data[index].mSname,
+              artist: "---无",
+              src:
+                "https://music.163.com/song/media/outer/url?id=" +
+                data[index].mSid +
+                ".mp3", //data[index].mSurl,
+              pic: data[index].mPic,
+              lrc:
+                import.meta.env.VITE_ENV_BASE_URL +
+                "/sync/getLyricById?id=" +
+                data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+            };
+            lists.push(musics);
+          }
+        }
+      });
 
+      nextTick(() => {
+        let LeftCard = document.getElementById("divLeft").firstElementChild
+          .children[1].firstElementChild;
+        // console.log(LeftCard);
+        LeftCard.style.setProperty("--padding-left", "5px");
+      });
     });
 
     return {
       LeftSpan: ref("1"),
       videoUpload,
-      lists
-      // ap,
+      lists,
+      volume,
+      repeatAll: "none-repeat",
     };
   },
 });
@@ -110,7 +158,7 @@ export default defineComponent({
 
 #divLeft .n-card {
   width: 300px;
-  padding-left: 10px
+  padding-left: 0px;
 }
 #divLeft .n-card > .n-card__content {
   width: 100%;
@@ -129,8 +177,13 @@ export default defineComponent({
 
 } */
 
-.aplayer {
+#divLeft .aplayer {
   margin: 0;
   font-family: "v-sans";
+}
+
+#divLeft .aplayer-time button:nth-child(3),
+#divLeft .aplayer-time button:nth-child(4) {
+  display: none;
 }
 </style>
