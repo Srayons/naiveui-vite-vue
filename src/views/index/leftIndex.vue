@@ -28,7 +28,7 @@
         </n-gradient-text>
       </n-card>
 
-      <n-card hoverable class="cardStyle">
+      <n-card hoverable class="cardStyle" style="--padding-left:5px;">
         <!-- 音乐 -->
         <n-divider title-placement="left" dashed>
           <n-icon size="22">
@@ -40,18 +40,23 @@
           >音乐</n-gradient-text>
         </n-divider>
         <!--  -->
-        <Aplayer
-          autoplay
-          :music="videoUpload.music"
-          :showLrc="true"
-          :listFolded="true"
-          :list="lists"
-          :volume="volume"
-          :mutex="true"
-          listMaxHeight="300px"
-          :repeat="repeatAll"
-          :shuffle="true"
-        ></Aplayer>
+        <div v-if="!isAplayer">
+          <n-skeleton v-if="loading" width="100%" :repeat="6" />
+        </div>
+        <div v-if="isAplayer">
+          <Aplayer
+            autoplay
+            :music="videoUpload"
+            :showLrc="true"
+            :listFolded="false"
+            :list="lists"
+            :volume="volume"
+            :mutex="true"
+            listMaxHeight="395px"
+            :repeat="repeatAll"
+            :shuffle="false" 
+          ></Aplayer>
+        </div>
       </n-card>
     </n-space>
   </div>
@@ -66,6 +71,7 @@ import {
   onUpdated,
   reactive,
   nextTick,
+  toRefs,
 } from "vue";
 import {
   PersonOutline,
@@ -76,11 +82,6 @@ import Aplayer from "vue3-aplayer";
 
 import { getSongsById, getParamsAndKey, PostByPlayerUrl } from "../../http/api";
 
-const lists = reactive([]);
-let volume = ref(0.8);
-let data = reactive([]);
-let videoUpload = {};
-
 export default defineComponent({
   components: {
     PersonOutline,
@@ -88,67 +89,53 @@ export default defineComponent({
     PlayOutline,
     Aplayer,
   },
-  setup() {
-    let videoUpload = {
-      music: {
-        // theme: "pic",
-        title: "STAY",
-        artist: "   The Kid LAROI",
-        src: "https://music.163.com/song/media/outer/url?id=1859245776.mp3",
-        pic:
-          "https://p2.music.126.net/e5cvcdgeosDKTDrkTfZXnQ==/109951166155165682.jpg",
-        lrc:
-          import.meta.env.VITE_ENV_BASE_URL +
-          "/sync/getLyricById?id=1859245776",
-      },
-    };
-
-    //页面加载完
-    onMounted(() => {
-      let LeftCard = document.getElementById("divLeft").firstElementChild
-        .children[1].firstElementChild;
-      // console.log(LeftCard);
-      LeftCard.style.setProperty("--padding-left", "5px");
-      //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
-      getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
-        // console.log(res);
-        if (res.code == "1") {
-          let data = res.data;
-          for (let index = 0; index < data.length; index++) {
-            let musics = {
-              title: data[index].mSname,
-              artist: "   "+data[index].mArtist,
-              src:
-                "https://music.163.com/song/media/outer/url?id=" +
-                data[index].mSid +
-                ".mp3", //data[index].mSurl,
-              pic: data[index].mPic,
-              lrc:
-                import.meta.env.VITE_ENV_BASE_URL +
-                "/sync/getLyricById?id=" +
-                data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
-            };
-            lists.push(musics);
-          }
-        }
-      });
-
-      nextTick(() => {
-        console.log('nextTick')
-        let LeftCard = document.getElementById("divLeft").firstElementChild
-          .children[1].firstElementChild;
-        // console.log(LeftCard);
-        LeftCard.style.setProperty("--padding-left", "5px");
-      });
-    });
-
+  data() {
     return {
-      LeftSpan: ref("1"),
-      videoUpload,
-      lists,
-      volume,
-      repeatAll: 'list',
+      isAplayer: false,
+      LeftSpan: "1",
+      videoUpload: {},
+      lists: [],
+      
+      repeatAll: "list",
+      loading: true,
     };
+  },
+  mounted() {
+    //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
+    getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
+      // console.log(res);
+      if (res.code == "1") {
+        let data = res.data;
+        for (let index = 0; index < data.length; index++) {
+          let musics = {
+            title: data[index].mSname,
+            artist: "   " + data[index].mArtist,
+            src:
+              "https://music.163.com/song/media/outer/url?id=" +
+              data[index].mSid +
+              ".mp3", //data[index].mSurl,
+            pic: data[index].mPic,
+            lrc:
+              import.meta.env.VITE_ENV_BASE_URL +
+              "/sync/getLyricById?id=" +
+              data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+          };
+          this.lists.push(musics);
+        }
+        this.videoUpload = this.lists[0];
+        // console.log(JSON.stringify(this.lists[0]));
+        // console.log(this.videoUpload);
+        this.isAplayer = true;
+      }
+    });
+  },
+  setup() {
+    //页面加载完
+    onMounted(() => {});
+    nextTick(() => {});
+    return {
+      volume: 0.8,
+    }
   },
 });
 </script>
