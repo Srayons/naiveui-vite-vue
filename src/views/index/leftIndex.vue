@@ -93,7 +93,7 @@ export default defineComponent({
       music: {
         // theme: "pic",
         title: "STAY",
-        artist: "---无",
+        artist: " ",
         src: "https://music.163.com/song/media/outer/url?id=1859245776.mp3",
         pic:
           "https://p2.music.126.net/e5cvcdgeosDKTDrkTfZXnQ==/109951166155165682.jpg",
@@ -117,7 +117,7 @@ export default defineComponent({
           for (let index = 0; index < data.length; index++) {
             let musics = {
               title: data[index].mSname,
-              artist: "---无",
+              artist: " ",
               src:
                 "https://music.163.com/song/media/outer/url?id=" +
                 data[index].mSid +
