@@ -1,22 +1,21 @@
 <template>
-  <n-loading-bar-provider>
-    <n-message-provider>
-    <index></index>
-    </n-message-provider>
-  </n-loading-bar-provider>
+  <v3scroll breadth="4" :autoHide="autoHide">
+    <n-loading-bar-provider>
+      <n-message-provider>
+        <index></index>
+      </n-message-provider>
+    </n-loading-bar-provider>
+  </v3scroll>
 </template>
 
 <script>
 import { defineComponent, ref, onMounted, computed } from "vue";
 import index from "./views/index.vue";
 
-
 export default defineComponent({
   components: {
     index,
   },
-  setup() {
-    
-  },
+  setup() {},
 });
 </script>

@@ -1,38 +1,38 @@
 <template>
-  <n-space vertical size="large">
-    <n-layout>
-      <pub-header></pub-header>
-      <n-layout-content content-style="padding: 24px;">
-        <n-grid cols="1 s:1 m:1 l:7 xl:6 2xl:6" responsive="screen">
-          <!-- 左侧布局 -->
-          <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
-            <leftIndex></leftIndex>
-          </n-grid-item>
-          <!-- 中间布局 -->
-          <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
-            <centerIndex></centerIndex>
-          </n-grid-item>
-          <!-- 右侧布局 -->
-          <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
-            <rigthIndex></rigthIndex>
-          </n-grid-item>
-        </n-grid>
-      </n-layout-content>
-      <pub-footer></pub-footer>
-    </n-layout>
-  </n-space>
-  <n-back-top
-    id="backTop"
-    :listen-to="scroll"
-    :show="showBackTop"
-    to="body"
-    :bottom="30"
-    :visibility-height="500"
-  >
-    <div>
-      <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
-    </div>
-  </n-back-top>
+    <n-space vertical size="large">
+      <n-layout>
+        <pub-header></pub-header>
+        <n-layout-content content-style="padding: 24px;">
+          <n-grid cols="1 s:1 m:1 l:7 xl:6 2xl:6" responsive="screen">
+            <!-- 左侧布局 -->
+            <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
+              <leftIndex></leftIndex>
+            </n-grid-item>
+            <!-- 中间布局 -->
+            <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
+              <centerIndex></centerIndex>
+            </n-grid-item>
+            <!-- 右侧布局 -->
+            <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
+              <rigthIndex></rigthIndex>
+            </n-grid-item>
+          </n-grid>
+        </n-layout-content>
+        <pub-footer></pub-footer>
+      </n-layout>
+    </n-space>
+    <n-back-top
+      id="backTop"
+      :listen-to="scroll"
+      :show="showBackTop"
+      to="body"
+      :bottom="30"
+      :visibility-height="500"
+    >
+      <div>
+        <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
+      </div>
+    </n-back-top>
 </template>
 <script>
 import { defineComponent, ref, onMounted, onUpdated, nextTick } from "vue";
@@ -43,8 +43,6 @@ import leftIndex from "./index/leftIndex.vue";
 import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
 import { useMessage } from "naive-ui";
-
-// import api from "/@/api/index.js";
 
 export default defineComponent({
   components: {

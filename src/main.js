@@ -60,8 +60,10 @@ const naive = create({
     ]
 })
 
-
+import v3scroll from 'vue3-scrollbar';
+//音乐插件
 import vue3aplayer from 'vue3-aplayer'
+
 // import APlayer from "aplayer";
 // import meting from 'meting';
 // import 'aplayer/dist/APlayer.min.css'
@@ -70,8 +72,5 @@ import vue3aplayer from 'vue3-aplayer'
 
 const app = createApp(App);
 
-// app.config.globalProperties.$http = http
-
-app.use(naive,vue3aplayer);
-
+app.use(naive, vue3aplayer,v3scroll);
 app.mount('#app')
