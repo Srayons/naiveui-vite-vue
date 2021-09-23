@@ -4,56 +4,45 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background-image: url("/img/plaid2dbf8.jpg");
+  /* background-image: url("/img/plaid2dbf8.jpg"); */
   /* background-image    : url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
   /* margin-top          : 60px; */
 }
 
-.test {
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  float: left;
-  /* margin: 5px; */
-  border: none;
-}
+
 .scrollbar {
   width: 100%;
-  height: 961px;
+  height: 100%;
   margin: 0 auto;
 }
-.test-1::-webkit-scrollbar {
+
+.scroll::-webkit-scrollbar {
   /*滚动条整体样式*/
-  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
-  height: 1px;
+  width: 12px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height: 12px;
 }
-.test-1::-webkit-scrollbar-thumb {
+
+.scroll::-webkit-scrollbar-thumb {
   /*滚动条里面小方块*/
   border-radius: 10px;
   background-color: skyblue;
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background-image: -webkit-linear-gradient(
-      45deg,
-      rgba(255, 255, 255, 0.2) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.2) 50%,
-      rgba(255, 255, 255, 0.2) 75%,
-      transparent 75%,
-      transparent
-  );
+  background-image: -webkit-linear-gradient( 45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.2) 75%, transparent 75%, transparent);
 }
-.test-1::-webkit-scrollbar-track {
+
+.scroll::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
-  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
   background   : #ededed;
   border-radius: 10px;
+  /* background-image: url("/img/plaid2dbf8.jpg"); */
+  /* background-image: url(/img/VlmhX.png); */
 }
 
 /* 布局样式 start */
 
-.n-layout-header,
-.n-layout-footer {
+.n-layout-header, .n-layout-footer {
   background: rgba(128, 128, 128, 0.2);
   /* padding: 10px; */
   padding: 20px 0;
@@ -81,7 +70,7 @@ opacity: 1;
   width: 0px;
 }
 
-[v-placement="bottom"] > .n-popover {
+[v-placement="bottom"]>.n-popover {
   margin-top: 8px;
 }
 
@@ -118,8 +107,7 @@ opacity: 1;
     transition: .4s ease all; */
 }
 
-.n-avatar img,
-.n-avatar {
+.n-avatar img, .n-avatar {
   /* box-shadow: inset 0 0 10px #000; */
   opacity: 1;
   transform: rotate(0deg);
@@ -182,8 +170,8 @@ opacity: 1;
 }
 
 /* 分割线 */
-.n-divider.n-divider--title-position-left
-  .n-divider__line.n-divider__line--left {
+
+.n-divider.n-divider--title-position-left .n-divider__line.n-divider__line--left {
   width: 0px;
 }
 
@@ -217,7 +205,7 @@ opacity: 1;
 
 /* 卡片标题样式 */
 
-.n-card > .n-card-header {
+.n-card>.n-card-header {
   width: 60%;
   text-align: center;
   font-size: 28px;
@@ -225,7 +213,7 @@ opacity: 1;
 
 /* 卡片内容样式 */
 
-.n-card > .n-card__content {
+.n-card>.n-card__content {
   text-align: left;
   width: 60%;
   font-size: 16px;
@@ -240,7 +228,7 @@ opacity: 1;
 
 /* 动作样式 */
 
-.n-card > .n-card__action {
+.n-card>.n-card__action {
   background-color: #fff;
   width: 60%;
 }
@@ -267,8 +255,7 @@ float: left; */
   width: 40%;
 }
 
-.iconTextDivLeft,
-.iconTextDivRight {
+.iconTextDivLeft, .iconTextDivRight {
   display: inline-flex;
 }
 
@@ -317,7 +304,7 @@ float: right;
   border-radius: 0 10px 10px 0;
 }
 
-.imgSkeleton > img {
+.imgSkeleton>img {
   height: 100%;
   width: 100%;
   /* object-fit: contain; */
@@ -339,17 +326,14 @@ float: right;
 
 /* 布局面板样式 */
 
-#refLeft,
-#refCenter,
-#refRigth {
+#refLeft, #refCenter, #refRigth {
   /* background-image: url(https://s3.mashiro.top/view/2018/01/03/sakura.png); */
   padding: 0 2% 0 2%;
 }
 
 /* 回到顶部样式 */
 
-.n-back-top,
-.n-back-top:hover {
+.n-back-top, .n-back-top:hover {
   box-shadow: unset;
   background-color: unset;
   animation: backTtop 2s linear infinite;
@@ -380,7 +364,9 @@ float: right;
 }
 
 @-webkit-keyframes backTtop
-/*Safari and Chrome*/ {
+/*Safari and Chrome*/
+
+  {
   0% {
     top: 0px;
   }
@@ -431,7 +417,9 @@ float: right;
 }
 
 @-webkit-keyframes rotate-avatar
-/*Safari and Chrome*/ {
+/*Safari and Chrome*/
+
+  {
   0% {
     -webkit-transform: rotate(0deg);
   }
@@ -500,3 +488,4 @@ float: right;
 }
 
 /* 导航栏隐藏动画 end*/
+
