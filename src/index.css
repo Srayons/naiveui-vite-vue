@@ -9,6 +9,47 @@
   /* margin-top          : 60px; */
 }
 
+.test {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  float: left;
+  /* margin: 5px; */
+  border: none;
+}
+.scrollbar {
+  width: 100%;
+  height: 961px;
+  margin: 0 auto;
+}
+.test-1::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 10px; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 1px;
+}
+.test-1::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius: 10px;
+  background-color: skyblue;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background-image: -webkit-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.2) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.2) 75%,
+      transparent 75%,
+      transparent
+  );
+}
+.test-1::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background   : #ededed;
+  border-radius: 10px;
+}
+
 /* 布局样式 start */
 
 .n-layout-header,
@@ -139,7 +180,6 @@ opacity: 1;
 .n-carousel {
   border-radius: 10px;
 }
-
 
 /* 分割线 */
 .n-divider.n-divider--title-position-left

@@ -1,11 +1,11 @@
 <template>
-  <v3scroll breadth="4" :autoHide="autoHide">
+
+    
     <n-loading-bar-provider>
       <n-message-provider>
         <index></index>
       </n-message-provider>
     </n-loading-bar-provider>
-  </v3scroll>
 </template>
 
 <script>
