@@ -17,16 +17,16 @@ export default ({
     server: {
         // 代理，最重要，其他的都可以有默认配置
         proxy: {
-            '/api': {
-                target: 'http://localhost:2123',
-                changeOrigin: false,
+            '/magic/web/api': {
+                target: 'http://localhost:9999',
+                changeOrigin: true,
             }
         },
 
         // 是否开启ssr服务断渲染
         ssr: false,
         // 端口
-        port: 2123,
+        // port: 2123,
         // 是否自动开启浏览器
         open: true,
         // 是否关闭控制台输出日志

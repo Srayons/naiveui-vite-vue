@@ -10,7 +10,8 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >个人信息</n-gradient-text>
+            >个人信息</n-gradient-text
+          >
         </n-divider>
         <n-gradient-text
           ref="cGradientText"
@@ -28,7 +29,7 @@
         </n-gradient-text>
       </n-card>
 
-      <n-card hoverable class="cardStyle" style="--padding-left:5px;">
+      <n-card hoverable class="cardStyle" style="--padding-left: 5px">
         <!-- 音乐 -->
         <n-divider title-placement="left" dashed>
           <n-icon size="22">
@@ -37,7 +38,8 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >音乐</n-gradient-text>
+            >音乐</n-gradient-text
+          >
         </n-divider>
         <!--  -->
         <div v-if="!isAplayer">
@@ -54,7 +56,7 @@
             :mutex="true"
             listMaxHeight="395px"
             :repeat="repeatAll"
-            :shuffle="false" 
+            :shuffle="false"
           ></Aplayer>
         </div>
       </n-card>
@@ -95,7 +97,7 @@ export default defineComponent({
       LeftSpan: "1",
       videoUpload: {},
       lists: [],
-      
+
       repeatAll: "list",
       loading: true,
     };
@@ -103,9 +105,10 @@ export default defineComponent({
   mounted() {
     //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
     getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
-      // console.log(res);
-      if (res.code == "1") {
+      console.log(res);
+      if (res.code == "200") {
         let data = res.data;
+        console.log(data);
         for (let index = 0; index < data.length; index++) {
           let musics = {
             title: data[index].mSname,
@@ -116,12 +119,16 @@ export default defineComponent({
               ".mp3", //data[index].mSurl,
             pic: data[index].mPic,
             lrc:
+              import.meta.env.VITE_ENV_BASE_URLS +
               import.meta.env.VITE_ENV_BASE_URL +
               "/sync/getLyricById?id=" +
               data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
           };
           this.lists.push(musics);
         }
+        console.log(import.meta.env.VITE_ENV_BASE_URLS);
+        console.log(import.meta.env);
+        console.log(this.lists);
         this.videoUpload = this.lists[0];
         // console.log(JSON.stringify(this.lists[0]));
         // console.log(this.videoUpload);
@@ -135,7 +142,7 @@ export default defineComponent({
     nextTick(() => {});
     return {
       volume: 0.8,
-    }
+    };
   },
 });
 </script>
