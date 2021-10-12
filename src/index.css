@@ -87,7 +87,7 @@ opacity: 1;
   background-attachment: fixed;
   background-size: cover;
   z-index: -1;
-  background-image: url(/img/VlmhX.png);
+  background-image: url(img/VlmhX.png);
   background-position: center center;
 }
 
@@ -152,7 +152,7 @@ opacity: 1;
 .n-layout-content {
   /* background: #eaeaea; */
   /* margin-top: 62px; */
-  background-image: url("/img/plaid2dbf8.jpg");
+  background-image: url("img/plaid2dbf8.jpg");
 }
 
 /* 布局样式 end*/
