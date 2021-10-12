@@ -105,10 +105,10 @@ export default defineComponent({
   mounted() {
     //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
     getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
-      console.log(res);
+      // console.log(res);
       if (res.code == "200") {
         let data = res.data;
-        console.log(data);
+        // console.log(data);
         for (let index = 0; index < data.length; index++) {
           let musics = {
             title: data[index].mSname,
@@ -119,16 +119,15 @@ export default defineComponent({
               ".mp3", //data[index].mSurl,
             pic: data[index].mPic,
             lrc:
-              import.meta.env.VITE_ENV_BASE_URLS +
               import.meta.env.VITE_ENV_BASE_URL +
               "/sync/getLyricById?id=" +
               data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
           };
           this.lists.push(musics);
         }
-        console.log(import.meta.env.VITE_ENV_BASE_URLS);
-        console.log(import.meta.env);
-        console.log(this.lists);
+        // console.log(import.meta.env.VITE_ENV_BASE_URLS);
+        // console.log(import.meta.env);
+        // console.log(this.lists);
         this.videoUpload = this.lists[0];
         // console.log(JSON.stringify(this.lists[0]));
         // console.log(this.videoUpload);
