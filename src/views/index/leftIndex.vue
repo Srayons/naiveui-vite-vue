@@ -46,8 +46,9 @@
           <n-skeleton v-if="loading" width="100%" :repeat="6" />
         </div>
         <div v-if="isAplayer">
+          <!--             autoplay -->
           <Aplayer
-            autoplay
+
             :music="videoUpload"
             :showLrc="true"
             :listFolded="false"

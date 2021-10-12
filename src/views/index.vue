@@ -44,6 +44,7 @@ import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
 import { useMessage } from "naive-ui";
 
+
 export default defineComponent({
   components: {
     PubHeader,
