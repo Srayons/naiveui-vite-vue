@@ -33,6 +33,12 @@ import {
     NIcon,
     NAvatar,
     NDivider,
+    NTabs,
+    NTabPane,
+    NForm,
+    NFormItemRow,
+    NInput,
+    NScrollbar,
 } from 'naive-ui'
 
 const naive = create({
@@ -58,6 +64,12 @@ const naive = create({
         NIcon,
         NAvatar,
         NDivider,
+        NTabs,
+        NTabPane,
+        NForm,
+        NFormItemRow,
+        NInput,
+        NScrollbar,
     ]
 })
 

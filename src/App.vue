@@ -1,4 +1,5 @@
 <template>
+<!-- <n-scrollbar> -->
   <n-loading-bar-provider>
     <n-message-provider>
       <!-- <index></index> -->
@@ -7,6 +8,7 @@
       <router-view></router-view>
     </n-message-provider>
   </n-loading-bar-provider>
+  <!-- </n-scrollbar> -->
 </template>
 
 <script>
