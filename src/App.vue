@@ -1,29 +1,27 @@
 <template>
-    <n-loading-bar-provider>
-      <n-message-provider>
-        <index></index>
-      </n-message-provider>
-    </n-loading-bar-provider>
+  <n-loading-bar-provider>
+    <n-message-provider>
+      <!-- <index></index> -->
+      <!-- 路由出口 -->
+      <!-- 路由匹配到的组件将渲染在这里 -->
+      <router-view></router-view>
+    </n-message-provider>
+  </n-loading-bar-provider>
 </template>
 
 <script>
 import { defineComponent, ref, onMounted, computed } from "vue";
 import index from "./views/index.vue";
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 export default defineComponent({
-  components: {
-    index,
-  },
+  // components: {
+  //   index,
+  // },
   setup() {
-    const router = useRouter()
-    const toHome = (() => {
-      router.push({
-        name: '/login'
-      })
-    })
-    return {
-      toHome
-    }
+    //标题
+    $("#BlogTitle").html("Vogelfrei ——MrSong's Blog")
   },
 });
+
+
 </script>

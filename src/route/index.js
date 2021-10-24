@@ -5,20 +5,21 @@ const home = () => import("../views/index.vue")
 const login = () => import("../views/login/index.vue")
 
 const routes = [
-  { path: "/h", redirect: "/login" },
   {
-    path: "/home",
+    path: "/",
     name: "home",
-    component: home
+    component: () => import("@/views/index.vue"),
   },
   {
     path: "/login",
     name: "login",
-    component: login
+    component: () => import("@/views/login/index.vue"),
   }
 ]
 
-export const router = createRouter({
+ const router = createRouter({
   history: createWebHashHistory(),
   routes: routes
 })
+
+export default router;

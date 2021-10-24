@@ -16,10 +16,13 @@
           <n-icon size="38">
             <SearchCircleIcon></SearchCircleIcon>
           </n-icon>
-          <!-- PersonCircleIcon -->
-          <n-icon size="38">
-            <PersonCircleIcon></PersonCircleIcon>
-          </n-icon>
+
+          <router-link to="/login">
+            <!-- PersonCircleIcon -->
+            <n-icon size="38">
+              <PersonCircleIcon></PersonCircleIcon>
+            </n-icon>
+          </router-link>
         </n-space>
       </div>
     </n-layout-header>
@@ -237,7 +240,7 @@ export default defineComponent({
         //鼠标移入事件
         Navatar.onmouseout = () => {
           // console.log("Navatar-onmouseout");
-        };  
+        };
       });
     });
 

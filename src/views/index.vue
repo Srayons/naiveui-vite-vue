@@ -1,38 +1,38 @@
 <template>
-    <n-space vertical size="large">
-      <n-layout>
-        <pub-header></pub-header>
-        <n-layout-content content-style="padding: 24px;">
-          <n-grid cols="1 s:1 m:1 l:7 xl:6 2xl:6" responsive="screen">
-            <!-- 左侧布局 -->
-            <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
-              <leftIndex></leftIndex>
-            </n-grid-item>
-            <!-- 中间布局 -->
-            <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
-              <centerIndex></centerIndex>
-            </n-grid-item>
-            <!-- 右侧布局 -->
-            <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
-              <rigthIndex></rigthIndex>
-            </n-grid-item>
-          </n-grid>
-        </n-layout-content>
-        <pub-footer></pub-footer>
-      </n-layout>
-    </n-space>
-    <n-back-top
-      id="backTop"
-      :listen-to="scroll"
-      :show="showBackTop"
-      to="body"
-      :bottom="30"
-      :visibility-height="500"
-    >
-      <div>
-        <img src="https://cdn.jsdelivr.net/gh/moezx/cdn@3.1.9/img/Sakura/images/scroll.png" />
-      </div>
-    </n-back-top>
+  <n-space vertical size="large">
+    <n-layout>
+      <pub-header></pub-header>
+      <n-layout-content content-style="padding: 24px;">
+        <n-grid cols="1 s:1 m:1 l:7 xl:6 2xl:6" responsive="screen">
+          <!-- 左侧布局 -->
+          <n-grid-item :span="LeftSpan" id="refLeft" ref="refLeft">
+            <leftIndex></leftIndex>
+          </n-grid-item>
+          <!-- 中间布局 -->
+          <n-grid-item :span="CenterSpan" id="refCenter" ref="refCenter">
+            <centerIndex></centerIndex>
+          </n-grid-item>
+          <!-- 右侧布局 -->
+          <n-grid-item :span="RigthSpan" id="refRigth" ref="refRigth">
+            <rigthIndex></rigthIndex>
+          </n-grid-item>
+        </n-grid>
+      </n-layout-content>
+      <pub-footer></pub-footer>
+    </n-layout>
+  </n-space>
+  <n-back-top
+    id="backTop"
+    :listen-to="scroll"
+    :show="showBackTop"
+    to="body"
+    :bottom="30"
+    :visibility-height="500"
+  >
+    <div>
+      <img src="../img/scroll.png" />
+    </div>
+  </n-back-top>
 </template>
 <script>
 import { defineComponent, ref, onMounted, onUpdated, nextTick } from "vue";
@@ -43,7 +43,6 @@ import leftIndex from "./index/leftIndex.vue";
 import centerIndex from "./index/centerIndex.vue";
 import rigthIndex from "./index/rigthIndex.vue";
 import { useMessage } from "naive-ui";
-
 
 export default defineComponent({
   components: {
@@ -229,86 +228,103 @@ export default defineComponent({
           window.pageYOffset ||
           document.documentElement.scrollTop ||
           document.body.scrollTop;
-        let LHeader = document.getElementById("nLayoutHeader").children[0];
-        let hFigure = document.getElementById("h-figure");
-        // console.log(scrollTop);890
-        let LHeaderChild = document.getElementsByClassName("n-submenu")[0];
-        let binderFollowerContent = document.getElementsByClassName(
-          "n-dropdown-menu n-popover n-dropdown"
-        )[0];
-        //固定右面布局
-        let divRigth = document.getElementById("divRigth");
-        //固定左面布局
-        let divLeft = document.getElementById("divLeft");
-        if (scrollTop <= "890") {
-          //top: 95px;left: 1235px;position: fixed;
-          divRigth.style.setProperty("position", "unset");
-          divLeft.style.setProperty("position", "unset");
-        }
-        if (scrollTop > "890") {
-          //固定左面布局
-          divLeft.style.setProperty("position", "fixed");
-          divLeft.style.setProperty("top", "95px");
-          divLeft.style.setProperty("left", "30px");
-          //top: 147px;left: 1235px;position: fixed;
-          //固定右面布局
-          divRigth.style.setProperty("position", "fixed");
-          // divLeft.style.setProperty("width", "550px");
-          divRigth.style.setProperty("top", "95px");
-          divRigth.style.setProperty("left", "1274px");
-        }
-
-        //鼠标移入事件
-        LHeader.onmouseover = () => {
-          //当滚动条不移动则为完全不透明
-          if (scrollTop == 0) {
-            LHeader.style.setProperty("animation", "unset");
-            LHeader.style.setProperty("opacity", "1");
+        // console.log(scrollTop);
+        if (scrollTop >= 0) {
+          let hFigure = document.getElementById("h-figure");
+          let LHeader = document.getElementById("nLayoutHeader");
+          if (LHeader) {
+            LHeader = LHeader.children[0];
           }
-        };
-        //鼠标移出事件
-        LHeader.onmouseout = () => {
-          if (LHeaderChild && binderFollowerContent) {
-            //当滚动条不移动则为完全透明
-            if (scrollTop == 0) {
-              LHeader.style.setProperty("animation", "hide-detail 1s linear");
-              LHeader.style.setProperty("opacity", "0");
+          let LHeaderChild = document.getElementsByClassName("n-submenu");
+          if (LHeaderChild) {
+            LHeaderChild = LHeaderChild[0];
+          }
+          let binderFollowerContent = document.getElementsByClassName(
+            "n-dropdown-menu n-popover n-dropdown"
+          )[0];
+          //固定右面布局
+          let divRigth = document.getElementById("divRigth");
+          //固定左面布局
+          let divLeft = document.getElementById("divLeft");
+          if (divRigth && divLeft) {
+            if (scrollTop <= "890") {
+              //top: 95px;left: 1235px;position: fixed;
+              divRigth.style.setProperty("position", "unset");
+              divLeft.style.setProperty("position", "unset");
             }
+            if (scrollTop > "890") {
+              //固定左面布局
+              divLeft.style.setProperty("position", "fixed");
+              divLeft.style.setProperty("top", "95px");
+              divLeft.style.setProperty("left", "30px");
+              //top: 147px;left: 1235px;position: fixed;
+              //固定右面布局
+              divRigth.style.setProperty("position", "fixed");
+              // divLeft.style.setProperty("width", "550px");
+              divRigth.style.setProperty("top", "95px");
+              divRigth.style.setProperty("left", "1274px");
+            }
+          }
+
+          if (LHeader) {
             //鼠标移入事件
-            LHeaderChild.onmouseover = () => {
+            LHeader.onmouseover = () => {
               //当滚动条不移动则为完全不透明
               if (scrollTop == 0) {
                 LHeader.style.setProperty("animation", "unset");
                 LHeader.style.setProperty("opacity", "1");
               }
             };
+            //鼠标移出事件
+            LHeader.onmouseout = () => {
+              if (LHeaderChild && binderFollowerContent) {
+                //当滚动条不移动则为完全透明
+                if (scrollTop == 0) {
+                  LHeader.style.setProperty(
+                    "animation",
+                    "hide-detail 1s linear"
+                  );
+                  LHeader.style.setProperty("opacity", "0");
+                }
+                //鼠标移入事件
+                LHeaderChild.onmouseover = () => {
+                  //当滚动条不移动则为完全不透明
+                  if (scrollTop == 0) {
+                    LHeader.style.setProperty("animation", "unset");
+                    LHeader.style.setProperty("opacity", "1");
+                  }
+                };
+              }
+            };
           }
-        };
 
-        //鼠标移入事件
-        hFigure.onmouseover = () => {
-          //当滚动条不移动则为完全透明
-          if (scrollTop == 0) {
-            //animation: hide-detail 1s linear ;
-            LHeader.style.setProperty("animation", "hide-detail 1s linear");
-            LHeader.style.setProperty("opacity", "0");
+          if (hFigure || scrollTop || LHeader) {
+            //鼠标移入事件
+            hFigure.onmouseover = () => {
+              //当滚动条不移动则为完全透明
+              if (scrollTop == 0) {
+                //animation: hide-detail 1s linear ;
+                LHeader.style.setProperty("animation", "hide-detail 1s linear");
+                LHeader.style.setProperty("opacity", "0");
+              }
+            };
+            //当滚动条不移动则为完全透明
+            if (scrollTop == 0) {
+              LHeader.style.setProperty("animation", "hide-detail 1s linear");
+              LHeader.style.setProperty("opacity", "0");
+            }
+            //当滚动条移动距离大于1则为完全不透明
+            if (scrollTop > 1) {
+              LHeader.style.setProperty("animation", "unset");
+              LHeader.style.setProperty("opacity", "1");
+            }
+            //当滚动条移动距离大于200则显示置顶按钮，反之则不显示
+            if (scrollTop > 200) {
+              showBackTop.value = true;
+            } else {
+              showBackTop.value = false;
+            }
           }
-        };
-        //当滚动条不移动则为完全透明
-        if (scrollTop == 0) {
-          LHeader.style.setProperty("animation", "hide-detail 1s linear");
-          LHeader.style.setProperty("opacity", "0");
-        }
-        //当滚动条移动距离大于1则为完全不透明
-        if (scrollTop > 1) {
-          LHeader.style.setProperty("animation", "unset");
-          LHeader.style.setProperty("opacity", "1");
-        }
-        //当滚动条移动距离大于200则显示置顶按钮，反之则不显示
-        if (scrollTop > 200) {
-          showBackTop.value = true;
-        } else {
-          showBackTop.value = false;
         }
       };
       // 监听窗口变化

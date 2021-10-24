@@ -1,7 +1,7 @@
 //main.js
 import { createApp } from 'vue'
 import App from './App.vue'
-import {router} from './route'
+import router from './route'
 import './index.css'
 // 通用字体
 import 'vfonts/Lato.css'
@@ -73,5 +73,6 @@ import vue3aplayer from 'vue3-aplayer'
 
 const app = createApp(App);
 
-app.use(naive,router,vue3aplayer,v3scroll);
+app.use(router);
+app.use(naive,vue3aplayer,v3scroll);
 app.mount('#app')
