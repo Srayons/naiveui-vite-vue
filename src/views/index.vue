@@ -228,7 +228,7 @@ export default defineComponent({
           window.pageYOffset ||
           document.documentElement.scrollTop ||
           document.body.scrollTop;
-        console.log(scrollTop);
+        // console.log(scrollTop);
         if (scrollTop >= 0) {
           let hFigure = document.getElementById("h-figure");
           let LHeader = document.getElementById("nLayoutHeader");
