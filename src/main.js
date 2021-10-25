@@ -39,6 +39,7 @@ import {
     NFormItemRow,
     NInput,
     NScrollbar,
+    NLayoutSider,
 } from 'naive-ui'
 
 const naive = create({
@@ -70,6 +71,7 @@ const naive = create({
         NFormItemRow,
         NInput,
         NScrollbar,
+        NLayoutSider,
     ]
 })
 
@@ -84,7 +86,6 @@ import vue3aplayer from 'vue3-aplayer'
 // import 'vue3-video-play/dist/'; // 引入css
 
 const app = createApp(App);
-
 app.use(router);
 app.use(naive,vue3aplayer,v3scroll);
 app.mount('#app')
