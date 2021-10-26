@@ -298,7 +298,7 @@ export default defineComponent({
             };
           }
 
-          if (hFigure || scrollTop || LHeader) {
+          if (hFigure) {
             //鼠标移入事件
             hFigure.onmouseover = () => {
               //当滚动条不移动则为完全透明

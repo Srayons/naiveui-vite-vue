@@ -3,7 +3,54 @@
     <n-space vertical>
       <!-- <n-space> <n-switch v-model:value="inverted" />inverted</n-space> -->
       <n-layout>
-          <n-layout-header style="position: unset;opacity: 1;">颐和园路</n-layout-header>
+        <n-layout-header style="position: unset; opacity: 1">
+          <div id="A-h-gradint">
+            <!-- 渐变文字 -->
+            <n-gradient-text
+              gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+              >Vogelfrei bolg admin</n-gradient-text
+            >
+          </div>
+
+          <div id="A-h-icon">
+            <n-space justify="center">
+              <!-- SearchIcon -->
+              <n-icon size="25">
+                <SearchIcon></SearchIcon>
+              </n-icon>
+              <router-link to="">
+                <!-- SettingsIcon -->
+                <n-icon size="25">
+                  <SettingsIcon></SettingsIcon>
+                </n-icon>
+              </router-link>
+              <router-link to="">
+                <!-- LockClosedIcon -->
+                <n-icon size="25">
+                  <LockClosedIcon></LockClosedIcon>
+                </n-icon>
+              </router-link>
+              <router-link to="">
+                <!-- FullscreenIcon -->
+                <n-icon size="25">
+                  <FullscreenIcon></FullscreenIcon>
+                </n-icon>
+              </router-link>
+              <!-- SkinIcon -->
+              <router-link to="">
+                <!-- FullscreenIcon -->
+                <n-icon size="25">
+                  <SkinIcon></SkinIcon>
+                </n-icon>
+              </router-link>
+              <n-avatar
+                round
+                size="small"
+                src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg"
+              />
+            </n-space>
+          </div>
+        </n-layout-header>
       </n-layout>
       <n-layout has-sider>
         <!-- <n-scrollbar>
@@ -25,6 +72,7 @@
             :collapsed-width="64"
             :collapsed-icon-size="22"
             :options="menuOptions"
+            :default-expanded-keys="[menuOptions[3].whateverKey]"
             key-field="whateverKey"
             label-field="whateverLabel"
             children-field="whateverChildren"
@@ -45,7 +93,15 @@ import {
   BookOutline as BookIcon,
   PersonOutline as PersonIcon,
   WineOutline as WineIcon,
+  SearchOutline as SearchIcon,
+  SettingsOutline as SettingsIcon,
+  LockClosedOutline as LockClosedIcon,
 } from "@vicons/ionicons5";
+
+import {
+  FullscreenOutlined as FullscreenIcon,
+  SkinOutlined as SkinIcon,
+} from "@vicons/antd";
 
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });
@@ -127,10 +183,17 @@ const menuOptions = [
 ];
 
 export default defineComponent({
+  components: {
+    SearchIcon,
+    SettingsIcon,
+    LockClosedIcon,
+    FullscreenIcon,
+    SkinIcon,
+  },
   setup() {
     return {
       inverted: ref(false),
-      collapsed: ref(true),
+      collapsed: ref(false),
       menuOptions,
     };
   },
@@ -138,6 +201,10 @@ export default defineComponent({
 </script>
 <style>
 #adminIndexDiv .n-layout-sider {
-    background-color: var(--color);
+  background-color: var(--color);
+}
+
+#adminIndexDiv .n-menu {
+  height: calc(90vh);
 }
 </style>
