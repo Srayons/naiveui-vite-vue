@@ -40,6 +40,9 @@ import {
     NInput,
     NScrollbar,
     NLayoutSider,
+    NDropdown,
+    NTooltip,
+    NPopover,
 } from 'naive-ui'
 
 const naive = create({
@@ -72,6 +75,9 @@ const naive = create({
         NInput,
         NScrollbar,
         NLayoutSider,
+        NDropdown,
+        NTooltip,
+        NPopover,
     ]
 })
 
