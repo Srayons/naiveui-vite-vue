@@ -19,10 +19,17 @@
 
       <div id="A-h-icon">
         <n-space justify="center">
-          <!-- SearchIcon -->
-          <n-icon size="25">
-            <SearchIcon></SearchIcon>
-          </n-icon>
+          <n-popover trigger="hover">
+            <template #trigger>
+              <router-link to="">
+                <!-- SearchIcon -->
+                <n-icon size="25">
+                  <SearchIcon></SearchIcon>
+                </n-icon>
+              </router-link>
+            </template>
+            <span>搜索</span>
+          </n-popover>
 
           <n-popover trigger="hover">
             <template #trigger>
@@ -36,24 +43,42 @@
             <span>设置</span>
           </n-popover>
 
-          <router-link to="">
-            <!-- LockClosedIcon -->
-            <n-icon size="25">
-              <LockClosedIcon></LockClosedIcon>
-            </n-icon>
-          </router-link>
-          <router-link to="">
-            <!-- FullscreenIcon -->
-            <n-icon size="25">
-              <FullscreenIcon></FullscreenIcon>
-            </n-icon>
-          </router-link>
-          <!-- SkinIcon -->
-          <router-link to="">
-            <n-icon size="25">
-              <SkinIcon></SkinIcon>
-            </n-icon>
-          </router-link>
+          <n-popover trigger="hover">
+            <template #trigger>
+              <router-link to="">
+                <!-- LockClosedIcon -->
+                <n-icon size="25">
+                  <LockClosedIcon></LockClosedIcon>
+                </n-icon>
+              </router-link>
+            </template>
+            <span>锁屏</span>
+          </n-popover>
+
+          <n-popover trigger="hover">
+            <template #trigger>
+              <router-link to="">
+                <!-- FullscreenIcon -->
+                <n-icon size="25">
+                  <FullscreenIcon></FullscreenIcon>
+                </n-icon>
+              </router-link>
+            </template>
+            <span>全屏</span>
+          </n-popover>
+
+          <n-popover trigger="hover">
+            <template #trigger>
+              <!-- SkinIcon -->
+              <router-link to="">
+                <n-icon size="25">
+                  <SkinIcon></SkinIcon>
+                </n-icon>
+              </router-link>
+            </template>
+            <span>换肤</span>
+          </n-popover>
+
           <n-dropdown
             placement="bottom-start"
             trigger="hover"
@@ -88,11 +113,11 @@ import { useMessage } from "naive-ui";
 
 const options = [
   {
-    label: "杰·盖茨比",
+    label: "个人中心",
     key: "jay gatsby",
   },
   {
-    label: "黛西·布坎南",
+    label: "进入前台",
     key: "daisy buchanan",
   },
   {
@@ -100,7 +125,7 @@ const options = [
     key: "d1",
   },
   {
-    label: "尼克·卡拉威",
+    label: "退出登录",
     key: "nick carraway",
   },
   {
