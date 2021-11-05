@@ -6,16 +6,21 @@
       <adminHeader></adminHeader>
       <n-layout has-sider>
         <!-- 菜单加折叠 -->
-        <adminCenterLeft></adminCenterLeft>
+        <adminCenterLeft
+        ></adminCenterLeft>
         <!-- iframe 框架 -->
-        <adminCenterRight></adminCenterRight>
+        <adminCenterRight
+          :detialsResource="selectedResource"
+          :resourceChild="resource"
+          @fatherHomeClick="selectResource"
+        ></adminCenterRight>
       </n-layout>
     </n-space>
   </div>
 </template>
 
 <script>
-import { defineComponent, h, ref } from "vue";
+import { defineComponent, h, ref, toRefs, reactive } from "vue";
 
 import adminHeader from "./adminHeader.vue";
 import adminCenterLeft from "./adminCenterLeft.vue";
@@ -27,7 +32,73 @@ export default defineComponent({
     adminCenterLeft,
     adminCenterRight,
   },
-  setup() {},
+  setup() {
+    const data = reactive({
+      resource: [
+        {
+          _id: "1",
+          title: "新闻1",
+          description: "新闻新闻",
+          type: "video",
+          link: "",
+        },
+        {
+          _id: "2",
+          title: "新闻2",
+          description: "新闻新闻",
+          type: "video2",
+          link: "",
+        },
+        {
+          _id: "3",
+          title: "新闻3",
+          description: "新闻新闻",
+          type: "video3",
+          link: "",
+        },
+        {
+          _id: "4",
+          title: "新闻4",
+          description: "新闻新闻4",
+          type: "video",
+          link: "",
+        },
+        {
+          _id: "5",
+          title: "新闻5",
+          description: "新闻新闻5",
+          type: "video",
+          link: "",
+        },
+        {
+          _id: "6",
+          title: "新闻6",
+          description: "新闻新闻6",
+          type: "video",
+          link: "",
+        },
+        {
+          _id: "7",
+          title: "新闻7",
+          description: "新闻新闻7",
+          type: "video",
+          link: "",
+        },
+      ],
+    });
+    const selectedResource = ref(null);
+    const selectResource = (res) => {
+        console.log(res);
+      //声明一个变量来接收数据
+      selectedResource.value = res;
+    };
+
+    return{
+      ...toRefs(data), 
+      selectedResource, 
+      selectResource
+    }
+  },
 });
 </script>
 <style>

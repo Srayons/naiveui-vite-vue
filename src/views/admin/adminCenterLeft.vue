@@ -9,7 +9,7 @@
     @collapse="collapsed = true"
     @expand="collapsed = false"
   >
-    <n-scrollbar style="height:calc(90vh)">
+    <n-scrollbar style="height: calc(90vh)">
       <n-menu
         :inverted="inverted"
         :collapsed="collapsed"
@@ -26,7 +26,7 @@
 </template>
 <script>
 import { defineComponent, h, ref } from "vue";
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router";
 import { NIcon } from "naive-ui";
 import {
   BookOutline as BookIcon,
@@ -41,19 +41,20 @@ function renderIcon(icon) {
 
 const menuOptions = [
   {
-    whateverLabel:()=>h(
-      RouterLink,
-      {
-        to:{
-          path: '/admin/Index',
-          name:"adminIndex",
-          params: {
-              lang: 'zh-CN'
-            }
-        }
-      },
-      { default: () => '且听风吟' }
-    ),
+    whateverLabel: () =>
+      h(
+        RouterLink,
+        {
+          to: {
+            path: "/admin/Index",
+            name: "adminIndex",
+            params: {
+              lang: "zh-CN",
+            },
+          },
+        },
+        { default: () => "且听风吟" }
+      ),
 
     // whateverLabel: "且听风吟",
     whateverKey: "hear-the-wind-sing",

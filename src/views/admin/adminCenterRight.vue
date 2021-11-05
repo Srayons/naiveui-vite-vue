@@ -5,33 +5,60 @@
       type="card"
       :closable="closable"
       @close="handleClose"
-      @add="handleAdd"
+
       tab-style="min-width: 80px;"
     >
-      <n-tab-pane
+      <!-- <n-tab-pane
         v-for="panel in panels"
         :key="panel"
         :tab="panel.toString()"
         :name="panel"
       >
         <n-card>
-          <span>{{ panel }}</span></n-card
+          <span
+            >{{ panel }}
+            <span v-for="item in resourceChild">{{
+              item.description
+            }}</span></span
+          ></n-card
+        >
+      </n-tab-pane> -->
+
+      <n-tab-pane
+        v-for="panel in panels"
+        :key="panel._id"
+        :tab="panel.title.toString()"
+        :name="panel.title"
+      >
+        <n-card>
+          <span>{{ panel.title }}</span></n-card
         >
       </n-tab-pane>
     </n-tabs>
   </n-layout>
 </template>
 <script>
-import { defineComponent, h, ref,computed  } from "vue";
+import { defineComponent, h, ref, computed } from "vue";
 import { useMessage } from "naive-ui";
 export default defineComponent({
-  setup() {
+  props: {
+    resourceChild: {
+      type: Array,
+      default: [], //还有一种写法 default ()=>[]
+    },
+  },
+  setup(props, ctx) {
     const nameRef = ref(1);
     const message = useMessage();
-    const panelsRef = ref([1]);
+    const panelsRef = props.resourceChild
+    const addableRef = computed(() => {
+      return {
+        disabled: panelsRef.length >= 10,
+      };
+    });
     const closableRef = computed(() => {
-      return panelsRef.value.length > 1
-    })
+      return panelsRef.length > 1;
+    });
     // function handleClose(name) {
     //   // const { value: panels } = panelsRef;
     //   // console.log(panels[0])
@@ -47,23 +74,25 @@ export default defineComponent({
     //   // }
     // }
     return {
-      panels: panelsRef,
+      panels: props.resourceChild,
       name: nameRef,
+      addable: addableRef,
       closable: closableRef,
-      handleAdd () {
-        const newValue = Math.max(...panelsRef.value) + 1
-        panelsRef.value.push(newValue)
-        valueRef.value = newValue
-      },
-      handleClose (name) {
-        const { value: panels } = panelsRef
-        const nameIndex = panels.findIndex((panelName) => panelName === name)
-        if (!~nameIndex) return
-        panels.splice(nameIndex, 1)
+      // handleAdd() {
+      //   const newValue = Math.max(...panelsRef) + 1;
+      //   panelsRef.push(newValue);
+      //   nameRef.value = newValue;
+      // },
+      handleClose(name) {
+        debugger
+        const { value: panels } = panelsRef;
+        const nameIndex = panels.findIndex((panelName) => panelName === name);
+        if (!~nameIndex) return;
+        panels.splice(nameIndex, 1);
         if (name === nameRef.value) {
-          nameRef.value = panels[Math.min(nameIndex, panels.length - 1)]
+          nameRef.value = panels[Math.min(nameIndex, panels.length - 1)];
         }
-      }
+      },
     };
   },
 });

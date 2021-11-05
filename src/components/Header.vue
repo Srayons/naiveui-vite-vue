@@ -2,12 +2,17 @@
   <div id="nLayoutHeader">
     <n-layout-header>
       <!-- 目录 -->
-      <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
+      <n-menu
+        v-model:value="activeKey"
+        mode="horizontal"
+        :options="menuOptions"
+      />
       <div id="A-h-gradint">
         <!-- 渐变文字 -->
         <n-gradient-text
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-        >Vogelfrei ——MrSong's Blog</n-gradient-text>
+          >Vogelfrei ——MrSong's Blog</n-gradient-text
+        >
       </div>
       <div id="A-h-icon">
         <!-- 右侧搜索和登录 -->
@@ -17,7 +22,7 @@
             <SearchCircleIcon></SearchCircleIcon>
           </n-icon>
 
-          <router-link to="/login">
+          <router-link v-if="nodeEnv" to="/login">
             <!-- PersonCircleIcon -->
             <n-icon size="38">
               <PersonCircleIcon></PersonCircleIcon>
@@ -27,8 +32,7 @@
       </div>
     </n-layout-header>
 
-    <figure id="h-figure" style="margin: 0;
-          height: 969px;">
+    <figure id="h-figure" style="margin: 0; height: 969px">
       <div class="focusinfo">
         <div class="header-tou">
           <n-avatar
@@ -43,7 +47,8 @@
             <!-- 渐变文字 -->
             <n-gradient-text
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >Vogelfrei ——MrSong's Blog</n-gradient-text>
+              >Vogelfrei ——MrSong's Blog</n-gradient-text
+            >
           </p>
           <div class="top-social_v2">
             <li>
@@ -53,7 +58,9 @@
                 class="social-bili"
                 title="bilibili"
               >
-                <img src="http://sakura.xiaoyou66.com/themes/sakura/static/image/sns/bilibili.png" />
+                <img
+                  src="http://sakura.xiaoyou66.com/themes/sakura/static/image/sns/bilibili.png"
+                />
               </a>
             </li>
           </div>
@@ -244,7 +251,15 @@ export default defineComponent({
       });
     });
 
+    const nodeEnv = ref(false);
+    console.log(process.env.NODE_ENV)
+    if (process.env.NODE_ENV=='development') {
+      nodeEnv.value = true;
+    }
+
+
     return {
+      nodeEnv,
       activeKey: ref(null),
       menuOptions,
     };
