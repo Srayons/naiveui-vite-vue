@@ -1,5 +1,5 @@
 <template>
-<!-- <n-scrollbar> -->
+  <!-- <n-scrollbar> -->
   <n-loading-bar-provider>
     <n-message-provider>
       <!-- <index></index> -->
@@ -15,15 +15,23 @@
 import { defineComponent, ref, onMounted, computed } from "vue";
 import index from "./views/index.vue";
 import { useRouter } from "vue-router";
+import disableDevtool from "disable-devtool";
+import { addListener, launch } from "devtools-detector";
+
 export default defineComponent({
   // components: {
   //   index,
   // },
   setup() {
     //标题
-    $("#BlogTitle").html("Vogelfrei ——MrSong's Blog")
+    $("#BlogTitle").html("Vogelfrei ——MrSong's Blog");
+    if (process.env.NODE_ENV != "development") {
+    onMounted(() => {
+      // launch();
+      
+    });
+
+    }
   },
 });
-
-
 </script>

@@ -51,17 +51,53 @@
             >
           </p>
           <div class="top-social_v2">
-            <li>
+            <li style="list-style: none;">
               <a
                 href="https://space.bilibili.com/343147393"
                 target="_blank"
-                class="social-bili"
+                class="social-hread"
                 title="bilibili"
               >
                 <img
-                  src="http://sakura.xiaoyou66.com/themes/sakura/static/image/sns/bilibili.png"
+                  src="../img/bilibili.png"
                 />
               </a>
+
+               <a
+                href="https://blog.csdn.net/u014771882"
+                target="_blank"
+                class="social-hread"
+                title="csdn"
+              >
+                <img
+                  src="../img/csdn.png"
+                />
+              </a>
+
+              <a
+                href="https://github.com/s1607011324"
+                target="_blank"
+                class="social-hread"
+                title="github"
+              >
+                <img
+                  src="../img/github.png"
+                />
+              </a>
+
+               <a
+                href="https://gitee.com/songyxin/"
+                target="_blank"
+                class="social-hread"
+                title="gitee"
+              >
+                <img
+                  src="../img/gitee.ico"
+                />
+              </a>
+
+
+              <!-- https://gitee.com/songyxin/ -->
             </li>
           </div>
         </div>
@@ -96,7 +132,7 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "1"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
@@ -111,7 +147,7 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "2"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
@@ -126,7 +162,7 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "3"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
@@ -141,7 +177,7 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "4"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
@@ -156,7 +192,7 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "5"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
@@ -171,13 +207,13 @@ const menuOptions = [
           target: "_blank",
           rel: "noopenner noreferrer",
         },
-        "且听风吟"
+        "6"
       ),
     key: "hear-the-wind-sing",
     icon: renderIcon(BookIcon),
   },
   {
-    label: "舞，舞，舞",
+    label: "7",
     key: "dance-dance-dance",
     icon: renderIcon(BookIcon),
     children: [
@@ -266,3 +302,14 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+.social-hread{
+  padding: 5px;
+}
+
+.social-hread img{
+  width: 6%;
+  height: 6%;
+}
+</style>

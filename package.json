@@ -9,6 +9,8 @@
         "@vitejs/plugin-vue": "^1.9.0",
         "aplayer": "^1.10.1",
         "axios": "^0.21.4",
+        "devtools-detector": "^2.0.6",
+        "disable-devtool": "^0.1.5",
         "js-md5": "^0.7.3",
         "qs": "^6.10.1",
         "vue": "^3.0.4",
