@@ -1,5 +1,5 @@
 <template>
-  <n-layout-content style="height: 600px">
+  <n-layout-content style="height: 759px">
     <div id="loginCenter">
       <n-card>
         <n-tabs default-value="signin" size="large">
@@ -21,7 +21,7 @@
 </template>
 <style>
 #loginCenter {
-  background-image: url("../../img/loginBackGroud.jpg");
+  background-image: url("../../img/LB1.jpg");
   background-position: 50%;
   width: 100%;
   height: 100%;

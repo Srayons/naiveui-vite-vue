@@ -8,7 +8,7 @@
 </template>
 <style>
 #loginCenter {
-  background-image: url("../../img/loginBackGroud.jpg");
+  background-image: url("../../img/LB.jpg");
   background-position: 50%;
   width: 100%;
   height: 100%;

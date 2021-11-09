@@ -33,6 +33,8 @@ export default defineComponent({
     adminCenterRight,
   },
   setup() {
+    //标题
+    $("#BlogTitle").html("Vogelfrei-后台管理");
     const data = reactive({
       resource: [
         {

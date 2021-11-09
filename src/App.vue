@@ -25,13 +25,6 @@ export default defineComponent({
   setup() {
     //标题
     $("#BlogTitle").html("Vogelfrei ——MrSong's Blog");
-    if (process.env.NODE_ENV != "development") {
-    onMounted(() => {
-      // launch();
-      
-    });
-
-    }
   },
 });
 </script>
