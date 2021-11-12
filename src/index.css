@@ -9,6 +9,17 @@
   /* margin-top          : 60px; */
 }
 
+div {
+  cursor: url(cursor/MarioGant/NormalSelect.cur), default;
+}
+
+label, input,p,h1,h2,h3,h4,h5,h6 {
+  cursor: url(cursor/MarioGant/TextSelect.cur), auto;
+}
+
+a, form,img, button,.n-gradient-text {
+  cursor: pointer;
+}
 
 .scrollbar {
   width: 100%;
@@ -34,7 +45,7 @@
 .scroll::-webkit-scrollbar-track {
   /*滚动条里面轨道*/
   box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-  background   : #ededed;
+  background: #ededed;
   border-radius: 10px;
   /* background-image: url("/img/plaid2dbf8.jpg"); */
   /* background-image: url(/img/VlmhX.png); */
@@ -87,7 +98,7 @@ opacity: 1;
   background-attachment: fixed;
   background-size: cover;
   z-index: -1;
-  background-image: url(img/VlmhX.png);
+  background-image: url(img/LB1.jpg);
   background-position: center center;
 }
 
@@ -135,7 +146,7 @@ opacity: 1;
   margin: auto;
   font-size: 16px;
   color: #eaeadf;
-  background: rgb(0 0 0 / 14%);
+  background: rgb(255 255 255 / 41%);
   padding: 15px;
   margin-top: 22px;
   letter-spacing: 0;
@@ -488,4 +499,3 @@ float: right;
 }
 
 /* 导航栏隐藏动画 end*/
-

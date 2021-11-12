@@ -2,17 +2,13 @@
   <div id="nLayoutHeader">
     <n-layout-header>
       <!-- 目录 -->
-      <n-menu
-        v-model:value="activeKey"
-        mode="horizontal"
-        :options="menuOptions"
-      />
+      <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
       <div id="A-h-gradint">
         <!-- 渐变文字 -->
         <n-gradient-text
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >Vogelfrei ——MrSong's Blog</n-gradient-text
-        >
+          @click="toHome"
+        >Vogelfrei ——MrSong's Blog</n-gradient-text>
       </div>
       <div id="A-h-icon">
         <!-- 右侧搜索和登录 -->
@@ -35,11 +31,7 @@
     <figure id="h-figure" style="margin: 0; height: 969px">
       <div class="focusinfo">
         <div class="header-tou">
-          <n-avatar
-            round
-            :size="150"
-            src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg"
-          />
+          <n-avatar round :size="150" @click="avatarFun" src="src/img/avatar.png" />
           <!-- <img src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg" /> -->
         </div>
         <div class="header-info">
@@ -47,8 +39,7 @@
             <!-- 渐变文字 -->
             <n-gradient-text
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-              >Vogelfrei ——MrSong's Blog</n-gradient-text
-            >
+            >Vogelfrei ——MrSong's Blog</n-gradient-text>
           </p>
           <div class="top-social_v2">
             <li style="list-style: none;">
@@ -58,20 +49,16 @@
                 class="social-hread"
                 title="bilibili"
               >
-                <img
-                  src="../img/bilibili.png"
-                />
+                <img src="../img/bilibili.png" />
               </a>
 
-               <a
+              <a
                 href="https://blog.csdn.net/u014771882"
                 target="_blank"
                 class="social-hread"
                 title="csdn"
               >
-                <img
-                  src="../img/csdn.png"
-                />
+                <img src="../img/csdn.png" />
               </a>
 
               <a
@@ -80,22 +67,17 @@
                 class="social-hread"
                 title="github"
               >
-                <img
-                  src="../img/github.png"
-                />
+                <img src="../img/github.png" />
               </a>
 
-               <a
+              <a
                 href="https://gitee.com/songyxin/"
                 target="_blank"
                 class="social-hread"
                 title="gitee"
               >
-                <img
-                  src="../img/gitee.ico"
-                />
+                <img src="../img/gitee.ico" />
               </a>
-
 
               <!-- https://gitee.com/songyxin/ -->
             </li>
@@ -288,27 +270,32 @@ export default defineComponent({
     });
 
     const nodeEnv = ref(false);
-    console.log(process.env.NODE_ENV)
-    if (process.env.NODE_ENV=='development') {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV == "development") {
       nodeEnv.value = true;
     }
-
 
     return {
       nodeEnv,
       activeKey: ref(null),
       menuOptions,
+      toHome: () => {
+        document.getElementById("app").scrollIntoView();
+      },
+      avatarFun: () => {
+        document.getElementById("refCenter").scrollIntoView();
+      },
     };
   },
 });
 </script>
 
 <style>
-.social-hread{
+.social-hread {
   padding: 5px;
 }
 
-.social-hread img{
+.social-hread img {
   width: 6%;
   height: 6%;
 }

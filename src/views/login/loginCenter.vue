@@ -19,8 +19,7 @@
                 style="width: 100%; text-align: center; margin-bottom: 5px"
                 type="danger"
                 :size="13"
-                >&nbsp;{{ errorMsg }}</n-gradient-text
-              >
+              >&nbsp;{{ errorMsg }}</n-gradient-text>
               <n-form-item
                 label="账号"
                 path="userName"
@@ -28,10 +27,8 @@
                 :feedback="userNameFeedback"
                 clearable
               >
-                <n-input
-                  placeholder="用户名/密码"
-                  v-model:value="model.userName"
-                />
+                <n-input ref="userNameRef" placeholder="用户名/邮箱" v-model:value="model.userName" />
+                <!-- {{userNameRef}} -->
               </n-form-item>
               <n-form-item
                 label="密码"
@@ -43,19 +40,16 @@
                 <n-input placeholder="密码" v-model:value="model.passWord" />
               </n-form-item>
               <n-gradient-text
-                style="float: right; margin-bottom: 15px"
+                style="float: right; margin-bottom: 15px;cursor: pointer;"
                 type="danger"
                 @click="forgetPwd"
                 :size="13"
-                >忘记密码</n-gradient-text
-              >
+              >忘记密码</n-gradient-text>
               <!-- <n-form-item label="验证码" path="passWord">
                 <n-input placeholder="Input" v-model:value="model.passWord" />
-              </n-form-item> -->
+              </n-form-item>-->
             </n-form>
-            <n-button @click="handleValidateButtonClick" type="primary" block
-              >登录</n-button
-            >
+            <n-button @click="handleValidateButtonClick" type="primary" block>登录</n-button>
           </n-tab-pane>
         </n-tabs>
       </n-card>
@@ -90,7 +84,7 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent, computed, ref } from "vue";
+import { defineComponent, computed, ref, nextTick } from "vue";
 import { useMessage } from "naive-ui";
 
 function pubFeedback(userName, passWord, errorMsg) {
@@ -102,6 +96,7 @@ export default {
   setup() {
     const router = useRouter();
     const formRef = ref(null);
+    const userNameRef = ref(null);
     const message = useMessage();
     const userNameValidaStatus = ref(undefined);
     const userNameFeedback = ref(undefined);
@@ -127,27 +122,20 @@ export default {
       },
     };
     return {
+      userNameRef,
       errorMsg,
       router,
       formRef,
       size: ref("medium"),
       model: model,
       rules: rules,
-      userNameValidaStatus: computed(() => {
-        let userName = model.value.userName;
-        let passWord = model.value.passWord;
-        pubFeedback(userName, passWord, errorMsg);
-      }),
+      userNameValidaStatus: userNameValidaStatus,
       userNameFeedback: computed(() => {
         let userName = model.value.userName;
         let passWord = model.value.passWord;
         pubFeedback(userName, passWord, errorMsg);
       }),
-      passWordValidaStatus: computed(() => {
-        let userName = model.value.userName;
-        let passWord = model.value.passWord;
-        pubFeedback(userName, passWord, errorMsg);
-      }),
+      passWordValidaStatus: passWordValidaStatus,
       passWordFeedback: computed(() => {
         let userName = model.value.userName;
         let passWord = model.value.passWord;
@@ -163,14 +151,18 @@ export default {
             let userName = model.value.userName;
             let passWord = model.value.passWord;
             if (userName == "admin" && passWord == "admin") {
+              userNameValidaStatus.value = undefined;
+              passWordValidaStatus.value = undefined;
               // message.success("登录成功");
               router.push({
                 path: "/admin/Index",
               });
             } else {
               if (userName != "admin" || passWord != "admin") {
-                // userNameValidaStatus.value = "error";
+                userNameValidaStatus.value = "error";
+                passWordValidaStatus.value = "error";
                 errorMsg.value = "账户名与密码输入不匹配，请重新输入";
+                userNameRef.value.focus();
               }
               // message.error("账户或密码错误");
             }
