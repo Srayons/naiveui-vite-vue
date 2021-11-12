@@ -43,6 +43,7 @@ import {
   NDropdown,
   NTooltip,
   NPopover,
+  NFormItem,
 } from 'naive-ui'
 
 const naive = create({
@@ -78,6 +79,7 @@ const naive = create({
     NDropdown,
     NTooltip,
     NPopover,
+    NFormItem,
   ]
 })
 

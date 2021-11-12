@@ -1,8 +1,22 @@
 <template>
   <n-layout>
-    <n-layout-header style="position: inherit;opacity: 1;height: 88px;">颐和园路</n-layout-header>
+    <n-layout-header style="position: inherit; opacity: 1; height: 88px">
+      <div id="A-h-gradint">
+        <!-- 渐变文字 -->
+        <n-gradient-text
+          gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+          >Vogelfrei ——MrSong's Blog
+
+          <n-gradient-text
+            gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+            >&nbsp;&nbsp;&nbsp;欢迎管理员登录
+          </n-gradient-text>
+        </n-gradient-text>
+      </div>
+    </n-layout-header>
     <!-- 中间部分 -->
     <loginCenter></loginCenter>
+    <!-- 底部 -->
     <pub-footer></pub-footer>
   </n-layout>
 </template>
