@@ -5,7 +5,6 @@
       type="card"
       :closable="closable"
       @close="handleClose"
-
       tab-style="min-width: 80px;"
     >
       <!-- <n-tab-pane
@@ -22,7 +21,7 @@
             }}</span></span
           ></n-card
         >
-      </n-tab-pane> -->
+      </n-tab-pane>-->
 
       <n-tab-pane
         v-for="panel in panels"
@@ -31,8 +30,8 @@
         :name="panel.title"
       >
         <n-card>
-          <span>{{ panel.title }}</span></n-card
-        >
+          <span>{{ panel.title }}</span>
+        </n-card>
       </n-tab-pane>
     </n-tabs>
   </n-layout>
@@ -50,7 +49,7 @@ export default defineComponent({
   setup(props, ctx) {
     const nameRef = ref(1);
     const message = useMessage();
-    const panelsRef = props.resourceChild
+    const panelsRef = props.resourceChild;
     const addableRef = computed(() => {
       return {
         disabled: panelsRef.length >= 10,
@@ -84,13 +83,25 @@ export default defineComponent({
       //   nameRef.value = newValue;
       // },
       handleClose(name) {
-        debugger
+        // debugger
+        // const { value: panels } = panelsRef;
+        // const nameIndex = panels.findIndex((panelName) => panelName === name);
+        // if (!~nameIndex) return;
+        // panels.splice(nameIndex, 1);
+        // if (name === nameRef.value) {
+        //   nameRef.value = panels[Math.min(nameIndex, panels.length - 1)];
+        // }
         const { value: panels } = panelsRef;
-        const nameIndex = panels.findIndex((panelName) => panelName === name);
-        if (!~nameIndex) return;
-        panels.splice(nameIndex, 1);
-        if (name === nameRef.value) {
-          nameRef.value = panels[Math.min(nameIndex, panels.length - 1)];
+        console.log(panels);
+        // if (panels.length === 1) {
+        //   message.error("最后一个了");
+        //   return;
+        // }
+        message.info("关掉 " + name);
+        const index = panels.findIndex((v) => name === v);
+        panels.splice(index, 1);
+        if (nameRef.value === name) {
+          nameRef.value = panels[index];
         }
       },
     };

@@ -1,11 +1,12 @@
 const path = require('path')
-
+import { defineConfig } from 'vite'
 import vue from "@vitejs/plugin-vue";
 
-export default ({
+export default defineConfig({
     plugins: [vue()],
     // 项目启动的根路径
     // root:  'G:\\work\\myself\\studyNode\\nodeMysql\\client',
+    refTransform: true,
     // 入口
     entry: 'index.html',
     // 打包后的跟路径
