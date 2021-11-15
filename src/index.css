@@ -14,11 +14,11 @@ div {
 }
 
 label, input,p,h1,h2,h3,h4,h5,h6 {
-  cursor: url(cursor/MarioGant/TextSelect.cur), auto;
+  cursor: url(cursor/MakotoDesigner/Text.cur), auto;
 }
 
 a, form,img, button,.n-gradient-text {
-  cursor: pointer;
+  cursor: url(cursor/MakotoDesigner/Link.cur), pointer;
 }
 
 .scrollbar {

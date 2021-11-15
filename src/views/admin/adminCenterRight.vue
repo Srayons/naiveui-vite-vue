@@ -4,6 +4,7 @@
       v-model:value="name"
       type="card"
       :closable="closable"
+      @add="handleAdd"
       @close="handleClose"
       tab-style="min-width: 80px;"
     >
@@ -37,7 +38,7 @@
   </n-layout>
 </template>
 <script>
-import { defineComponent, h, ref, computed } from "vue";
+import { defineComponent, h, ref,reactive, computed } from "vue";
 import { useMessage } from "naive-ui";
 export default defineComponent({
   props: {
@@ -49,7 +50,8 @@ export default defineComponent({
   setup(props, ctx) {
     const nameRef = ref(1);
     const message = useMessage();
-    const panelsRef = props.resourceChild;
+    // const panelsRef = props.resourceChild;
+    const panelsRef = reactive(props.resourceChild);
     const addableRef = computed(() => {
       return {
         disabled: panelsRef.length >= 10,
@@ -77,26 +79,14 @@ export default defineComponent({
       name: nameRef,
       addable: addableRef,
       closable: closableRef,
-      // handleAdd() {
-      //   const newValue = Math.max(...panelsRef) + 1;
-      //   panelsRef.push(newValue);
-      //   nameRef.value = newValue;
-      // },
+      handleAdd() {
+        const newValue = Math.max(...panelsRef) + 1;
+        panelsRef.push(newValue);
+        nameRef.value = newValue;
+      },
       handleClose(name) {
-        // debugger
-        // const { value: panels } = panelsRef;
-        // const nameIndex = panels.findIndex((panelName) => panelName === name);
-        // if (!~nameIndex) return;
-        // panels.splice(nameIndex, 1);
-        // if (name === nameRef.value) {
-        //   nameRef.value = panels[Math.min(nameIndex, panels.length - 1)];
-        // }
         const { value: panels } = panelsRef;
-        console.log(panels);
-        // if (panels.length === 1) {
-        //   message.error("最后一个了");
-        //   return;
-        // }
+        console.log(panelsRef);
         message.info("关掉 " + name);
         const index = panels.findIndex((v) => name === v);
         panels.splice(index, 1);

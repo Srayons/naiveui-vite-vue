@@ -5,8 +5,10 @@
       京ICP备2021033955
     </n-gradient-text>
     <n-gradient-text  gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
-      Copyright © 2020 - 2021 Mr's song. All Rights Reserved.
+      Copyright © 2020 - 2021 
     </n-gradient-text>
+
+    
   </n-layout-footer>
 </template>
 
@@ -18,7 +20,7 @@ export default defineComponent({
     onMounted(() => {});
     return {
       beian(){
-        location.href = "https://beian.miit.gov.cn/"
+        window.open("https://beian.miit.gov.cn/","_blank")
       }
     };
   },
@@ -27,6 +29,6 @@ export default defineComponent({
 <style>
 .n-layout-footer .n-gradient-text{
   padding: 10px;
-  cursor:pointer;
+  /* cursor:pointer; */
 }
 </style>

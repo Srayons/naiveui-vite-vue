@@ -46,8 +46,8 @@ const menuOptions = [
         RouterLink,
         {
           to: {
-            path: "/admin/Index",
-            name: "adminIndex",
+            path: "/",
+            name: "home",
             params: {
               lang: "zh-CN",
             },
