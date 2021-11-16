@@ -17,7 +17,7 @@ label, input,p,h1,h2,h3,h4,h5,h6 {
   cursor: url(cursor/MakotoDesigner/Text.cur), auto;
 }
 
-a, form,img, button,.n-gradient-text {
+a, form,img,span,button,svg,.n-gradient-text,.n-dropdown-option-body__label,.n-menu-item-content-header{
   cursor: url(cursor/MakotoDesigner/Link.cur), pointer;
 }
 

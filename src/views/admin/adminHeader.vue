@@ -89,7 +89,7 @@
             <n-avatar
               round
               size="small"
-              src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg"
+              :src="avatars"
             />
           </n-dropdown>
         </n-space>
@@ -98,6 +98,7 @@
   </n-layout>
 </template>
 <script>
+import { useRouter } from "vue-router";
 import { defineComponent, h, ref } from "vue";
 import {
   SearchOutline as SearchIcon,
@@ -114,11 +115,11 @@ import { useMessage } from "naive-ui";
 const options = [
   {
     label: "个人中心",
-    key: "jay gatsby",
+    key: "userInfo",
   },
   {
     label: "进入前台",
-    key: "daisy buchanan",
+    key: "toFrontDesk",
   },
   {
     type: "divider",
@@ -126,36 +127,36 @@ const options = [
   },
   {
     label: "退出登录",
-    key: "nick carraway",
+    key: "loginOut",
   },
-  {
-    label: "其他",
-    key: "others1",
-    children: [
-      {
-        label: "乔丹·贝克",
-        key: "jordan baker",
-      },
-      {
-        label: "汤姆·布坎南",
-        key: "tom buchanan",
-      },
-      {
-        label: "其他",
-        key: "others2",
-        children: [
-          {
-            label: "鸡肉",
-            key: "chicken",
-          },
-          {
-            label: "牛肉",
-            key: "beef",
-          },
-        ],
-      },
-    ],
-  },
+  // {
+  //   label: "其他",
+  //   key: "others1",
+  //   children: [
+  //     {
+  //       label: "乔丹·贝克",
+  //       key: "jordan baker",
+  //     },
+  //     {
+  //       label: "汤姆·布坎南",
+  //       key: "tom buchanan",
+  //     },
+  //     {
+  //       label: "其他",
+  //       key: "others2",
+  //       children: [
+  //         {
+  //           label: "鸡肉",
+  //           key: "chicken",
+  //         },
+  //         {
+  //           label: "牛肉",
+  //           key: "beef",
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
 ];
 export default defineComponent({
   components: {
@@ -166,11 +167,37 @@ export default defineComponent({
     SkinIcon,
   },
   setup() {
+    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/public/img/avatars.jpg")
+    const router = useRouter();
     const message = useMessage();
+    if (process.env.NODE_ENV == 'production') {
+      avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
+    }
     return {
+      avatars,
+      // 菜单数组
       options,
+      // 选择事件
       handleSelect(key) {
-        message.info(key);
+        // message.info(key);
+        // 个人中心
+        if (key=='toFrontDesk') {
+          router.push({
+            path:'/',
+          })
+        }
+        // 前台
+        if (key=='toFrontDesk') {
+          router.push({
+            path:'/',
+          })
+        }
+        // 登出
+        if (key=='loginOut') {
+          router.push({
+            path:'/login',
+          })
+        }
       },
     };
   },

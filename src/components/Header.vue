@@ -31,7 +31,7 @@
     <figure id="h-figure" style="margin: 0; height: 969px">
       <div class="focusinfo">
         <div class="header-tou">
-          <n-avatar round :size="150" @click="avatarFun" src="src/img/avatar.png" />
+          <n-avatar round :size="150" @click="avatarFun" :src="avatars" />
           <!-- <img src="https://cdn.jsdelivr.net/gh/xiaoyou66/imgbed@1.0/xblog/tTSY.jpg" /> -->
         </div>
         <div class="header-info">
@@ -251,6 +251,10 @@ export default defineComponent({
     PersonCircleIcon,
   },
   setup() {
+    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/public/img/avatars.jpg")
+    if (process.env.NODE_ENV == 'production') {
+      avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
+    }
     onMounted(() => {
       let LHeader = document.getElementById("nLayoutHeader").children[0];
       nextTick(() => {
@@ -276,6 +280,7 @@ export default defineComponent({
     }
 
     return {
+      avatars,
       nodeEnv,
       activeKey: ref(null),
       menuOptions,

@@ -1,17 +1,6 @@
 <template>
   <n-layout>
-    <n-layout-header style="position: inherit; opacity: 1; height: 88px">
-      <div id="A-h-gradint">
-        <!-- 渐变文字 -->
-        <n-gradient-text gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)">
-          Vogelfrei ——MrSong's Blog
-          <n-gradient-text
-            gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            @click="toHome"
-          >&nbsp;&nbsp;&nbsp;欢迎管理员登录</n-gradient-text>
-        </n-gradient-text>
-      </div>
-    </n-layout-header>
+    <loginHeader></loginHeader>
     <!-- 中间部分 -->
     <loginCenter></loginCenter>
     <!-- 底部 -->
@@ -39,11 +28,13 @@
 }
 </style>
 <script>
+import loginHeader from "./loginHeader.vue";
 import loginCenter from "./loginCenter.vue";
 import PubFooter from "../../components/Footer.vue";
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
 export default defineComponent({
   components: {
+    loginHeader,
     loginCenter,
     PubFooter,
   },

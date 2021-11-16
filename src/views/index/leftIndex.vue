@@ -96,7 +96,6 @@ export default defineComponent({
       LeftSpan: "1",
       videoUpload: {},
       lists: [],
-
       repeatAll: "list",
       loading: true,
     };

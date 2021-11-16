@@ -8,22 +8,6 @@
       @close="handleClose"
       tab-style="min-width: 80px;"
     >
-      <!-- <n-tab-pane
-        v-for="panel in panels"
-        :key="panel"
-        :tab="panel.toString()"
-        :name="panel"
-      >
-        <n-card>
-          <span
-            >{{ panel }}
-            <span v-for="item in resourceChild">{{
-              item.description
-            }}</span></span
-          ></n-card
-        >
-      </n-tab-pane>-->
-
       <n-tab-pane
         v-for="panel in panels"
         :key="panel._id"
@@ -31,6 +15,7 @@
         :name="panel.title"
       >
         <n-card>
+          <!-- 内容 -->
           <span>{{ panel.title }}</span>
         </n-card>
       </n-tab-pane>
@@ -38,7 +23,7 @@
   </n-layout>
 </template>
 <script>
-import { defineComponent, h, ref,reactive, computed } from "vue";
+import { defineComponent, h, ref, reactive, computed } from "vue";
 import { useMessage } from "naive-ui";
 export default defineComponent({
   props: {
@@ -51,6 +36,7 @@ export default defineComponent({
     const nameRef = ref(1);
     const message = useMessage();
     // const panelsRef = props.resourceChild;
+    console.log(ctx)
     const panelsRef = reactive(props.resourceChild);
     const addableRef = computed(() => {
       return {

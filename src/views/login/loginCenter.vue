@@ -40,7 +40,13 @@
                 :feedback="passWordFeedback"
                 clearable
               >
-                <n-input placeholder="密码" v-model:value="model.passWord" />
+                <n-input
+                  @keyup.enter="enterkey"
+                  placeholder="密码"
+                  type="password"
+                  show-password-on="mousedown"
+                  v-model:value="model.passWord"
+                />
               </n-form-item>
               <n-gradient-text
                 style="float: right; margin-bottom: 15px;cursor: pointer;"
@@ -92,10 +98,24 @@
 
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent, computed, ref, nextTick } from "vue";
+import {
+  defineComponent,
+  computed,
+  ref,
+  nextTick,
+  onMounted,
+  onUnmounted,
+} from "vue";
 import { useMessage } from "naive-ui";
 
-function pubFeedback(userName, passWord,userNameValidaStatus,passWordValidaStatus,errorMsg, errorIcon) {
+function pubFeedback(
+  userName,
+  passWord,
+  userNameValidaStatus,
+  passWordValidaStatus,
+  errorMsg,
+  errorIcon
+) {
   if (!userName || !passWord) {
     errorMsg.value = undefined;
     errorIcon.value = undefined;
@@ -104,6 +124,7 @@ function pubFeedback(userName, passWord,userNameValidaStatus,passWordValidaStatu
     passWordValidaStatus.value = undefined;
   }
 }
+
 export default {
   setup() {
     const router = useRouter();
@@ -134,7 +155,57 @@ export default {
         message: "请输入 登录密码",
       },
     };
+
+    // 登录验证
+    let toLogin = () => {
+      let userName = model.value.userName;
+      let passWord = model.value.passWord;
+      if (userName == "admin" && passWord == "admin") {
+        userNameValidaStatus.value = undefined;
+        passWordValidaStatus.value = undefined;
+        // message.success("登录成功");
+        router.push({
+          path: "/admin/Index",
+        });
+      } else {
+        if (userName != "admin" || passWord != "admin") {
+          userNameValidaStatus.value = "error";
+          passWordValidaStatus.value = "error";
+          errorIcon.value =
+            '<svg t="1636874031347" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6752" width="16" height="16"><path d="M512.055964 734.413788m-52.620148 0a52.620148 52.620148 0 1 0 105.240296 0 52.620148 52.620148 0 1 0-105.240296 0Z" fill="#FF517F" p-id="6753"></path><path d="M510.65276 631.629099a43.850123 43.850123 0 0 1-43.499322-44.200924l2.631007-350.800984A43.850123 43.850123 0 0 1 513.283768 193.127869a43.674723 43.674723 0 0 1 43.499322 44.200924l-2.631008 350.800984A43.850123 43.850123 0 0 1 510.65276 631.629099z" fill="#FF517F" p-id="6754"></path><path d="M512.055964 1024A511.994036 511.994036 0 1 1 874.08258 149.979348a511.994036 511.994036 0 0 1-362.026616 874.020652z m0-936.112426a424.29379 424.29379 0 1 0 300.110242 124.008148A423.942989 423.942989 0 0 0 512.055964 87.887574z" fill="#FF517F" p-id="6755"></path></svg>';
+          errorMsg.value = "账户名与密码输入不匹配，请重新输入";
+          userNameRef.value.focus();
+        }
+        // message.error("账户或密码错误");
+      }
+    };
+
+    // 监听事件
+    let enterkey = (event) => {
+      console.log("加载回车事件---")
+      const code = event.keyCode
+        ? event.keyCode
+        : event.which
+        ? event.which
+        : event.charCode;
+      if (code == 13) {
+        toLogin();
+      }
+    };
+
+    // 初始化函数
+    onMounted(() => {
+      document.addEventListener("keyup", enterkey);
+    });
+
+    // 销毁事件
+    onUnmounted(() => {
+      console.log("已销毁---")
+      document.removeEventListener("keyup", enterkey);
+    });
+
     return {
+      enterkey,
       userNameRef,
       errorMsg,
       errorIcon,
@@ -147,13 +218,27 @@ export default {
       userNameFeedback: computed(() => {
         let userName = model.value.userName;
         let passWord = model.value.passWord;
-        pubFeedback(userName, passWord,userNameValidaStatus,passWordValidaStatus,errorMsg, errorIcon);
+        pubFeedback(
+          userName,
+          passWord,
+          userNameValidaStatus,
+          passWordValidaStatus,
+          errorMsg,
+          errorIcon
+        );
       }),
       passWordValidaStatus: passWordValidaStatus,
       passWordFeedback: computed(() => {
         let userName = model.value.userName;
         let passWord = model.value.passWord;
-        pubFeedback(userName, passWord,userNameValidaStatus,passWordValidaStatus,errorMsg, errorIcon);
+        pubFeedback(
+          userName,
+          passWord,
+          userNameValidaStatus,
+          passWordValidaStatus,
+          errorMsg,
+          errorIcon
+        );
       }),
       //忘记密码
       forgetPwd() {},
@@ -162,26 +247,7 @@ export default {
         e.preventDefault();
         formRef.value.validate((errors) => {
           if (!errors) {
-            let userName = model.value.userName;
-            let passWord = model.value.passWord;
-            if (userName == "admin" && passWord == "admin") {
-              userNameValidaStatus.value = undefined;
-              passWordValidaStatus.value = undefined;
-              // message.success("登录成功");
-              router.push({
-                path: "/admin/Index",
-              });
-            } else {
-              if (userName != "admin" || passWord != "admin") {
-                userNameValidaStatus.value = "error";
-                passWordValidaStatus.value = "error";
-                errorIcon.value =
-                  '<svg t="1636874031347" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="6752" width="16" height="16"><path d="M512.055964 734.413788m-52.620148 0a52.620148 52.620148 0 1 0 105.240296 0 52.620148 52.620148 0 1 0-105.240296 0Z" fill="#FF517F" p-id="6753"></path><path d="M510.65276 631.629099a43.850123 43.850123 0 0 1-43.499322-44.200924l2.631007-350.800984A43.850123 43.850123 0 0 1 513.283768 193.127869a43.674723 43.674723 0 0 1 43.499322 44.200924l-2.631008 350.800984A43.850123 43.850123 0 0 1 510.65276 631.629099z" fill="#FF517F" p-id="6754"></path><path d="M512.055964 1024A511.994036 511.994036 0 1 1 874.08258 149.979348a511.994036 511.994036 0 0 1-362.026616 874.020652z m0-936.112426a424.29379 424.29379 0 1 0 300.110242 124.008148A423.942989 423.942989 0 0 0 512.055964 87.887574z" fill="#FF517F" p-id="6755"></path></svg>';
-                errorMsg.value = "账户名与密码输入不匹配，请重新输入";
-                userNameRef.value.focus();
-              }
-              // message.error("账户或密码错误");
-            }
+            toLogin();
           } else {
             errorIcon.value = "";
             errorMsg.value = "";
