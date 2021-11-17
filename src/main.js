@@ -134,8 +134,8 @@ if (process.env.NODE_ENV == 'production') {
     let devtoolStatus = $("font").html();
     if (devtoolStatus) {
       if (devtoolStatus == "open") {
-        window.open(import.meta.env.VITE_ENV_FORE_URL)
         window.close();
+        window.open(import.meta.env.VITE_ENV_FORE_URL,"_self")
         // alert(devtoolStatus)
         clearInterval(DConsoleLog)
       }

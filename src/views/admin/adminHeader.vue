@@ -167,12 +167,12 @@ export default defineComponent({
     SkinIcon,
   },
   setup() {
-    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/public/img/avatars.jpg")
+    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg")
     const router = useRouter();
     const message = useMessage();
-    if (process.env.NODE_ENV == 'production') {
-      avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
-    }
+    // if (process.env.NODE_ENV == 'production') {
+    //   avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
+    // }
     return {
       avatars,
       // 菜单数组

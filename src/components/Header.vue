@@ -251,10 +251,10 @@ export default defineComponent({
     PersonCircleIcon,
   },
   setup() {
-    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/public/img/avatars.jpg")
-    if (process.env.NODE_ENV == 'production') {
-      avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
-    }
+    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg")
+    // if (process.env.NODE_ENV == 'production') {
+    //   avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
+    // }
     onMounted(() => {
       let LHeader = document.getElementById("nLayoutHeader").children[0];
       nextTick(() => {
