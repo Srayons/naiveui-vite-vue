@@ -39,6 +39,7 @@
             <!-- 渐变文字 -->
             <n-gradient-text
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+              @click="toHome"
             >Vogelfrei ——MrSong's Blog</n-gradient-text>
           </p>
           <div class="top-social_v2">
