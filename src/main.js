@@ -142,7 +142,7 @@ if (process.env.NODE_ENV == 'production') {
     }
   }, 1000);
 
-  console.log(DConsoleLog)
+  console.log(DConsoleLog) 
 }
 
 
