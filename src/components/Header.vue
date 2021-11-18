@@ -42,7 +42,7 @@
               @click="toHome"
             >Vogelfrei ——MrSong's Blog</n-gradient-text>
           </p>
-          <div class="top-social_v2">
+          <div class="top-social_v2"> 
             <li style="list-style: none;">
               <a
                 href="https://space.bilibili.com/446791818"
