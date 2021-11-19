@@ -135,7 +135,7 @@ if (process.env.NODE_ENV == 'production') {
     if (devtoolStatus) {
       if (devtoolStatus == "open") {
         // window.close();
-        window.open(import.meta.env.VITE_ENV_FORE_URL)
+        window.open(import.meta.env.VITE_ENV_FORE_URL,"_self")
         // alert(devtoolStatus)
         clearInterval(DConsoleLog)
       }
