@@ -191,7 +191,7 @@ export default defineComponent({
         // message.info(key);
         // 个人中心
         if (key=='toFrontDesk') {
-          router.push({
+          router.push({ 
             path:'/',
           })
         }
