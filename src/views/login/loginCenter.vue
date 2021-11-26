@@ -30,7 +30,11 @@
                 :feedback="userNameFeedback"
                 clearable
               >
-                <n-input ref="userNameRef" placeholder="用户名/邮箱" v-model:value="model.userName" />
+                <n-input
+                  ref="userNameRef"
+                  placeholder="用户名/邮箱"
+                  v-model:value="model.userName"
+                />
                 <!-- {{userNameRef}} -->
               </n-form-item>
               <n-form-item
@@ -49,16 +53,19 @@
                 />
               </n-form-item>
               <n-gradient-text
-                style="float: right; margin-bottom: 15px;cursor: pointer;"
+                style="float: right; margin-bottom: 15px; cursor: pointer"
                 type="danger"
                 @click="forgetPwd"
                 :size="13"
-              >忘记密码</n-gradient-text>
+                >忘记密码</n-gradient-text
+              >
               <!-- <n-form-item label="验证码" path="passWord">
                 <n-input placeholder="Input" v-model:value="model.passWord" />
               </n-form-item>-->
             </n-form>
-            <n-button @click="handleValidateButtonClick" type="primary" block>登录</n-button>
+            <n-button @click="handleValidateButtonClick" type="primary" block
+              >登录</n-button
+            >
           </n-tab-pane>
         </n-tabs>
       </n-card>
@@ -107,7 +114,8 @@ import {
   onUnmounted,
 } from "vue";
 import { useMessage } from "naive-ui";
-
+import { userLogin } from "../../http/api";
+// import cookies from "vue-cookies";
 function pubFeedback(
   userName,
   passWord,
@@ -160,15 +168,26 @@ export default {
     let toLogin = () => {
       let userName = model.value.userName;
       let passWord = model.value.passWord;
-      if (userName == "admin" && passWord == "admin") {
-        userNameValidaStatus.value = undefined;
-        passWordValidaStatus.value = undefined;
-        // message.success("登录成功");
-        router.push({
-          path: "/admin/Index",
-        });
-      } else {
-        if (userName != "admin" || passWord != "admin") {
+      let data = {
+        userCode: userName,
+        passWord: hex_md5(userName + "!@!@!" + passWord),
+      };
+      userLogin(data).then((res) => {
+        if (res.code == 200) {
+          // console.log(res);
+          let userData = res.data;
+          if (userData) {
+            let userInfo = res.data.userInfo;
+            $cookies.set("token", userData.token);
+            $cookies.set("refresh_token", userData.refresh_token);
+            $cookies.set("userId", userInfo.uid);
+            localStorage.setItem("userCode", userInfo.userCode);
+            localStorage.setItem("userName", userInfo.userName);
+            router.push({
+              path: "/admin/Index",
+            });
+          }
+        } else {
           userNameValidaStatus.value = "error";
           passWordValidaStatus.value = "error";
           errorIcon.value =
@@ -176,13 +195,12 @@ export default {
           errorMsg.value = "账户名与密码输入不匹配，请重新输入";
           userNameRef.value.focus();
         }
-        // message.error("账户或密码错误");
-      }
+      });
     };
 
     // 监听事件
     let enterkey = (event) => {
-      console.log("加载回车事件---")
+      console.log("加载回车事件---");
       const code = event.keyCode
         ? event.keyCode
         : event.which
@@ -196,11 +214,16 @@ export default {
     // 初始化函数
     onMounted(() => {
       document.addEventListener("keyup", enterkey);
+      if ($cookies.get("token")) {
+        router.push({
+          path: "/admin/Index",
+        });
+      }
     });
 
     // 销毁事件
     onUnmounted(() => {
-      console.log("已销毁---")
+      console.log("已销毁---");
       document.removeEventListener("keyup", enterkey);
     });
 

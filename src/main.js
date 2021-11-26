@@ -87,6 +87,7 @@ import v3scroll from 'vue3-scrollbar';
 //音乐插件
 import vue3aplayer from 'vue3-aplayer';
 import { addListener, launch } from "devtools-detector";
+import VueCookies from "vue-cookies";
 
 // import APlayer from "aplayer";
 // import meting from 'meting';
@@ -96,7 +97,7 @@ import { addListener, launch } from "devtools-detector";
 
 const app = createApp(App);
 app.use(router);
-app.use(naive, vue3aplayer, v3scroll);
+app.use(naive, vue3aplayer, v3scroll,VueCookies);
 app.mount('#app')
 
 

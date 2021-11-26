@@ -99,7 +99,7 @@
 </template>
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent, h, ref } from "vue";
+import { defineComponent,onMounted, h, ref } from "vue";
 import {
   SearchOutline as SearchIcon,
   SettingsOutline as SettingsIcon,
@@ -173,6 +173,15 @@ export default defineComponent({
     // if (process.env.NODE_ENV == 'production') {
     //   avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
     // }
+
+    onMounted(()=>{
+      if (!$cookies.get("token")) {
+        router.push({
+            path:'/login',
+          })
+      }
+    });
+
     return {
       avatars,
       // 菜单数组
@@ -194,6 +203,11 @@ export default defineComponent({
         }
         // 登出
         if (key=='loginOut') {
+          $cookies.remove("token")
+          $cookies.remove("refresh_token")
+          $cookies.remove("userId")
+          localStorage.removeItem("userCode")
+          localStorage.removeItem("userName")
           router.push({
             path:'/login',
           })

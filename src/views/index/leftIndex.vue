@@ -46,7 +46,6 @@
         <div v-if="isAplayer">
           <!--             autoplay -->
           <Aplayer
-
             :music="videoUpload"
             :showLrc="true"
             :listFolded="false"
@@ -102,7 +101,9 @@ export default defineComponent({
   },
   mounted() {
     //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
-    getSongsById({ id: import.meta.env.VITE_ENV_SongId }).then((res) => {
+    // console.log(import.meta.env.VITE_ENV_BASE_URL)
+    // console.log(import.meta.env.VITE_ENV_SONGID)
+    getSongsById({ id: import.meta.env.VITE_ENV_SONGID }).then((res) => {
       // console.log(res);
       if (res.code == "200") {
         let data = res.data;
