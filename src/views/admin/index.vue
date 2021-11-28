@@ -39,53 +39,9 @@ export default defineComponent({
       resource: [
         {
           _id: "1",
-          title: "新闻1",
-          description: "新闻新闻",
-          type: "video",
+          title: "首页",
           link: "",
-        },
-        {
-          _id: "2",
-          title: "新闻2",
-          description: "新闻新闻",
-          type: "video2",
-          link: "",
-        },
-        {
-          _id: "3",
-          title: "新闻3",
-          description: "新闻新闻",
-          type: "video3",
-          link: "",
-        },
-        {
-          _id: "4",
-          title: "新闻4",
-          description: "新闻新闻4",
-          type: "video",
-          link: "",
-        },
-        {
-          _id: "5",
-          title: "新闻5",
-          description: "新闻新闻5",
-          type: "video",
-          link: "",
-        },
-        {
-          _id: "6",
-          title: "新闻6",
-          description: "新闻新闻6",
-          type: "video",
-          link: "",
-        },
-        {
-          _id: "7",
-          title: "新闻7",
-          description: "新闻新闻7",
-          type: "video",
-          link: "",
-        },
+        }
       ],
     });
     const selectedResource = ref(null);

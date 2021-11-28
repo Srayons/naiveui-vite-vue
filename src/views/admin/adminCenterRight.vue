@@ -33,7 +33,7 @@ export default defineComponent({
     },
   },
   setup(props, ctx) {
-    const nameRef = ref(1);
+    const nameRef = ref('首页');
     const message = useMessage();
     // const panelsRef = props.resourceChild;
     console.log(ctx)
@@ -46,26 +46,13 @@ export default defineComponent({
     const closableRef = computed(() => {
       return panelsRef.length > 1;
     });
-    // function handleClose(name) {
-    //   // const { value: panels } = panelsRef;
-    //   // console.log(panels[0])
-    //   // // if (panels.length === 1) {
-    //   // //   message.error("最后一个了");
-    //   // //   return;
-    //   // // }
-    //   // message.info("关掉 " + name);
-    //   // const index = panels.findIndex((v) => name === v);
-    //   // panels.splice(index, 1);
-    //   // if (nameRef.value === name) {
-    //   //   nameRef.value = panels[index];
-    //   // }
-    // }
     return {
       panels: props.resourceChild,
       name: nameRef,
       addable: addableRef,
       closable: closableRef,
       handleAdd() {
+        message.info("添加一个标签。")
         const newValue = Math.max(...panelsRef) + 1;
         panelsRef.push(newValue);
         nameRef.value = newValue;
@@ -74,8 +61,10 @@ export default defineComponent({
         const { value: panels } = panelsRef;
         console.log(panelsRef);
         message.info("关掉 " + name);
-        const index = panels.findIndex((v) => name === v);
-        panels.splice(index, 1);
+        const index = panelsRef.findIndex((v) => name === v.title);
+        console.log(index)
+        if (!~index) return
+        panelsRef.splice(index, 1);
         if (nameRef.value === name) {
           nameRef.value = panels[index];
         }

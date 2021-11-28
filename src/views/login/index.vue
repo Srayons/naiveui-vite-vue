@@ -32,6 +32,8 @@ import loginHeader from "./loginHeader.vue";
 import loginCenter from "./loginCenter.vue";
 import PubFooter from "../../components/Footer.vue";
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
+import { useMessage } from "naive-ui";
+import { useLoadingBar } from "naive-ui";
 export default defineComponent({
   components: {
     loginHeader,
@@ -39,6 +41,8 @@ export default defineComponent({
     PubFooter,
   },
   setup() {
+    window.$message = useMessage();
+    const loadingBar = useLoadingBar();
     return {
       toHome: () => {
         document.getElementById("app").scrollIntoView();
