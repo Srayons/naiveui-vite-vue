@@ -30,11 +30,7 @@
                 :feedback="userNameFeedback"
                 clearable
               >
-                <n-input
-                  ref="userNameRef"
-                  placeholder="用户名/邮箱"
-                  v-model:value="model.userName"
-                />
+                <n-input ref="userNameRef" placeholder="用户名/邮箱" v-model:value="model.userName" />
                 <!-- {{userNameRef}} -->
               </n-form-item>
               <n-form-item
@@ -57,15 +53,12 @@
                 type="danger"
                 @click="forgetPwd"
                 :size="13"
-                >忘记密码</n-gradient-text
-              >
+              >忘记密码</n-gradient-text>
               <!-- <n-form-item label="验证码" path="passWord">
                 <n-input placeholder="Input" v-model:value="model.passWord" />
               </n-form-item>-->
             </n-form>
-            <n-button @click="handleValidateButtonClick" type="primary" block
-              >登录</n-button
-            >
+            <n-button @click="handleValidateButtonClick" type="primary" block>登录</n-button>
           </n-tab-pane>
         </n-tabs>
       </n-card>
@@ -168,9 +161,12 @@ export default {
     let toLogin = () => {
       let userName = model.value.userName;
       let passWord = model.value.passWord;
+      let md5Pwd = hex_md5(userName + "!@!@!" + passWord);
+      //写入加密密码到密码框
+      model.value.passWord = md5Pwd;
       let data = {
         userCode: userName,
-        passWord: hex_md5(userName + "!@!@!" + passWord),
+        passWord: md5Pwd,
       };
       userLogin(data).then((res) => {
         if (res.code == 200) {
@@ -183,9 +179,11 @@ export default {
             $cookies.set("userId", userInfo.uid);
             localStorage.setItem("userCode", userInfo.userCode);
             localStorage.setItem("userName", userInfo.userName);
-            router.push({
+            const { href } = router.resolve({
               path: "/admin/Index",
             });
+            window.close();
+            window.open(href)
           }
         } else {
           userNameValidaStatus.value = "error";
