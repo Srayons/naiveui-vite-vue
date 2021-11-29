@@ -24,19 +24,23 @@
       <n-carousel autoplay trigger="hover" show-arrow>
         <img
           class="carousel-img"
-          src="https://s.anw.red/fav/1623979004.jpg!/fw/600/quality/77/ignore-error/true"
+          src="../../img/1.jpg"
         />
         <img
           class="carousel-img"
-          src="https://s.anw.red/news/1623372884.jpg!/both/800x450/quality/78/progressive/true/ignore-error/true"
+          src="../../img/2.jpg"
         />
         <img
           class="carousel-img"
-          src="https://s.anw.red/news/1623177220.jpg!/both/800x450/quality/78/progressive/true/ignore-error/true"
+          src="../../img/3.jpg"
         />
         <img
           class="carousel-img"
-          src="https://s.anw.red/news/1623152423.jpg!/both/800x450/quality/78/progressive/true/ignore-error/true"
+          src="../../img/4.jpg"
+        />
+        <img
+          class="carousel-img"
+          src="../../img/5.jpg"
         />
       </n-carousel>
       <!-- <n-switch v-model:value="loading" /> -->

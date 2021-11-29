@@ -7,6 +7,9 @@
       <n-layout has-sider>
         <!-- 菜单加折叠 -->
         <adminCenterLeft
+          :detialsResource="selectedResource"
+          :resourceChild="resource"
+          @fatherHomeClick="selectResource"
         ></adminCenterLeft>
         <!-- iframe 框架 -->
         <adminCenterRight
@@ -40,22 +43,29 @@ export default defineComponent({
         {
           _id: "1",
           title: "首页",
-          link: "",
-        }
+          code:"home",
+          link: "/",
+        },
+        {
+          _id: "2",
+          title: "首页2",
+          code:"home2",
+          link: "/",
+        },
       ],
     });
     const selectedResource = ref(null);
     const selectResource = (res) => {
-        console.log(res);
+      console.log(res);
       //声明一个变量来接收数据
       selectedResource.value = res;
     };
 
-    return{
-      ...toRefs(data), 
-      selectedResource, 
-      selectResource
-    }
+    return {
+      ...toRefs(data),
+      selectedResource,
+      selectResource,
+    };
   },
 });
 </script>

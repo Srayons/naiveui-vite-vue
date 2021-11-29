@@ -170,12 +170,12 @@ export default {
       };
       userLogin(data).then((res) => {
         if (res.code == 200) {
-          // console.log(res);
+          console.log(res);
           let userData = res.data;
           if (userData) {
             let userInfo = res.data.userInfo;
-            $cookies.set("token", userData.token);
-            $cookies.set("refresh_token", userData.refresh_token);
+            $cookies.set("token", userData.token,userData.expires_in);
+            $cookies.set("refresh_token", userData.refresh_token,userData.expires_in);
             $cookies.set("userId", userInfo.uid);
             localStorage.setItem("userCode", userInfo.userCode);
             localStorage.setItem("userName", userInfo.userName);

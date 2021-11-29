@@ -44,6 +44,7 @@ import {
   NTooltip,
   NPopover,
   NFormItem,
+  NTag,
 } from 'naive-ui'
 
 const naive = create({
@@ -80,6 +81,7 @@ const naive = create({
     NTooltip,
     NPopover,
     NFormItem,
+    NTag,
   ]
 })
 

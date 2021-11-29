@@ -26,6 +26,7 @@
 </template>
 <script>
 import { defineComponent, h, ref } from "vue";
+import { mapState, mapMutations } from 'vuex';
 import { RouterLink } from "vue-router";
 import { NIcon } from "naive-ui";
 import {
@@ -136,6 +137,13 @@ export default defineComponent({
       collapsed: ref(false),
       menuOptions,
     };
+  },
+  computed: {
+    ...mapState({ // 从 state 中的到的计算属性
+       activePath: state => state.activePath, // 已选中菜单
+       tabList: state => state.tabList,  // tags菜单列表
+       catch_components: state => state.catch_components,  // keepalive缓存
+    })
   },
 });
 </script>
