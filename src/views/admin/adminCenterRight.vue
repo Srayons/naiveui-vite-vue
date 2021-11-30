@@ -44,6 +44,9 @@ export default defineComponent({
         panelType.value = 'success'
         console.log(item);
       },
+      /**
+       * 
+       */
       handleClose(item,index) {
         console.log(item)
         console.log(index)

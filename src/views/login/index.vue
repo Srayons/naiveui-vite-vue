@@ -44,6 +44,9 @@ export default defineComponent({
     window.$message = useMessage();
     const loadingBar = useLoadingBar();
     return {
+      /**
+       * 点击到热门文章（类似锚点）
+       */
       toHome: () => {
         document.getElementById("app").scrollIntoView();
       },

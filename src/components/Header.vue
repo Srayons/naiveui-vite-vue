@@ -2,13 +2,18 @@
   <div id="nLayoutHeader">
     <n-layout-header>
       <!-- 目录 -->
-      <n-menu v-model:value="activeKey" mode="horizontal" :options="menuOptions" />
+      <n-menu
+        v-model:value="activeKey"
+        mode="horizontal"
+        :options="menuOptions"
+      />
       <div id="A-h-gradint">
         <!-- 渐变文字 -->
         <n-gradient-text
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
           @click="toHome"
-        >Vogelfrei ——MrSong's Blog</n-gradient-text>
+          >Vogelfrei ——MrSong's Blog</n-gradient-text
+        >
       </div>
       <div id="A-h-icon">
         <!-- 右侧搜索和登录 -->
@@ -40,10 +45,11 @@
             <n-gradient-text
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
               @click="toHome"
-            >Vogelfrei ——MrSong's Blog</n-gradient-text>
+              >Vogelfrei ——MrSong's Blog</n-gradient-text
+            >
           </p>
-          <div class="top-social_v2"> 
-            <li style="list-style: none;">
+          <div class="top-social_v2">
+            <li style="list-style: none">
               <a
                 href="https://space.bilibili.com/446791818"
                 target="_blank"
@@ -110,8 +116,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -125,8 +130,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -140,8 +144,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -155,8 +158,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -170,8 +172,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -185,8 +186,7 @@ const menuOptions = [
       h(
         "a",
         {
-          href:
-            "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
+          href: "https://baike.baidu.com/item/%E4%B8%94%E5%90%AC%E9%A3%8E%E5%90%9F",
           target: "_blank",
           rel: "noopenner noreferrer",
         },
@@ -252,7 +252,7 @@ export default defineComponent({
     PersonCircleIcon,
   },
   setup() {
-    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg")
+    const avatars = ref(import.meta.env.VITE_ENV_FORE_URL + "/img/avatars.jpg");
     // if (process.env.NODE_ENV == 'production') {
     //   avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
     // }
@@ -285,9 +285,15 @@ export default defineComponent({
       nodeEnv,
       activeKey: ref(null),
       menuOptions,
+      /**
+       * 点击到首页位置（类似锚点）
+       */
       toHome: () => {
         document.getElementById("app").scrollIntoView();
       },
+      /**
+       * 点击到热门文章位置（类似锚点）
+       */
       avatarFun: () => {
         document.getElementById("refCenter").scrollIntoView();
       },

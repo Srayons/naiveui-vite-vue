@@ -1,7 +1,11 @@
-// vue3中创建store实例对象的方法createStore()按需引入
-import { createStore } from "vuex";
+import { createApp } from "vue";
+import Vuex from "vuex";
 
-export default createStore({
+//挂载Vuex
+createApp.use(Vuex);
+
+//创建VueX对象
+const store = new Vuex.Store({
   // 共享状态（即变量）
   state: {
     // 缓存组件页面
@@ -83,7 +87,8 @@ export default createStore({
       state.activePath = val;
     },
   },
-  actions: {},
-  getters: {},
-  modules: {},
+  // 和mutations类似，异步操作
+  Action: {},
 });
+
+export default store;

@@ -86,11 +86,7 @@
             @select="handleSelect"
             :options="options"
           >
-            <n-avatar
-              round
-              size="small"
-              :src="avatars"
-            />
+            <n-avatar round size="small" :src="avatars" />
           </n-dropdown>
         </n-space>
       </div>
@@ -99,7 +95,7 @@
 </template>
 <script>
 import { useRouter } from "vue-router";
-import { defineComponent,onMounted, h, ref } from "vue";
+import { defineComponent, onMounted, h, ref } from "vue";
 import {
   SearchOutline as SearchIcon,
   SettingsOutline as SettingsIcon,
@@ -159,6 +155,9 @@ const options = [
   // },
 ];
 export default defineComponent({
+  /**
+   * 加载图标
+   */
   components: {
     SearchIcon,
     SettingsIcon,
@@ -167,18 +166,25 @@ export default defineComponent({
     SkinIcon,
   },
   setup() {
-    const avatars  = ref(import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg")
+    // 头像地址
+    const avatars = ref(import.meta.env.VITE_ENV_FORE_URL + "/img/avatars.jpg");
+    // 导入路由
     const router = useRouter();
+    // 导入信息模块
     const message = useMessage();
-    // if (process.env.NODE_ENV == 'production') {
-    //   avatars.value = import.meta.env.VITE_ENV_FORE_URL+"/img/avatars.jpg"
-    // }
-
-    onMounted(()=>{
+    /**
+     * 页面加载事件
+     */
+    onMounted(() => {
+      // 如果当前浏览器没token，则直接跳转到登录界面
       if (!$cookies.get("token")) {
+        location.removeItem("userCode");
+        location.removeItem("userName");
+        $cookies.remove("refresh_token");
+        $cookies.remove("userId");
         router.push({
-            path:'/login',
-          })
+          path: "/login",
+        });
       }
     });
 
@@ -190,27 +196,27 @@ export default defineComponent({
       handleSelect(key) {
         // message.info(key);
         // 个人中心
-        if (key=='toFrontDesk') {
-          router.push({ 
-            path:'/',
-          })
+        if (key == "toFrontDesk") {
+          router.push({
+            path: "/",
+          });
         }
         // 前台
-        if (key=='toFrontDesk') {
+        if (key == "toFrontDesk") {
           router.push({
-            path:'/',
-          })
+            path: "/",
+          });
         }
         // 登出
-        if (key=='loginOut') {
-          $cookies.remove("token")
-          $cookies.remove("refresh_token")
-          $cookies.remove("userId")
-          localStorage.removeItem("userCode")
-          localStorage.removeItem("userName")
+        if (key == "loginOut") {
+          $cookies.remove("token");
+          $cookies.remove("refresh_token");
+          $cookies.remove("userId");
+          localStorage.removeItem("userCode");
+          localStorage.removeItem("userName");
           router.push({
-            path:'/login',
-          })
+            path: "/login",
+          });
         }
       },
     };
