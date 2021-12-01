@@ -1,13 +1,14 @@
 <template>
-  <n-layout-content style="height: 759px">
+  <n-layout-content :style="LoginPanelStyle">
     <div id="loginCenter">
       <n-card>
-        <n-tabs default-value="signin" size="large">
-          <n-tab-pane name="signin" tab="账户登录">
-            <n-form
+        <n-tabs  size="large">
+          <!-- 登录面板 -->
+          <n-tab-pane v-if="loginConfig" name="signin" tab="账户登录">
+            <n-form v-if="loginConfig"
               :model="model"
               :rules="rules"
-              ref="formRef"
+              ref="formRefs"
               label-placement="left"
               :label-width="58"
               :size="size"
@@ -15,32 +16,35 @@
                 maxWidth: '640px',
               }"
             >
-              <n-gradient-text
+              <n-gradient-text v-if="loginConfig"
                 style="width: 100%; text-align: center; margin-bottom: 5px"
                 type="danger"
                 :size="13"
               >
-                <i class="tips" v-html="errorIcon"></i>
+                <i class="tips" v-html="errorIcon" v-if="loginConfig"></i>
                 {{ errorMsg }}
               </n-gradient-text>
-              <n-form-item
+              <n-form-item v-if="loginConfig"
                 label="账号"
                 path="userName"
                 :validation-status="userNameValidaStatus"
                 :feedback="userNameFeedback"
                 clearable
               >
-                <n-input ref="userNameRef" placeholder="用户名/邮箱" v-model:value="model.userName" />
-                <!-- {{userNameRef}} -->
+                <n-input v-if="loginConfig"
+                  ref="userNameRef"
+                  placeholder="用户名/邮箱"
+                  v-model:value="model.userName"
+                />
               </n-form-item>
-              <n-form-item
+              <n-form-item v-if="loginConfig"
                 label="密码"
                 path="passWord"
                 :validation-status="passWordValidaStatus"
                 :feedback="passWordFeedback"
                 clearable
               >
-                <n-input
+                <n-input v-if="loginConfig"
                   @keyup.enter="enterkey"
                   placeholder="密码"
                   type="password"
@@ -48,18 +52,26 @@
                   v-model:value="model.passWord"
                 />
               </n-form-item>
-              <n-gradient-text
-                style="float: right; margin-bottom: 15px; cursor: pointer"
+              <n-gradient-text v-if="loginConfig"
+                style="float: right; margin-bottom: 15px"
                 type="danger"
                 @click="forgetPwd"
                 :size="13"
-              >忘记密码</n-gradient-text>
-              <!-- <n-form-item label="验证码" path="passWord">
+                >忘记密码</n-gradient-text
+              >
+            </n-form>
+            <n-button v-if="loginConfig"  @click="handleValidateButtonClick" type="primary" block
+              >登录</n-button
+            >
+          </n-tab-pane>
+
+          <n-tab-pane v-if="!loginConfig" name="signin" tab="重置密码">
+            <ForgetPwdForm @loginConfigValue="loginConfigValue"></ForgetPwdForm>
+          </n-tab-pane>
+
+          <!-- <n-form-item label="验证码" path="passWord">
                 <n-input placeholder="Input" v-model:value="model.passWord" />
               </n-form-item>-->
-            </n-form>
-            <n-button @click="handleValidateButtonClick" type="primary" block>登录</n-button>
-          </n-tab-pane>
         </n-tabs>
       </n-card>
     </div>
@@ -108,7 +120,11 @@ import {
 } from "vue";
 import { useMessage } from "naive-ui";
 import { userLogin } from "../../http/api";
+import ForgetPwdForm from "./panel/forgetPwdForm.vue";
 // import cookies from "vue-cookies";
+/**
+ * 输入框反馈事件
+ */
 function pubFeedback(
   userName,
   passWord,
@@ -126,24 +142,30 @@ function pubFeedback(
   }
 }
 
-export default {
+export default defineComponent({
+  components: {
+    ForgetPwdForm,
+  },
   setup() {
     const router = useRouter();
-    const formRef = ref(null);
-    const userNameRef = ref(null);
     const message = useMessage();
-    const userNameValidaStatus = ref(undefined);
-    const userNameFeedback = ref(undefined);
-    const passWordValidaStatus = ref(undefined);
-    const passWordFeedback = ref(undefined);
-    const errorMsg = ref(null);
+    const formRef = ref(null);
     const errorIcon = ref(null);
+    const errorMsg = ref(null);
+    let LoginPanelStyle = ref("height: 759px");
+    // 设置表单状态（true为登录，false为忘记密码）
+    const loginConfig = ref(true);
+    // 登录面板变量
+    const userNameRef = ref(null);
+    const userNameValidaStatus = ref(undefined);
+    const passWordValidaStatus = ref(undefined);
     const model = ref({
       userName: null,
       passWord: null,
       verifiCode: null,
     });
 
+    // 登录非空验证
     const rules = {
       userName: {
         required: true,
@@ -174,8 +196,12 @@ export default {
           let userData = res.data;
           if (userData) {
             let userInfo = res.data.userInfo;
-            $cookies.set("token", userData.token,userData.expires_in);
-            $cookies.set("refresh_token", userData.refresh_token,userData.expires_in);
+            $cookies.set("token", userData.token, userData.expires_in);
+            $cookies.set(
+              "refresh_token",
+              userData.refresh_token,
+              userData.expires_in
+            );
             $cookies.set("userId", userInfo.uid);
             localStorage.setItem("userCode", userInfo.userCode);
             localStorage.setItem("userName", userInfo.userName);
@@ -183,7 +209,7 @@ export default {
               path: "/admin/Index",
             });
             window.close();
-            window.open(href)
+            window.open(href);
           }
         } else {
           userNameValidaStatus.value = "error";
@@ -205,7 +231,9 @@ export default {
         ? event.which
         : event.charCode;
       if (code == 13) {
-        toLogin();
+        if (loginConfig.value) {
+          toLogin();
+        }
       }
     };
 
@@ -226,6 +254,8 @@ export default {
     });
 
     return {
+      LoginPanelStyle,
+      loginConfig,
       enterkey,
       userNameRef,
       errorMsg,
@@ -261,13 +291,21 @@ export default {
           errorIcon
         );
       }),
+      //返回登录
+      loginConfigValue(value) {
+        loginConfig.value = value.loginConfig;
+        LoginPanelStyle.value = value.LoginPanelStyle;
+      },
       //忘记密码
-      forgetPwd() {},
+      forgetPwd() {
+        loginConfig.value = false;
+        LoginPanelStyle.value = "height: 1024px";
+      },
       //验证登录
       handleValidateButtonClick(e) {
         e.preventDefault();
         formRef.value.validate((errors) => {
-          if (!errors) {
+          if (!errors && loginConfig.value) {
             toLogin();
           } else {
             errorIcon.value = "";
@@ -279,5 +317,5 @@ export default {
       },
     };
   },
-};
+});
 </script>

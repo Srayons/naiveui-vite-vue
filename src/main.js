@@ -45,6 +45,7 @@ import {
   NPopover,
   NFormItem,
   NTag,
+  NSelect,
 } from 'naive-ui'
 
 const naive = create({
@@ -82,6 +83,7 @@ const naive = create({
     NPopover,
     NFormItem,
     NTag,
+    NSelect,
   ]
 })
 
