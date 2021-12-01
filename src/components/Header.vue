@@ -274,7 +274,8 @@ export default defineComponent({
       });
     });
 
-    const nodeEnv = ref(false);
+    // 控制后台登录页面
+    const nodeEnv = ref(true);
     console.log(process.env.NODE_ENV);
     if (process.env.NODE_ENV == "development") {
       nodeEnv.value = true;
