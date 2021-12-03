@@ -5,17 +5,8 @@
       <!-- 头部 -->
       <adminHeader></adminHeader>
       <n-layout has-sider>
-        <!-- 菜单加折叠 -->
-        <adminCenterLeft
-          :detialsResource="selectedResource"
-          :resourceChild="resource"
-          @fatherHomeClick="selectResource"
-        ></adminCenterLeft>
-        <!-- iframe 框架 -->
         <adminCenterRight
-          :detialsResource="selectedResource"
           :resourceChild="resource"
-          @fatherHomeClick="selectResource"
         ></adminCenterRight>
       </n-layout>
     </n-space>
@@ -26,13 +17,11 @@
 import { defineComponent, h, ref, toRefs, reactive } from "vue";
 
 import adminHeader from "./adminHeader.vue";
-import adminCenterLeft from "./adminCenterLeft.vue";
-import adminCenterRight from "./adminCenterRight.vue";
+import adminCenterRight from "./adminCenter.vue";
 
 export default defineComponent({
   components: {
     adminHeader,
-    adminCenterLeft,
     adminCenterRight,
   },
   setup() {
@@ -54,17 +43,10 @@ export default defineComponent({
         },
       ],
     });
-    const selectedResource = ref(null);
-    const selectResource = (res) => {
-      console.log(res);
-      //声明一个变量来接收数据
-      selectedResource.value = res;
-    };
+
 
     return {
       ...toRefs(data),
-      selectedResource,
-      selectResource,
     };
   },
 });

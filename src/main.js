@@ -2,6 +2,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './route'
+import store from "./store"; // 添加全局存储vuex引入
 import './index.css'
 // 通用字体
 import 'vfonts/Lato.css'
@@ -101,6 +102,7 @@ import VueCookies from "vue-cookies";
 
 const app = createApp(App);
 app.use(router);
+app.use(store);
 app.use(naive, vue3aplayer, v3scroll,VueCookies);
 app.mount('#app')
 

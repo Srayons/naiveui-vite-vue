@@ -141,30 +141,6 @@ export default defineComponent({
       },
     };
 
-    /* // 监听事件
-    let enterkeyForgetPwd = (event) => {
-      console.log("加载回车事件---");
-      const code = event.keyCode
-        ? event.keyCode
-        : event.which
-        ? event.which
-        : event.charCode;
-      if (code == 13) {
-        
-      }
-    };
-
-    // 初始化函数
-    onMounted(() => {
-      document.addEventListener("keyup", enterkeyForgetPwd);
-    });
-
-    // 销毁事件
-    onUnmounted(() => {
-      console.log("已销毁---");
-      document.removeEventListener("keyup", enterkeyForgetPwd);
-    }); */
-
     return {
       // enterkeyForgetPwd,
       errorMsg,
