@@ -5,9 +5,7 @@
       <!-- 头部 -->
       <adminHeader></adminHeader>
       <n-layout has-sider>
-        <adminCenterRight
-          :resourceChild="resource"
-        ></adminCenterRight>
+        <adminCenterRight></adminCenterRight>
       </n-layout>
     </n-space>
   </div>
@@ -27,27 +25,7 @@ export default defineComponent({
   setup() {
     //标题
     $("#BlogTitle").html("Vogelfrei-后台管理");
-    const data = reactive({
-      resource: [
-        {
-          _id: "1",
-          title: "首页",
-          code:"home",
-          link: "/",
-        },
-        {
-          _id: "2",
-          title: "首页2",
-          code:"home2",
-          link: "/",
-        },
-      ],
-    });
-
-
-    return {
-      ...toRefs(data),
-    };
+    return {};
   },
 });
 </script>

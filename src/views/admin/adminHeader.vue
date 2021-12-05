@@ -178,10 +178,6 @@ export default defineComponent({
     onMounted(() => {
       // 如果当前浏览器没token，则直接跳转到登录界面
       if (!$cookies.get("token")) {
-        location.removeItem("userCode");
-        location.removeItem("userName");
-        $cookies.remove("refresh_token");
-        $cookies.remove("userId");
         router.push({
           path: "/login",
         });

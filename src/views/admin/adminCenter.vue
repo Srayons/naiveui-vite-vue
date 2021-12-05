@@ -31,13 +31,12 @@
           <!-- 标签页 -->
           <!--:color="{ color: '#BBB', textColor: '#555', borderColor: '#555' }" -->
           <n-tag
-            v-for="(panel, index) in panels"
+            v-for="(panel, index) in tabList"
             :type="panelType"
-            :closable="panel.code !== 'home'"
+            :closable="panel.name !== 'wellcome'"
             @close="handleClose(panel, index)"
             @click="changeMenu(panel)"
-            >{{ panel.title }}</n-tag
-          >
+          >{{ panel.label }}</n-tag>
         </n-space>
       </n-card>
       <n-card>
@@ -56,7 +55,7 @@
 import { defineComponent, h, ref, reactive, computed } from "vue";
 import { useMessage } from "naive-ui";
 import { useStore, mapState, mapMutations } from "vuex";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 import { NIcon } from "naive-ui";
 import {
   BookOutline as BookIcon,
@@ -95,29 +94,32 @@ let option = {
  */
 const menuOptions = [
   {
-    menuLabel: option.lableName,
-    menuPath: "/test1",
-    menuKey: "hear-the-wind-sings",
+    menuLabel: "控制台",
+    menuPath: "/wellcome",
+    menuKey: "wellcome",
     icon: renderIcon(BookIcon),
   },
   {
-    menuLabel: "1973年的弹珠玩具",
-    menuKey: "pinball-1973",
+    menuLabel: "测试页面2",
+    menuPath: "/test2",
+    menuKey: "test2",
     icon: renderIcon(BookIcon),
   },
   {
     menuLabel: "寻羊冒险记",
-    menuKey: "a-wild-sheep-chase",
+    menuPath: "/test3",
+    menuKey: "test3",
     icon: renderIcon(BookIcon),
   },
   {
     menuLabel: "羊男",
-    menuKey: "sheep-man",
+    menuPath: "/test4",
+    menuKey: "test4",
     icon: renderIcon(PersonIcon),
   },
   {
-    menuLabel: "羊男",
-    menuKey: "sheep-man",
+    menuLabel: "羊男5",
+    menuKey: "test5",
     icon: renderIcon(PersonIcon),
   },
   {
@@ -128,11 +130,13 @@ const menuOptions = [
       {
         type: "group",
         menuLabel: "人物",
-        menuKey: "people",
+        menuPath: "/test6",
+        menuKey: "test6",
         menuChildren: [
           {
             menuLabel: "叙事者",
-            menuKey: "narrator",
+            menuPath: "/test7",
+            menuKey: "test7",
             icon: renderIcon(PersonIcon),
           },
         ],
@@ -150,41 +154,91 @@ export default defineComponent({
       catch_components: (state) => state.catch_components, // keepalive缓存
     }),
   },
-  props: {
-    resourceChild: {
-      type: Array,
-      default: [], //还有一种写法 default ()=>[]
-    },
-  },
   setup(props, ctx) {
     console.log(menuOptions.length);
     const store = useStore();
+    const router = useRouter();
     const message = useMessage();
     const panelType = ref("");
-    const panelsRef = props.resourceChild;
+    const panelsRef = (state) => state.tabList;
     return {
       inverted: ref(false),
       collapsed: ref(false),
       menuOptions,
       panelType: panelType,
       checked: ref(false),
-      panels: props.resourceChild,
-      handleAdd() {
-        message.info("添加一个标签。");
-        const newValue = {};
-        panelsRef.push(newValue);
-        nameRef.value = newValue;
-      },
+
       changeMenu(item) {
-        panelType.value = "success";
+        // panelType.value = "success";
         console.log(item);
+
+        // 历史选中菜单
+        var oldActivePath = store.state.activePath;
+        // 首先判断点击的是否是自己，如果是自己则return
+        if (oldActivePath === item.name) {
+          return;
+        }
+        // 不是自己，存储菜单
+        store.commit("changeMenu", item.name);
+        // 页面跳转
+        router.push({ name: item.name });
       },
       /**
        *标签关闭事件
        */
-      handleClose(item, index) {
-        console.log(item);
+      handleClose(tab, index) {
+        console.log(tab);
         console.log(index);
+        // 历史选中菜单
+        var oldActivePath = store.state.activePath;
+        // 历史已选中菜单列表
+        var oldTabList = store.state.tabList;
+        // 计算标签个数
+        let length = oldTabList.length - 1;
+        // 删除tabList中的该对象
+        for (let i = 0; i < oldTabList.length; i++) {
+          let item = oldTabList[i];
+          if (item.name === tab.name) {
+            oldTabList.splice(i, 1);
+          }
+        }
+        // 删除keepAlive缓存
+        store.commit("removeKeepAliveCache", tab.name);
+        // 如果关闭的标签不是当前路由的话，就不跳转
+        if (tab.name !== oldActivePath) {
+          return;
+        }
+        // 如果length为1，必然只剩下首页标签，此时关闭后，更新到首页
+        if (length === 1) {
+          // 同时存储菜单
+          store.commit("closeTab", { activePath: "home", tabList: oldTabList });
+          // tab页向左跳转
+          router.push({ name: oldTabList[index - 1].name });
+          // 不再向下执行
+          return;
+        }
+        // 关闭的标签是最右边的话，往左边跳转一个
+        if (index === length) {
+          // 同时更新路径
+          oldActivePath = oldTabList[index - 1].name;
+          // 同时存储菜单
+          store.commit("closeTab", {
+            activePath: oldActivePath,
+            tabList: oldTabList,
+          });
+          // tab页向左跳转
+          router.push({ name: oldTabList[index - 1].name });
+        } else {
+          // 同时更新路径
+          oldActivePath = oldTabList[index].name;
+          // 同时存储菜单
+          store.commit("closeTab", {
+            activePath: oldActivePath,
+            tabList: oldTabList,
+          });
+          // tab页向右跳转
+          router.push({ name: oldTabList[index].name });
+        }
       },
 
       /**菜单点击  */
@@ -196,7 +250,7 @@ export default defineComponent({
         store.commit("addKeepAliveCache", item.name);
         //添加tags标签
         //访问wellcome 就代表home
-        var menuKey = item.menuKey === "wellcome" ? "home" : item.menuKey;
+        var menuKey = item.menuKey === "wellcome" ? "wellcome" : item.menuKey;
         var submenu = {
           path: item.menuPath,
           name: menuKey,
