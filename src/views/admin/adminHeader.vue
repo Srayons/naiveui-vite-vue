@@ -1,4 +1,19 @@
 <template>
+  <n-modal
+    class="custom-card"
+    :mask-closable="false"
+    v-model:show="showModal"
+    preset="card"
+    :style="bodyStyle"
+    title="卡片预设"
+    size="huge"
+    :bordered="false"
+    :segmented="segmented"
+  >
+    <template #header-extra> 噢! </template>
+    内容
+    <template #footer> 尾部 </template>
+  </n-modal>
   <n-layout>
     <n-layout-header
       style="
@@ -33,14 +48,12 @@
 
           <n-popover trigger="hover">
             <template #trigger>
-              <router-link to="">
-                <!-- SettingsIcon -->
-                <n-icon size="25">
-                  <SettingsIcon></SettingsIcon>
-                </n-icon>
-              </router-link>
+              <!-- SettingsIcon -->
+              <n-icon size="25" @click="showModalSetting">
+                <SettingsIcon></SettingsIcon>
+              </n-icon>
             </template>
-            <span>设置</span>
+            <span >设置</span>
           </n-popover>
 
           <n-popover trigger="hover">
@@ -125,34 +138,6 @@ const options = [
     label: "退出登录",
     key: "loginOut",
   },
-  // {
-  //   label: "其他",
-  //   key: "others1",
-  //   children: [
-  //     {
-  //       label: "乔丹·贝克",
-  //       key: "jordan baker",
-  //     },
-  //     {
-  //       label: "汤姆·布坎南",
-  //       key: "tom buchanan",
-  //     },
-  //     {
-  //       label: "其他",
-  //       key: "others2",
-  //       children: [
-  //         {
-  //           label: "鸡肉",
-  //           key: "chicken",
-  //         },
-  //         {
-  //           label: "牛肉",
-  //           key: "beef",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
 ];
 export default defineComponent({
   /**
@@ -166,6 +151,7 @@ export default defineComponent({
     SkinIcon,
   },
   setup() {
+    const showModal = ref(false);
     // 头像地址
     const avatars = ref(import.meta.env.VITE_ENV_FORE_URL + "/img/avatars.jpg");
     // 导入路由
@@ -185,6 +171,15 @@ export default defineComponent({
     });
 
     return {
+      // 设置弹出框
+      bodyStyle: {
+        width: "600px",
+      },
+      segmented: {
+        content: "soft",
+        footer: "soft",
+      },
+      showModal: showModal,
       avatars,
       // 菜单数组
       options,
@@ -203,6 +198,7 @@ export default defineComponent({
             path: "/",
           });
         }
+
         // 登出
         if (key == "loginOut") {
           $cookies.remove("token");
@@ -214,6 +210,10 @@ export default defineComponent({
             path: "/login",
           });
         }
+      },
+      // 设置弹出框
+      showModalSetting() {
+        showModal.value = true;
       },
     };
   },

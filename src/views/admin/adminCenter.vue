@@ -26,24 +26,33 @@
   </n-layout-sider>
   <n-layout>
     <n-space vertical>
-      <n-card content-style="padding:8px;">
+      <n-card content-style="padding:10px;">
         <n-space>
           <!-- 标签页 -->
           <!--:color="{ color: '#BBB', textColor: '#555', borderColor: '#555' }" -->
           <n-tag
             v-for="(panel, index) in tabList"
-            :type="panelType"
-            :closable="panel.name !== 'wellcome'"
-            @close="handleClose(panel, index)"
-            @click="changeMenu(panel)"
-          >{{ panel.label }}</n-tag>
+            size="large"
+            :type="activePath === panel.routerName ? 'success' : ''"
+            :closable="panel.routerName !== 'wellcome'"
+            @close="
+              handleClose(
+                panel,
+                index,
+                activePath === panel.routerName ? 'success' : ''
+              )
+            "
+            ><span @click="handleMenu(panel, index)">{{
+              panel.menuLabel
+            }}</span></n-tag
+          >
         </n-space>
       </n-card>
       <n-card>
         <!-- vue3.0配置 -->
         <router-view v-slot="{ Component }">
           <keep-alive>
-            <component :is="Component" v-if="$route.meta.keepAlive" />
+            <!-- <component :is="Component" v-if="$route.meta.keepAlive" /> -->
           </keep-alive>
           <component :is="Component" v-if="!$route.meta.keepAlive" />
         </router-view>
@@ -71,25 +80,6 @@ function renderIcon(icon) {
 }
 
 /**
- * 跳转路由
- */
-function renderPath(option) {
-  return () =>
-    h(
-      RouterLink,
-      { to: { path: option.path, name: option.name, params: option.params } },
-      { default: () => option.lableName }
-    );
-}
-
-let option = {
-  lableName: "花开花落",
-  path: "",
-  name: "",
-  params: {},
-};
-
-/**
  * 菜单
  */
 const menuOptions = [
@@ -115,11 +105,6 @@ const menuOptions = [
     menuLabel: "羊男",
     menuPath: "/test4",
     menuKey: "test4",
-    icon: renderIcon(PersonIcon),
-  },
-  {
-    menuLabel: "羊男5",
-    menuKey: "test5",
     icon: renderIcon(PersonIcon),
   },
   {
@@ -155,40 +140,32 @@ export default defineComponent({
     }),
   },
   setup(props, ctx) {
-    console.log(menuOptions.length);
     const store = useStore();
     const router = useRouter();
     const message = useMessage();
-    const panelType = ref("");
-    const panelsRef = (state) => state.tabList;
     return {
       inverted: ref(false),
       collapsed: ref(false),
       menuOptions,
-      panelType: panelType,
-      checked: ref(false),
-
-      changeMenu(item) {
-        // panelType.value = "success";
-        console.log(item);
-
+      // 标签选择
+      handleMenu(item, index) {
+        console.log("handleMenu:", item);
         // 历史选中菜单
         var oldActivePath = store.state.activePath;
         // 首先判断点击的是否是自己，如果是自己则return
-        if (oldActivePath === item.name) {
+        if (oldActivePath === item.routerName) {
           return;
         }
         // 不是自己，存储菜单
-        store.commit("changeMenu", item.name);
+        store.commit("changeMenu", item.routerName);
         // 页面跳转
-        router.push({ name: item.name });
+        router.push({ path: item.routerName });
       },
       /**
        *标签关闭事件
        */
       handleClose(tab, index) {
-        console.log(tab);
-        console.log(index);
+        console.log("handleClose:", tab);
         // 历史选中菜单
         var oldActivePath = store.state.activePath;
         // 历史已选中菜单列表
@@ -198,66 +175,71 @@ export default defineComponent({
         // 删除tabList中的该对象
         for (let i = 0; i < oldTabList.length; i++) {
           let item = oldTabList[i];
-          if (item.name === tab.name) {
+          if (item.routerName === tab.routerName) {
             oldTabList.splice(i, 1);
           }
         }
         // 删除keepAlive缓存
-        store.commit("removeKeepAliveCache", tab.name);
+        store.commit("removeKeepAliveCache", tab.routerName);
         // 如果关闭的标签不是当前路由的话，就不跳转
-        if (tab.name !== oldActivePath) {
+        if (tab.routerName !== oldActivePath) {
           return;
         }
         // 如果length为1，必然只剩下首页标签，此时关闭后，更新到首页
         if (length === 1) {
           // 同时存储菜单
-          store.commit("closeTab", { activePath: "home", tabList: oldTabList });
+          store.commit("closeTab", {
+            activePath: "wellcome",
+            tabList: oldTabList,
+          });
           // tab页向左跳转
-          router.push({ name: oldTabList[index - 1].name });
+          router.push({ path: oldTabList[index - 1].routerPath });
           // 不再向下执行
           return;
         }
         // 关闭的标签是最右边的话，往左边跳转一个
         if (index === length) {
+          router.push({ path: "/test2" });
           // 同时更新路径
-          oldActivePath = oldTabList[index - 1].name;
+          oldActivePath = oldTabList[index - 1].routerName;
           // 同时存储菜单
           store.commit("closeTab", {
             activePath: oldActivePath,
             tabList: oldTabList,
           });
           // tab页向左跳转
-          router.push({ name: oldTabList[index - 1].name });
+          router.push({ path: oldTabList[index - 1].routerPath });
         } else {
           // 同时更新路径
-          oldActivePath = oldTabList[index].name;
+          oldActivePath = oldTabList[index].routerName;
           // 同时存储菜单
           store.commit("closeTab", {
             activePath: oldActivePath,
             tabList: oldTabList,
           });
           // tab页向右跳转
-          router.push({ name: oldTabList[index].name });
+          router.push({ path: oldTabList[index].routerPath });
         }
       },
 
       /**菜单点击  */
       handleUpdateValue(key, item) {
-        console.log(key);
-        console.log(item);
-        message.info("[onUpdate:value]: " + JSON.stringify(item));
+        console.log("handleUpdateValue:", item);
+        // message.info("[onUpdate:value]: " + JSON.stringify(item));
         // 加入keepalive缓存
-        store.commit("addKeepAliveCache", item.name);
+        store.commit("addKeepAliveCache", item.menuKey);
         //添加tags标签
         //访问wellcome 就代表home
         var menuKey = item.menuKey === "wellcome" ? "wellcome" : item.menuKey;
         var submenu = {
-          path: item.menuPath,
-          name: menuKey,
-          label: item.menuLabel,
+          routerPath: item.menuPath,
+          routerName: menuKey,
+          menuLabel: item.menuLabel,
         };
         //修改选中菜单
         store.commit("selectMenu", submenu);
+        // 页面跳转
+        router.push({ path: item.menuPath });
       },
     };
   },

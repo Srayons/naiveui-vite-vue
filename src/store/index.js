@@ -11,7 +11,7 @@ export default createStore({
     // 当前选中的菜单 - 默认选择首页
     activePath: "wellcome",
     // 菜单项 - 默认包含首页
-    tabList: [{ path: "/wellcome", label: "首页", name: "wellcome" }],
+    tabList: [{ routerPath: "/wellcome", menuLabel: "控制台", routerName: "wellcome" }],
   },
   // 更改vuex的store中状态的唯一方法 - 同步操作
   mutations: {
@@ -19,31 +19,31 @@ export default createStore({
     clearVUEX(state) {
       state.catch_components = [];
       state.activePath = "wellcome";
-      state.tabList = [{ path: "/wellcome", label: "首页", name: "wellcome" }];
+      state.tabList = [{ routerPath: "/wellcome", menuLabel: "首页", routerName: "wellcome" }];
     },
     // 跳转页面执行
     selectMenu(state, submenu) {
       // 首页就是 wellcome   也就是 home
-      if (submenu.name === "wellcome") {
-        submenu.name = "wellcome";
+      if (submenu.routerName === "wellcome") {
+        submenu.routerName = "wellcome";
         submenu.path = "/wellcome";
       }
       // 当前选中菜单
-      var activePath = submenu.name;
+      var activePath = submenu.routerName;
       // 历史已选中菜单列表
       var oldTabList = state.tabList;
       // 将菜单信息添加到tablist - 添加时判断是否已有该标签
       var result = oldTabList.some((item) => {
-        if (item.name === activePath) {
+        if (item.routerName === activePath) {
           return true;
         }
       });
       // 如果不包含该对象，则添加
       if (!result) {
         oldTabList.push({
-          path: submenu.name,
-          name: submenu.name,
-          label: submenu.label,
+          routerPath: submenu.routerPath,
+          routerName: submenu.routerName,
+          menuLabel: submenu.menuLabel,
         });
       }
       // 重新赋值
@@ -74,6 +74,7 @@ export default createStore({
     },
     //关闭菜单
     closeTab(state, val) {
+      console.log("activePath:",state.activePath)
       // 重新赋值
       state.activePath = val.activePath;
       state.tabList = val.tabList;
