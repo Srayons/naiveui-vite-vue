@@ -16,12 +16,12 @@
         :collapsed-width="64"
         :collapsed-icon-size="22"
         :options="menuOptions"
-        :default-expanded-keys="[menuOptions[menuOptions.length - 1].menuKey]"
         @update:value="handleUpdateValue"
         key-field="menuKey"
         label-field="menuLabel"
         children-field="menuChildren"
       />
+      <!--         :default-expanded-keys="[menuOptions[menuOptions.length - 1].menuKey]" -->
     </n-scrollbar>
   </n-layout-sider>
   <n-layout>
@@ -61,7 +61,7 @@
   </n-layout>
 </template>
 <script>
-import { defineComponent, h, ref, reactive, computed } from "vue";
+import { defineComponent, h, ref, reactive, computed, onMounted } from "vue";
 import { useMessage } from "naive-ui";
 import { useStore, mapState, mapMutations } from "vuex";
 import { RouterLink, useRouter } from "vue-router";
@@ -72,63 +72,14 @@ import {
   WineOutline as WineIcon,
 } from "@vicons/ionicons5";
 
+import { axiosReq } from "../../http/requestApi/requestApi";
+
 /**
  * 图标事件
  */
 function renderIcon(icon) {
   return () => h(NIcon, null, { default: () => h(icon) });
 }
-
-/**
- * 菜单
- */
-const menuOptions = [
-  {
-    menuLabel: "控制台",
-    menuPath: "/wellcome",
-    menuKey: "wellcome",
-    icon: renderIcon(BookIcon),
-  },
-  {
-    menuLabel: "测试页面2",
-    menuPath: "/test2",
-    menuKey: "test2",
-    icon: renderIcon(BookIcon),
-  },
-  {
-    menuLabel: "寻羊冒险记",
-    menuPath: "/test3",
-    menuKey: "test3",
-    icon: renderIcon(BookIcon),
-  },
-  {
-    menuLabel: "羊男",
-    menuPath: "/test4",
-    menuKey: "test4",
-    icon: renderIcon(PersonIcon),
-  },
-  {
-    menuLabel: "舞，舞，舞",
-    menuKey: "dance-dance-dance",
-    icon: renderIcon(BookIcon),
-    menuChildren: [
-      {
-        type: "group",
-        menuLabel: "人物",
-        menuPath: "/test6",
-        menuKey: "test6",
-        menuChildren: [
-          {
-            menuLabel: "叙事者",
-            menuPath: "/test7",
-            menuKey: "test7",
-            icon: renderIcon(PersonIcon),
-          },
-        ],
-      },
-    ],
-  },
-];
 
 export default defineComponent({
   computed: {
@@ -139,11 +90,83 @@ export default defineComponent({
       catch_components: (state) => state.catch_components, // keepalive缓存
     }),
   },
+  data() {
+    return {
+      menuOptions: [],
+    };
+  },
   setup(props, ctx) {
     const store = useStore();
     const router = useRouter();
-    const message = useMessage();
+    window.$message = useMessage();
+    var menuOptions = [];
+
+    let menuData = {
+      pageNum: "1",
+      pageSize: "10",
+    };
+
+    
+    let result = axiosReq("/menu/selectMenuAll", "get", menuData)
+
+    console.log(result);
+    const requestMenu = (resuit) => {
+      console.log(resuit);
+      menuOptions = resuit.data.list;
+      console.log(menuOptions);
+    };
+
+    console.log(menuOptions);
+
+    menuOptions = [
+      {
+        menuLabel: "控制台",
+        menuPath: "/wellcome",
+        menuKey: "wellcome",
+        icon: () => h(NIcon, null, { default: () => h(BookIcon) }),
+      },
+      {
+        menuLabel: "测试页面2",
+        menuPath: "/test2",
+        menuKey: "test2",
+        icon: renderIcon(BookIcon),
+      },
+      {
+        menuLabel: "寻羊冒险记",
+        menuPath: "/test3",
+        menuKey: "test3",
+        icon: renderIcon(BookIcon),
+      },
+      {
+        menuLabel: "羊男",
+        menuPath: "/test4",
+        menuKey: "test4",
+        icon: renderIcon(PersonIcon),
+      },
+      {
+        menuLabel: "舞，舞，舞",
+        menuKey: "dance-dance-dance",
+        icon: renderIcon(BookIcon),
+        menuChildren: [
+          {
+            type: "group",
+            menuLabel: "人物",
+            menuPath: "/test6",
+            menuKey: "test6",
+            menuChildren: [
+              {
+                menuLabel: "叙事者",
+                menuPath: "/test7",
+                menuKey: "test7",
+                icon: renderIcon(PersonIcon),
+              },
+            ],
+          },
+        ],
+      },
+    ];
     return {
+      requestMenu,
       inverted: ref(false),
       collapsed: ref(false),
       menuOptions,

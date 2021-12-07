@@ -1,4 +1,4 @@
-import axios from "../http/request"
+import axios from "./request"
 import qs from 'qs'
 //请求示例
 //get

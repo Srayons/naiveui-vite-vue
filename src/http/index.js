@@ -1,5 +1,6 @@
 // http/index.js
 import axios from 'axios'
+import VueCookies from "vue-cookies";
 // console.log(import.meta.env.VITE_ENV_BASE_URL) // 打印 VITE_ENV_BASE_URL 变量
 //创建axios的一个实例 
 var instance = axios.create({
@@ -18,9 +19,9 @@ let requestCount = 0
 const showLoading = () => {
     if (requestCount === 0 && !loading) {
         loading = window.$message.loading(  // 发起请求时加载全局loading，请求失败或有响应时会关闭
-        '拼命加载中。。。',{
-            type:'loading',
-            duration:5000
+            '拼命加载中。。。', {
+            type: 'loading',
+            duration: 5000
         })
     }
     requestCount++;
@@ -37,8 +38,8 @@ const hideLoading = () => {
 instance.interceptors.request.use((config) => {
     showLoading()
     // 每次发送请求之前判断是否存在token，如果存在，则统一在http请求的header都加上token，不用每次请求都手动添加了
-    const token = window.localStorage.getItem('token');
-    token && (config.headers.Authorization = token)
+    const token = VueCookies.get('token');
+    token && (config.headers.Authorization = "Bearer " + token)
     //若请求方式为post，则将data参数转为JSON字符串
     if (config.method === 'POST') {
         config.data = JSON.stringify(config.data);

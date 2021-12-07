@@ -18,7 +18,7 @@ export default defineConfig({
     server: {
         // 代理，最重要，其他的都可以有默认配置
         // proxy: {
-        //     '/magic/web/api': {
+        //     '/admin': {
         //         target: 'http://localhost:9999',
         //         changeOrigin: true,
         //     }
