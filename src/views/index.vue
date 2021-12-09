@@ -66,6 +66,8 @@ export default defineComponent({
     const showBackTop = ref(false);
 
     onMounted(() => {
+      //开始加载动画
+      loadingBar.start();
       // console.log("finish");
       // 获取当前浏览器宽高
       let screenWidth = document.body.clientWidth;
@@ -74,9 +76,6 @@ export default defineComponent({
 
       // let clientWidth = ref(document.body.clientWidth).value;
       nextTick(() => {
-        //开始加载动画
-        // loadingBar.start();
-
         const keyCodeMap = {
           // 91: true, // command
           61: true,
@@ -218,8 +217,6 @@ export default defineComponent({
         };
 
         // console.log("nextTick");
-        //结束加载条
-        loadingBar.finish();
       });
 
       //滚动条事件

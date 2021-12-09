@@ -34,7 +34,7 @@
             v-for="(panel, index) in tabList"
             size="large"
             :type="activePath === panel.routerName ? 'success' : ''"
-            :closable="panel.routerName !== 'wellcome'"
+            :closable="panel.routerName !== 'adminWellcome'"
             @close="
               handleClose(
                 panel,
@@ -42,10 +42,13 @@
                 activePath === panel.routerName ? 'success' : ''
               )
             "
-            ><span @click="handleMenu(panel, index)">{{
-              panel.menuLabel
-            }}</span></n-tag
           >
+            <span @click="handleMenu(panel, index)">
+              {{
+              panel.menuLabel
+              }}
+            </span>
+          </n-tag>
         </n-space>
       </n-card>
       <n-card>
@@ -71,7 +74,7 @@ import {
   PersonOutline as PersonIcon,
   WineOutline as WineIcon,
 } from "@vicons/ionicons5";
-
+import { useLoadingBar } from "naive-ui";
 import { axiosReq } from "../../http/requestApi/requestApi";
 
 /**
@@ -94,7 +97,8 @@ export default defineComponent({
     const store = useStore();
     const router = useRouter();
     window.$message = useMessage();
-    
+    const loadingBar = useLoadingBar();
+
     const state = reactive([
       {
         menuOptions: [],
@@ -115,6 +119,8 @@ export default defineComponent({
       if (oldActivePath === item.routerName) {
         return;
       }
+      //开始加载条
+      loadingBar.start();
       // 不是自己，存储菜单
       store.commit("changeMenu", item.routerName);
       // 页面跳转
@@ -146,7 +152,7 @@ export default defineComponent({
       if (length === 1) {
         // 同时存储菜单
         store.commit("closeTab", {
-          activePath: "wellcome",
+          activePath: "adminWellcome",
           tabList: oldTabList,
         });
         // tab页向左跳转
@@ -186,7 +192,8 @@ export default defineComponent({
       store.commit("addKeepAliveCache", item.menuKey);
       //添加tags标签
       //访问wellcome 就代表home
-      var menuKey = item.menuKey === "wellcome" ? "wellcome" : item.menuKey;
+      var menuKey =
+        item.menuKey === "adminWellcome" ? "adminWellcome" : item.menuKey;
       var submenu = {
         routerPath: item.routerPath,
         routerName: menuKey,
@@ -195,14 +202,20 @@ export default defineComponent({
       //修改选中菜单
       store.commit("selectMenu", submenu);
       // 页面跳转
-      router.push({ path: item.menuPath });
+      router.push({ path: item.routerPath });
     };
 
-    const requestMenu = ()=>{}
+    const requestMenu = () => {};
 
     onMounted(async () => {
-      const result = await axiosReq("/admin/menu/selectMenuAll", "get", menuData);
+      const result = await axiosReq(
+        "/admin/menu/selectMenuAll",
+        "get",
+        menuData
+      );
       if (result.code == 200) {
+        //结束加载条
+        loadingBar.finish();
         let menuData = result.data;
         for (let index = 0; index < menuData.list.length; index++) {
           const element = menuData.list[index];

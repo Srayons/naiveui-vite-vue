@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent, h, ref, toRefs, reactive } from "vue";
-
+import { useLoadingBar } from "naive-ui";
 import adminHeader from "./adminHeader.vue";
 import adminCenterRight from "./adminCenter.vue";
 
@@ -23,6 +23,9 @@ export default defineComponent({
     adminCenterRight,
   },
   setup() {
+    const loadingBar = useLoadingBar();
+    //开始加载动画
+    loadingBar.start();
     //标题
     $("#BlogTitle").html("Vogelfrei-后台管理");
     return {};

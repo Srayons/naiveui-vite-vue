@@ -13,7 +13,7 @@
 
 <script>
 import { defineComponent, ref, onMounted, computed } from "vue";
-import index from "./views/index.vue";
+// import index from "./views/index.vue";
 import { useRouter } from "vue-router";
 import disableDevtool from "disable-devtool";
 import { addListener, launch } from "devtools-detector";

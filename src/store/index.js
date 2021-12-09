@@ -9,24 +9,24 @@ export default createStore({
     // 全局请求后台URL
     baseURL: import.meta.env.VITE_ENV_FORE_URL,
     // 当前选中的菜单 - 默认选择首页
-    activePath: "wellcome",
+    activePath: "adminWellcome",
     // 菜单项 - 默认包含首页
-    tabList: [{ routerPath: "/wellcome", menuLabel: "控制台", routerName: "wellcome" }],
+    tabList: [{ routerPath: "/adminWellcome", menuLabel: "首页", routerName: "adminWellcome" }],
   },
   // 更改vuex的store中状态的唯一方法 - 同步操作
   mutations: {
     //清空vuex数据
     clearVUEX(state) {
       state.catch_components = [];
-      state.activePath = "wellcome";
-      state.tabList = [{ routerPath: "/wellcome", menuLabel: "首页", routerName: "wellcome" }];
+      state.activePath = "adminWellcome";
+      state.tabList = [{ routerPath: "/adminWellcome", menuLabel: "首页", routerName: "adminWellcome" }];
     },
     // 跳转页面执行
     selectMenu(state, submenu) {
-      // 首页就是 wellcome   也就是 home
-      if (submenu.routerName === "wellcome") {
-        submenu.routerName = "wellcome";
-        submenu.path = "/wellcome";
+      // 首页就是 adminWellcome   也就是 home
+      if (submenu.routerName === "adminWellcome") {
+        submenu.routerName = "adminWellcome";
+        submenu.path = "/adminWellcome";
       }
       // 当前选中菜单
       var activePath = submenu.routerName;
@@ -53,7 +53,7 @@ export default createStore({
     // 添加keepalive缓存
     addKeepAliveCache(state, val) {
       // 如果是首页不缓存
-      if (val === "wellcome") {
+      if (val === "adminWellcome") {
         return;
       }
       // 添加时判断，如果该组件已存在，则不添加

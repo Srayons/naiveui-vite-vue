@@ -10,8 +10,7 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >个人信息</n-gradient-text
-          >
+          >个人信息</n-gradient-text>
         </n-divider>
         <n-gradient-text
           ref="cGradientText"
@@ -22,9 +21,7 @@
             from: 'rgb(85, 85, 85)',
             to: 'rgb(170, 170, 170)',
           }"
-        >
-          作者正在努力开发中。。。。。。
-        </n-gradient-text>
+        >作者正在努力开发中。。。。。。</n-gradient-text>
       </n-card>
 
       <n-card hoverable class="cardStyle" style="--padding-left: 5px">
@@ -36,8 +33,7 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >音乐</n-gradient-text
-          >
+          >音乐</n-gradient-text>
         </n-divider>
         <!--  -->
         <div v-if="!isAplayer">
@@ -79,7 +75,7 @@ import {
   PlayOutline,
 } from "@vicons/ionicons5";
 import Aplayer from "vue3-aplayer";
-
+import { useLoadingBar } from "naive-ui";
 import { getSongsById, getParamsAndKey, PostByPlayerUrl } from "../../http/api";
 
 export default defineComponent({
@@ -100,12 +96,15 @@ export default defineComponent({
     };
   },
   mounted() {
+    const loadingBar = useLoadingBar();
     //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
     // console.log(import.meta.env.VITE_ENV_BASE_URL)
     // console.log(import.meta.env.VITE_ENV_SONGID)
     getSongsById({ id: import.meta.env.VITE_ENV_SONGID }).then((res) => {
       // console.log(res);
       if (res.code == "200") {
+        //结束加载条
+        loadingBar.finish();
         let data = res.data;
         // console.log(data);
         for (let index = 0; index < data.length; index++) {
