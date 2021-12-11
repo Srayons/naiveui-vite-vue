@@ -10,9 +10,9 @@
     :bordered="false"
     :segmented="segmented"
   >
-    <template #header-extra> 噢! </template>
+    <template #header-extra>噢!</template>
     内容
-    <template #footer> 尾部 </template>
+    <template #footer>尾部</template>
   </n-modal>
   <n-layout>
     <n-layout-header
@@ -27,8 +27,7 @@
         <router-link to="/">
           <n-gradient-text
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-            >Vogelfrei bolg admin</n-gradient-text
-          >
+          >Vogelfrei bolg admin</n-gradient-text>
         </router-link>
       </div>
 
@@ -36,7 +35,7 @@
         <n-space justify="center">
           <n-popover trigger="hover">
             <template #trigger>
-              <router-link to="">
+              <router-link to>
                 <!-- SearchIcon -->
                 <n-icon size="25">
                   <SearchIcon></SearchIcon>
@@ -53,12 +52,12 @@
                 <SettingsIcon></SettingsIcon>
               </n-icon>
             </template>
-            <span >设置</span>
+            <span>设置</span>
           </n-popover>
 
           <n-popover trigger="hover">
             <template #trigger>
-              <router-link to="">
+              <router-link to>
                 <!-- LockClosedIcon -->
                 <n-icon size="25">
                   <LockClosedIcon></LockClosedIcon>
@@ -70,7 +69,7 @@
 
           <n-popover trigger="hover">
             <template #trigger>
-              <router-link to="">
+              <router-link to>
                 <!-- FullscreenIcon -->
                 <n-icon size="25">
                   <FullscreenIcon></FullscreenIcon>
@@ -83,7 +82,7 @@
           <n-popover trigger="hover">
             <template #trigger>
               <!-- SkinIcon -->
-              <router-link to="">
+              <router-link to>
                 <n-icon size="25">
                   <SkinIcon></SkinIcon>
                 </n-icon>
@@ -106,7 +105,7 @@
     </n-layout-header>
   </n-layout>
 </template>
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { defineComponent, onMounted, h, ref } from "vue";
 import {
@@ -121,6 +120,7 @@ import {
 } from "@vicons/antd";
 import { useMessage } from "naive-ui";
 
+// 菜单数组
 const options = [
   {
     label: "个人中心",
@@ -139,83 +139,65 @@ const options = [
     key: "loginOut",
   },
 ];
-export default defineComponent({
-  /**
-   * 加载图标
-   */
-  components: {
-    SearchIcon,
-    SettingsIcon,
-    LockClosedIcon,
-    FullscreenIcon,
-    SkinIcon,
-  },
-  setup() {
-    const showModal = ref(false);
-    // 头像地址
-    const avatars = ref(import.meta.env.VITE_ENV_FORE_URL + "/img/avatars.jpg");
-    // 导入路由
-    const router = useRouter();
-    // 导入信息模块
-    const message = useMessage();
-    /**
-     * 页面加载事件
-     */
-    onMounted(() => {
-      // 如果当前浏览器没token，则直接跳转到登录界面
-      if (!$cookies.get("token")) {
-        router.push({
-          path: "/login",
-        });
-      }
+
+const showModal = ref(false);
+// 头像地址
+const avatars = ref(import.meta.env.VITE_ENV_FORE_URL + "/img/avatars.jpg");
+// 导入路由
+const router = useRouter();
+// 导入信息模块
+const message = useMessage();
+/**
+ * 页面加载事件
+ */
+onMounted(() => {
+  // 如果当前浏览器没token，则直接跳转到登录界面
+  if (!$cookies.get("token")) {
+    router.push({
+      path: "/login",
     });
-
-    return {
-      // 设置弹出框
-      bodyStyle: {
-        width: "600px",
-      },
-      segmented: {
-        content: "soft",
-        footer: "soft",
-      },
-      showModal: showModal,
-      avatars,
-      // 菜单数组
-      options,
-      // 选择事件
-      handleSelect(key) {
-        // message.info(key);
-        // 个人中心
-        if (key == "toFrontDesk") {
-          router.push({
-            path: "/",
-          });
-        }
-        // 前台
-        if (key == "toFrontDesk") {
-          router.push({
-            path: "/",
-          });
-        }
-
-        // 登出
-        if (key == "loginOut") {
-          $cookies.remove("token");
-          $cookies.remove("refresh_token");
-          $cookies.remove("userId");
-          localStorage.removeItem("userCode");
-          localStorage.removeItem("userName");
-          router.push({
-            path: "/login",
-          });
-        }
-      },
-      // 设置弹出框
-      showModalSetting() {
-        showModal.value = true;
-      },
-    };
-  },
+  }
 });
+
+// 设置弹出框
+const bodyStyle = {
+  width: "600px",
+};
+
+const segmented = {
+  content: "soft",
+  footer: "soft",
+};
+// 选择事件
+const handleSelect = (key) => {
+  // message.info(key);
+  // 个人中心
+  if (key == "toFrontDesk") {
+    router.push({
+      path: "/",
+    });
+  }
+  // 前台
+  if (key == "toFrontDesk") {
+    router.push({
+      path: "/",
+    });
+  }
+
+  // 登出
+  if (key == "loginOut") {
+    $cookies.remove("token");
+    $cookies.remove("refresh_token");
+    $cookies.remove("userId");
+    localStorage.removeItem("userCode");
+    localStorage.removeItem("userName");
+    router.push({
+      path: "/login",
+    });
+  }
+};
+// 设置弹出框
+const showModalSetting = () => {
+  showModal.value = true;
+};
 </script>

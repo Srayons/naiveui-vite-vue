@@ -42,7 +42,7 @@
         <div v-if="isAplayer">
           <!--             autoplay -->
           <Aplayer
-            :music="videoUpload"
+            :music="videoUpload.music"
             :showLrc="true"
             :listFolded="false"
             :list="lists"
@@ -58,7 +58,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import {
   defineComponent,
   ref,
@@ -78,70 +78,56 @@ import Aplayer from "vue3-aplayer";
 import { useLoadingBar } from "naive-ui";
 import { getSongsById, getParamsAndKey, PostByPlayerUrl } from "../../http/api";
 
-export default defineComponent({
-  components: {
-    PersonOutline,
-    PaperPlaneOutline,
-    PlayOutline,
-    Aplayer,
-  },
-  data() {
-    return {
-      isAplayer: false,
-      LeftSpan: "1",
-      videoUpload: {},
-      lists: [],
-      repeatAll: "list",
-      loading: true,
-    };
-  },
-  mounted() {
-    const loadingBar = useLoadingBar();
-    //发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
-    // console.log(import.meta.env.VITE_ENV_BASE_URL)
-    // console.log(import.meta.env.VITE_ENV_SONGID)
-    getSongsById({ id: import.meta.env.VITE_ENV_SONGID }).then((res) => {
-      // console.log(res);
-      if (res.code == "200") {
-        //结束加载条
-        loadingBar.finish();
-        let data = res.data;
-        // console.log(data);
-        for (let index = 0; index < data.length; index++) {
-          let musics = {
-            title: data[index].mSname,
-            artist: "   " + data[index].mArtist,
-            src:
-              "https://music.163.com/song/media/outer/url?id=" +
-              data[index].mSid +
-              ".mp3", //data[index].mSurl,
-            pic: data[index].mPic,
-            lrc:
-              import.meta.env.VITE_ENV_BASE_URL +
-              "/sync/getLyricById?id=" +
-              data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
-          };
-          this.lists.push(musics);
-        }
-        // console.log(import.meta.env.VITE_ENV_BASE_URLS);
-        // console.log(import.meta.env);
-        // console.log(this.lists);
-        this.videoUpload = this.lists[0];
-        // console.log(JSON.stringify(this.lists[0]));
-        // console.log(this.videoUpload);
-        this.isAplayer = true;
-      }
-    });
-  },
-  setup() {
-    //页面加载完
-    onMounted(() => {});
-    nextTick(() => {});
-    return {
-      volume: 0.8,
-    };
-  },
+const volume = ref(0.8);
+
+const isAplayer = ref(false);
+const LeftSpan = ref("1");
+const videoUpload = reactive({
+  music: {},
 });
+const lists = reactive([]);
+const repeatAll = ref("list");
+const loading = ref(true);
+const loadingBar = useLoadingBar();
+//发送请求  http://localhost:9999/sync/getSongsById?id=6962426121
+// console.log(import.meta.env.VITE_ENV_BASE_URL)
+// console.log(import.meta.env.VITE_ENV_SONGID)
+getSongsById({ id: import.meta.env.VITE_ENV_SONGID }).then((res) => {
+  // console.log(res);
+  if (res.code == "200") {
+    //结束加载条
+    loadingBar.finish();
+    let data = res.data;
+    // console.log(data);
+    for (let index = 0; index < data.length; index++) {
+      let musics = {
+        title: data[index].mSname,
+        artist: "   " + data[index].mArtist,
+        src:
+          "https://music.163.com/song/media/outer/url?id=" +
+          data[index].mSid +
+          ".mp3", //data[index].mSurl,
+        pic: data[index].mPic,
+        lrc:
+          import.meta.env.VITE_ENV_BASE_URL +
+          "/sync/getLyricById?id=" +
+          data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+      };
+      lists.push(musics);
+    }
+    // console.log(import.meta.env.VITE_ENV_BASE_URLS);
+    // console.log(import.meta.env);
+    // console.log(lists);
+    videoUpload.music = lists[0];
+    // console.log(JSON.stringify(this.lists[0]));
+    // console.log(videoUpload);
+    isAplayer.value = true;
+  }
+});
+
+//页面加载完
+onMounted(() => {});
+nextTick(() => {});
 </script>
 <style>
 #divLeft {

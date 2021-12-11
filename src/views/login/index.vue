@@ -27,30 +27,20 @@
   width: 100%;
 }
 </style>
-<script>
+<script setup>
 import loginHeader from "./loginHeader.vue";
 import loginCenter from "./loginCenter.vue";
 import PubFooter from "../../components/Footer.vue";
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
 import { useMessage } from "naive-ui";
 import { useLoadingBar } from "naive-ui";
-export default defineComponent({
-  components: {
-    loginHeader,
-    loginCenter,
-    PubFooter,
-  },
-  setup() {
-    window.$message = useMessage();
-    const loadingBar = useLoadingBar();
-    return {
-      /**
-       * 点击到热门文章（类似锚点）
-       */
-      toHome: () => {
-        document.getElementById("app").scrollIntoView();
-      },
-    };
-  },
-});
+
+window.$message = useMessage();
+const loadingBar = useLoadingBar();
+/**
+ * 点击到首页
+ */
+const toHome = () => {
+  document.getElementById("app").scrollIntoView();
+};
 </script>

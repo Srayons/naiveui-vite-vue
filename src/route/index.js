@@ -20,10 +20,10 @@ const routes = [
     redirect: '/adminWellcome',
     meta: { title: '首页' },
     children: [
-      { path: '/adminWellcome', name: 'adminWellcome', component: () => import("@/views/admin/wellcome.vue"), meta: { title: '首页' } },
-      { path: '/menuManager', name: 'menuManager', component: () => import("@/views/admin/menu/test2.vue"), meta: { title: '测试页面2' } },
+      { path: '/adminWellcome', name: 'adminWellcome', component: () => import("@/views/admin/adminWellcome.vue"), meta: { title: '首页' } },
+      { path: '/menuManager', name: 'menuManager', component: () => import("@/views/admin/menu/menuManager.vue"), meta: { title: '测试页面2' } },
       { path: '/test3', name: 'test3', component: () => import("@/views/admin/menu/test3.vue"), meta: { title: '测试页面3' } },
-      { path: '/iconManager', name: 'iconManager', component: () => import("@/views/admin/menu/test4.vue"), meta: { title: '测试页面4' } },
+      { path: '/iconManager', name: 'iconManager', component: () => import("@/views/admin/menu/iconManager.vue"), meta: { title: '测试页面4' } },
       { path: '/test5', name: 'test5', component: () => import("@/views/admin/menu/test5.vue"), meta: { title: '测试页面5' } },
       { path: '/test6', name: 'test6', component: () => import("@/views/admin/menu/test6.vue"), meta: { title: '测试页面6' } },
       { path: '/test7', name: 'test7', component: () => import("@/views/admin/menu/test7.vue"), meta: { title: '测试页面7' } },

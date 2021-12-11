@@ -16,32 +16,15 @@
         <n-gradient-text
           style="margin-left: 6px"
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-        >
-          最热文章
-        </n-gradient-text>
+        >最热文章</n-gradient-text>
       </n-divider>
       <!-- 轮播图 -->
       <n-carousel autoplay trigger="hover" show-arrow>
-        <img
-          class="carousel-img"
-          src="../../img/1.jpg"
-        />
-        <img
-          class="carousel-img"
-          src="../../img/2.jpg"
-        />
-        <img
-          class="carousel-img"
-          src="../../img/3.jpg"
-        />
-        <img
-          class="carousel-img"
-          src="../../img/4.jpg"
-        />
-        <img
-          class="carousel-img"
-          src="../../img/5.jpg"
-        />
+        <img class="carousel-img" src="../../img/1.jpg" />
+        <img class="carousel-img" src="../../img/2.jpg" />
+        <img class="carousel-img" src="../../img/3.jpg" />
+        <img class="carousel-img" src="../../img/4.jpg" />
+        <img class="carousel-img" src="../../img/5.jpg" />
       </n-carousel>
       <!-- <n-switch v-model:value="loading" /> -->
       <!-- 最热文章 -->
@@ -52,14 +35,9 @@
         <n-gradient-text
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
           style="margin-left: 6px"
-          >最新文章</n-gradient-text
-        >
+        >最新文章</n-gradient-text>
       </n-divider>
-      <n-card
-        v-for="(grad, index) in GradientTexts"
-        hoverable
-        class="cardStyle"
-      >
+      <n-card v-for="(grad, index) in GradientTexts" hoverable class="cardStyle">
         <template #header :key="i" class="header-Skeleton">
           <n-skeleton text v-if="loading" width="60%" />
           <template v-else>
@@ -97,9 +75,7 @@
                 from: 'rgb(85, 85, 85)',
                 to: 'rgb(170, 170, 170)',
               }"
-            >
-              {{ grad.content }}
-            </n-gradient-text>
+            >{{ grad.content }}</n-gradient-text>
             <n-icon size="30" style="text-indent: 0.5em; margin-top: 15px">
               <EllipsisHorizontal></EllipsisHorizontal>
             </n-icon>
@@ -216,7 +192,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import {
   defineComponent,
   ref,
@@ -235,88 +211,62 @@ import {
   BookmarkOutline,
   EllipsisHorizontal,
 } from "@vicons/ionicons5";
-export default defineComponent({
-  components: {
-    EyeOutline,
-    EllipsisHorizontalCircle,
-    TimeOutline,
-    PricetagsOutline,
-    ThumbsUpOutline,
-    BookmarkOutline,
-    EllipsisHorizontal,
-  },
-  setup() {
-    const cardLen = reactive([]);
-    //https://xiaoyou66.com/assets/images/background/img173.jpg
-    const srcUrl = ref("https://xiaoyou66.com/assets/images/background/img"); //https://s3.mashiro.top/view/2018/01/03/sakura.pn
-    const loading = ref(true);
-    const active = ref(false);
-    const disabled = ref(true);
-    const hGradientText = ref(null);
-    const cGradientText = ref(null);
-    const GradientTexts = reactive([]);
-    let data = {
-      title: "作者正在努力开发中。。。。。。",
-      vitisy: "9999k",
-      commont: "9999",
-      tag: "Java",
-      like: "99999k",
-      dateTime: "2099-08-21",
-      content:
-        "作者正在努力开发中。。。。。。",
-    };
-    // GradientTexts.length = 5;
-    for (let index = 0; index < 5; index++) {
-      GradientTexts.push(data);
-    }
 
-    //页面加载完
-    onMounted(() => {
-      if (navigator.onLine) {
-        // console.log("有网");
-        ref(loading).value = false;
-        nextTick(() => {
-          let el = document.getElementsByClassName("c-gradient-text");
-          if (el) {
-            for (let index = 0; index < el.length; index++) {
-              /* 多行超出变省略号 */
-              //设置不强制换行
-              el[index].style.setProperty("white-space", "unset");
-              //将对象作为弹性伸缩盒子模型显示
-              el[index].style.setProperty("display", "-webkit-box");
-              //设置超出隐藏
-              el[index].style.setProperty("overflow", "hidden");
-              /* 几行超出 */
-              el[index].style.setProperty("-webkit-line-clamp", "3");
-              el[index].style.setProperty("-webkit-box-orient", "vertical");
-              el[index].style.setProperty("height", "auto");
-            }
-          }
-        });
-      } else {
-        // console.log("没网");
+const cardLen = reactive([]);
+//https://xiaoyou66.com/assets/images/background/img173.jpg
+const srcUrl = ref("https://xiaoyou66.com/assets/images/background/img"); //https://s3.mashiro.top/view/2018/01/03/sakura.pn
+const loading = ref(true);
+const active = ref(false);
+const disabled = ref(true);
+const hGradientText = ref(null);
+const cGradientText = ref(null);
+const GradientTexts = reactive([]);
+let data = {
+  title: "作者正在努力开发中。。。。。。",
+  vitisy: "9999k",
+  commont: "9999",
+  tag: "Java",
+  like: "99999k",
+  dateTime: "2099-08-21",
+  content: "作者正在努力开发中。。。。。。",
+};
+// GradientTexts.length = 5;
+for (let index = 0; index < 5; index++) {
+  GradientTexts.push(data);
+}
+
+//页面加载完
+onMounted(() => {
+  if (navigator.onLine) {
+    // console.log("有网");
+    ref(loading).value = false;
+    nextTick(() => {
+      let el = document.getElementsByClassName("c-gradient-text");
+      if (el) {
+        for (let index = 0; index < el.length; index++) {
+          /* 多行超出变省略号 */
+          //设置不强制换行
+          el[index].style.setProperty("white-space", "unset");
+          //将对象作为弹性伸缩盒子模型显示
+          el[index].style.setProperty("display", "-webkit-box");
+          //设置超出隐藏
+          el[index].style.setProperty("overflow", "hidden");
+          /* 几行超出 */
+          el[index].style.setProperty("-webkit-line-clamp", "3");
+          el[index].style.setProperty("-webkit-box-orient", "vertical");
+          el[index].style.setProperty("height", "auto");
+        }
       }
-      cardLen.length = 5;
-      // updateSwitch();
     });
+  } else {
+    // console.log("没网");
+  }
+  cardLen.length = 5;
+  // updateSwitch();
+});
 
-    //页面升级
-    onUpdated(() => {
-      // console.log("onUpdated=====");
-    });
-
-    // 不要忘了在return中添加refDiv
-    return {
-      loading, //加载动画
-      active,
-      disabled,
-      cardLen,
-      srcUrl,
-      hGradientText,
-      cGradientText,
-      // gradient,
-      GradientTexts,
-    };
-  },
+//页面升级
+onUpdated(() => {
+  // console.log("onUpdated=====");
 });
 </script>

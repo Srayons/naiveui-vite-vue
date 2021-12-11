@@ -38,6 +38,8 @@ import {
     NTag,
     NSelect,
     NModal,
+    NSpin,
+    NDataTable,
   } from 'naive-ui'
   
   const naive = create({
@@ -77,6 +79,8 @@ import {
       NTag,
       NSelect,
       NModal,
+      NSpin,
+      NDataTable,
     ]
   })
 

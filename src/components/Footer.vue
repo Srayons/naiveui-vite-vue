@@ -16,22 +16,16 @@
   </n-layout-footer>
 </template>
 
-<script>
+<script setup>
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
 
-export default defineComponent({
-  setup() {
-    onMounted(() => {});
-    return {
-      beian() {
-        window.open("https://beian.miit.gov.cn/", "_blank");
-      },
-      toHome() {
-        window.location.href = import.meta.env.VITE_ENV_FORE_URL;
-      },
-    };
-  },
-});
+onMounted(() => {});
+const beian = () => {
+  window.open("https://beian.miit.gov.cn/", "_blank");
+};
+const toHome = () => {
+  window.location.href = import.meta.env.VITE_ENV_FORE_URL;
+};
 </script>
 <style>
 .n-layout-footer .n-gradient-text {

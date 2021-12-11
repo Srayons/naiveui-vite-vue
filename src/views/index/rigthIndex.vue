@@ -10,9 +10,7 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >
-            公告
-          </n-gradient-text>
+          >公告</n-gradient-text>
         </n-divider>
         <n-gradient-text
           ref="cGradientText"
@@ -23,9 +21,7 @@
             from: 'rgb(85, 85, 85)',
             to: 'rgb(170, 170, 170)',
           }"
-        >
-          作者正在努力开发中。。。。。。</n-gradient-text
-        >
+        >作者正在努力开发中。。。。。。</n-gradient-text>
       </n-card>
 
       <n-card hoverable class="cardStyle">
@@ -37,9 +33,7 @@
           <n-gradient-text
             style="margin-left: 6px"
             gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          >
-            更多功能
-          </n-gradient-text>
+          >更多功能</n-gradient-text>
         </n-divider>
 
         <n-gradient-text
@@ -51,36 +45,22 @@
             from: 'rgb(85, 85, 85)',
             to: 'rgb(170, 170, 170)',
           }"
-        >
-          作者正在努力开发中。。。。。。</n-gradient-text
-        ></n-card
-      >
+        >作者正在努力开发中。。。。。。</n-gradient-text>
+      </n-card>
     </n-space>
   </div>
 </template>
 
-<script>
+<script setup>
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
 //书签
 import { BookmarkOutline } from "@vicons/ionicons5";
-export default defineComponent({
-  components: {
-    BookmarkOutline,
-  },
-  setup() {
-    return {};
-  },
-  data() {
-    return {
-      RigthSpan: "2",
-    };
-  },
-});
+const RigthSpan = ref("2");
 </script>
 
 <style>
 #divRigth .n-card {
-  width: 520px
+  width: 520px;
 }
 #divRigth .n-card > .n-card__content {
   width: 100%;

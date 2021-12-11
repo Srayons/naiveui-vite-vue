@@ -13,22 +13,16 @@
     </div>
   </n-layout-header>
 </template>
-<script>
+<script setup>
 import { useRouter } from "vue-router";
 import { defineComponent, ref, onMounted, onUpdated } from "vue";
-export default defineComponent({
-  setup() {
-    const router = useRouter();
-    
-    return {
-      toHome() {
-        window.location.href = import.meta.env.VITE_ENV_FORE_URL;
-      },
-      toAdminHome() {
-        window.location.reload(true);
-      },
 
-    };
-  },
-});
+const router = useRouter();
+
+const toHome = () => {
+  window.location.href = import.meta.env.VITE_ENV_FORE_URL;
+};
+const toAdminHome = () => {
+  window.location.reload(true);
+};
 </script>
