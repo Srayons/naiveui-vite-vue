@@ -3,17 +3,14 @@
     "version": "1.0.20",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "fix-memory-limit": "cross-env LIMIT=450 increase-memory-limit"
+        "build": "vite build"
     },
     "dependencies": {
         "@vitejs/plugin-vue": "^1.9.0",
         "aplayer": "^1.10.1",
         "axios": "^0.21.4",
-        "cross-env": "^7.0.3",
         "devtools-detector": "^2.0.6",
         "disable-devtool": "^0.1.5",
-        "increase-memory-limit": "^1.0.7",
         "js-md5": "^0.7.3",
         "qs": "^6.10.1",
         "vue": "^3.0.4",
