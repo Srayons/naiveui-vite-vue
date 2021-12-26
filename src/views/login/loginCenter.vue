@@ -212,9 +212,9 @@ let toLogin = () => {
         const { href } = router.resolve({
           path: "/admin/Index",
         });
-        // location.href = href;
-        window.close();
-        window.open(href);
+        // window.open(href,"_self");
+        // window.location.replace(href);
+        window.location.reload();
       }
     } else {
       show.value = false;

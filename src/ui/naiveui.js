@@ -40,6 +40,7 @@ import {
     NModal,
     NSpin,
     NDataTable,
+    NBreadcrumb,
   } from 'naive-ui'
   
   const naive = create({
@@ -81,6 +82,7 @@ import {
       NModal,
       NSpin,
       NDataTable,
+      NBreadcrumb,
     ]
   })
 
