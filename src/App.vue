@@ -19,5 +19,5 @@ import disableDevtool from "disable-devtool";
 import { addListener, launch } from "devtools-detector";
 //标题
 
-$("#BlogTitle").html("Vogelfrei ——MrSong's Blog");
+$("#BlogTitle").html("MrSong's Blog");
 </script>

@@ -101,17 +101,17 @@ getSongsById({ id: import.meta.env.VITE_ENV_SONGID }).then((res) => {
     // console.log(data);
     for (let index = 0; index < data.length; index++) {
       let musics = {
-        title: data[index].mSname,
-        artist: "   " + data[index].mArtist,
+        title: data[index].msname,
+        artist: "   " + data[index].martist,
         src:
           "https://music.163.com/song/media/outer/url?id=" +
-          data[index].mSid +
+          data[index].msid +
           ".mp3", //data[index].mSurl,
-        pic: data[index].mPic,
+        pic: data[index].mpic,
         lrc:
           import.meta.env.VITE_ENV_BASE_URL +
           "/sync/getLyricById?id=" +
-          data[index].mSid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
+          data[index].msid, //"https://api.imjad.cn/cloudmusic/?id=1330348068&type=lyric",
       };
       lists.push(musics);
     }

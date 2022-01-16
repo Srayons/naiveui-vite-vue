@@ -12,7 +12,7 @@
         <n-gradient-text
           gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
           @click="toHome"
-          >Vogelfrei ——MrSong's Blog</n-gradient-text
+          >MrSong's Blog</n-gradient-text
         >
       </div>
       <div id="A-h-icon">
@@ -45,7 +45,7 @@
             <n-gradient-text
               gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
               @click="toHome"
-              >Vogelfrei ——MrSong's Blog</n-gradient-text
+              >MrSong's Blog</n-gradient-text
             >
           </p>
           <div class="top-social_v2">

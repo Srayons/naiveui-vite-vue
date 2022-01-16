@@ -5,7 +5,7 @@
       <n-gradient-text
         gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
         @click="toHome"
-      >Vogelfrei ——MrSong's Blog</n-gradient-text>
+      >MrSong's Blog</n-gradient-text>
       <n-gradient-text
         gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
         @click="toAdminHome"
