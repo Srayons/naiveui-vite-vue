@@ -341,7 +341,7 @@ onMounted(() => {
       let divRigth = document.getElementById("divRigth");
       //固定左面布局
       let divLeft = document.getElementById("divLeft");
-      if (scrollTop <= "890") {
+      if (scrollTop <= "890" && divRigth && divLeft) {
         //top: 95px;left: 1235px;position: fixed;
         divRigth.style.setProperty("position", "unset");
         divLeft.style.setProperty("position", "unset");

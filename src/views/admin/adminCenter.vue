@@ -83,6 +83,7 @@ import { RouterLink, useRouter } from "vue-router";
 import { NIcon } from "naive-ui";
 import { useLoadingBar } from "naive-ui";
 import { axiosReq } from "../../http/requestApi/requestApi";
+import { routerPackag } from "../../util/menuUtil";
 
 /**
  * 图标事件
@@ -226,6 +227,7 @@ onMounted(async () => {
     //结束加载
     show.value = false;
     let menuData = result.data;
+    routerPackag(menuData.list);
     // 动态导入图标库
     const ionicons5 = await import("@vicons/ionicons5");
     for (let index = 0; index < menuData.list.length; index++) {

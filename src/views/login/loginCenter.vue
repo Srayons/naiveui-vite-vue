@@ -15,7 +15,7 @@
                 :label-width="58"
                 :size="size"
                 :style="{
-                maxWidth: '640px',
+                maxWidth: '650px',
               }"
               >
                 <n-gradient-text

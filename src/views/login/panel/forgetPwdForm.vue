@@ -5,7 +5,7 @@
     :rules="rules"
     ref="forgetPwdFormRef"
     label-placement="left"
-    :label-width="58"
+    :label-width="75"
     :size="size"
     :style="{
         maxWidth: '640px',
@@ -161,6 +161,6 @@ const returnLogin = () => {
     loginConfig: true,
     LoginPanelStyle: "height: 759px",
   };
-  emit("loginConfigValue", configVaule);
+  emits("loginConfigValue", configVaule);
 };
 </script>
