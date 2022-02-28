@@ -1,5 +1,12 @@
 <template>
-  <n-data-table :columns="columns" :data="data" :row-key="rowKey" />
+  <n-data-table
+    striped
+    size="large"
+    :columns="columns"
+    :data="data"
+    :row-key="rowKey"
+    :pagination="pagination"
+  />
 </template>
 <script setup>
 import { useLoadingBar } from "naive-ui";
@@ -16,6 +23,7 @@ import {
   onUnmounted,
 } from "vue";
 
+// 父组件传递的值
 const props = defineProps({
   msg: String,
 });
@@ -31,22 +39,29 @@ const loadingBar = useLoadingBar();
 loadingBar.finish();
 onMounted(() => {});
 
+// 每行的唯一值
 const rowKey = (row) => row.index;
 
+// 列名
 const columns = [
   {
     type: "selection",
   },
   {
-    title: "name",
+    title: "菜单名称",
     key: "name",
   },
   {
-    title: "index",
+    title: "菜单图标",
+    key: "index",
+  },
+  {
+    title: "菜单图标",
     key: "index",
   },
 ];
 
+// 渲染的数据
 const data = [
   {
     name: "07akioni",
@@ -73,6 +88,10 @@ const data = [
     index: "11",
   },
 ];
+
+const pagination = reactive({
+  pageSize: 5,
+});
 </script>
 <style lang="less" scoped>
 </style>
