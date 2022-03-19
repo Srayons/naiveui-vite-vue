@@ -1,10 +1,10 @@
 <template>
   <n-layout-footer>
     <!-- 渐变文字 -->
-    <n-gradient-text
+    <!-- <n-gradient-text
       @click="beian"
       gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-    >京ICP备2021033955</n-gradient-text>
+    >京ICP备2021033955</n-gradient-text> -->
     <n-gradient-text
       gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
     >Copyright © 2020 - 2021</n-gradient-text>
