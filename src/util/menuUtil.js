@@ -3,7 +3,7 @@ import router from '../route/index'
 export const routerPackag = routers => {
   console.log(routers)
     routers.filter(itemRouter => {
-      if (itemRouter.routerComponent != "Layout") {
+      if (itemRouter.routerComponent !== "Layout") {
         router.addRoute("adminIndex", {
           path: `${itemRouter.routerPath}`,
           name: itemRouter.routerName,

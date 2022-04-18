@@ -172,20 +172,20 @@ const segmented = {
 const handleSelect = (key) => {
   // message.info(key);
   // 个人中心
-  if (key == "toFrontDesk") {
+  if (key === "toFrontDesk") {
     router.push({
       path: "/",
     });
   }
   // 前台
-  if (key == "toFrontDesk") {
+  if (key === "toFrontDesk") {
     router.push({
       path: "/",
     });
   }
 
   // 登出
-  if (key == "loginOut") {
+  if (key === "loginOut") {
     $cookies.remove("token");
     $cookies.remove("refresh_token");
     $cookies.remove("userId");
