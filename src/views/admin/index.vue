@@ -1,6 +1,6 @@
 <template>
   <div id="adminIndexDiv">
-    <n-space vertical>
+    <n-space :size="0" vertical>
       <!-- <n-space> <n-switch v-model:value="inverted" />inverted</n-space> -->
       <!-- 头部 -->
       <adminHeader></adminHeader>
@@ -12,10 +12,7 @@
 </template>
 
 <script setup>
-import { defineComponent, h, ref, toRefs, reactive } from "vue";
-import { useLoadingBar } from "naive-ui";
-import adminHeader from "./adminHeader.vue";
-import adminCenterRight from "./adminCenter.vue";
+import {useLoadingBar} from "naive-ui";
 
 const loadingBar = useLoadingBar();
 //开始加载动画

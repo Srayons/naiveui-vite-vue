@@ -1,95 +1,88 @@
 <template>
   <n-layout-sider
-    bordered
-    collapse-mode="width"
-    :collapsed-width="64"
-    :width="240"
-    :collapsed="collapsed"
-    show-trigger
-    @collapse="collapsed = true"
-    @expand="collapsed = false"
+      :collapsed="collapsed"
+      :collapsed-width="64"
+      :width="240"
+      bordered
+      collapse-mode="width"
+      show-trigger
+      @collapse="collapsed = true"
+      @expand="collapsed = false"
   >
     <n-scrollbar style="height: calc(90vh)">
       <n-spin :show="show">
         <n-menu
-          :inverted="inverted"
-          :collapsed="collapsed"
-          :collapsed-width="64"
-          :collapsed-icon-size="22"
-          :options="states.menuOptions"
-          @update:value="handleUpdateValue"
-          :default-expanded-keys="defaultExpandedKeys.Expandedkeys"
-          key-field="menuKey"
-          label-field="menuLabel"
-          children-field="menuChildren"
+            :collapsed="collapsed"
+            :collapsed-icon-size="22"
+            :collapsed-width="70"
+            :default-expanded-keys="defaultExpandedKeys.Expandedkeys"
+            :inverted="inverted"
+            :options="states.menuOptions"
+            children-field="menuChildren"
+            key-field="menuKey"
+            label-field="menuLabel"
+            @update:value="handleUpdateValue"
         />
       </n-spin>
       <!--         :default-expanded-keys="[menuOptions[menuOptions.length - 1].menuKey]" -->
     </n-scrollbar>
   </n-layout-sider>
   <n-layout>
-    <n-space vertical>
-      <n-card content-style="padding:10px;">
-        <n-space>
-          <!-- 标签页 -->
-          <!--:color="{ color: '#BBB', textColor: '#555', borderColor: '#555' }" -->
-          <n-tag
-            v-for="(panel, index) in tabList"
-            size="large"
-            :type="activePath === panel.routerName ? 'success' : ''"
-            :closable="panel.routerName !== 'adminWellcome'"
-            @close="
+    <n-space :size="0" vertical>
+      <div style="width: 100%;z-index: 5;">
+        <n-card content-style="padding:10px;">
+          <n-space>
+            <!-- 标签页 -->
+            <!--:color="{ color: '#BBB', textColor: '#555', borderColor: '#555' }" -->
+            <n-tag
+                v-for="(panel, index) in tabList"
+                :closable="panel.routerName !== 'adminWellcome'"
+                :type="activePath === panel.routerName ? 'success' : ''"
+                size="large"
+                @close="
               handleClose(
                 panel,
                 index,
                 activePath === panel.routerName ? 'success' : ''
               )
             "
-          >
+            >
             <span @click="handleMenu(panel, index)">
               {{
-              panel.menuLabel
+                panel.menuLabel
               }}
             </span>
-          </n-tag>
-        </n-space>
-      </n-card>
-      <n-card>
-        <!-- vue3.0配置 -->
-        <router-view v-slot="{ Component }">
-          <keep-alive>
-            <!-- <component :is="Component" v-if="$route.meta.keepAlive" /> -->
-          </keep-alive>
-          <component :is="Component" v-if="!$route.meta.keepAlive" />
-        </router-view>
-      </n-card>
+            </n-tag>
+          </n-space>
+        </n-card>
+      </div>
+      <div>
+        <n-card>
+          <!-- vue3.0配置 -->
+          <router-view v-slot="{ Component }">
+            <keep-alive>
+              <!-- <component :is="Component" v-if="$route.meta.keepAlive" /> -->
+            </keep-alive>
+            <component :is="Component" v-if="!$route.meta.keepAlive"/>
+          </router-view>
+        </n-card>
+      </div>
     </n-space>
   </n-layout>
 </template>
 <script setup>
-import {
-  defineComponent,
-  h,
-  ref,
-  toRefs,
-  toRef,
-  reactive,
-  computed,
-  onMounted,
-} from "vue";
-import { useMessage } from "naive-ui";
-import { useStore, mapState, mapMutations } from "vuex";
-import { RouterLink, useRouter } from "vue-router";
-import { NIcon } from "naive-ui";
-import { useLoadingBar } from "naive-ui";
-import { axiosReq } from "../../http/requestApi/requestApi";
-import { routerPackag } from "../../util/menuUtil";
+import {h, onMounted, reactive, ref, toRef,} from "vue";
+import {NIcon, useLoadingBar, useMessage} from "naive-ui";
+import {useStore} from "vuex";
+import {useRouter} from "vue-router";
+import {axiosReq} from "../../http/requestApi/requestApi";
+import {routerPackage} from "../../util/menuUtil";
 
 /**
  * 图标事件
  */
 function renderIcon(icon) {
-  return () => h(NIcon, null, { default: () => h(icon) });
+  return () => h(NIcon, null, {default: () => h(icon)});
 }
 
 const store = useStore();
@@ -137,7 +130,7 @@ const handleMenu = (item, index) => {
   // 不是自己，存储菜单
   store.commit("changeMenu", item.routerName);
   // 页面跳转
-  router.push({ path: item.routerName });
+  router.push({path: item.routerName});
 };
 // 标签关闭事件
 const handleClose = (tab, index) => {
@@ -169,13 +162,13 @@ const handleClose = (tab, index) => {
       tabList: oldTabList,
     });
     // tab页向左跳转
-    router.push({ path: oldTabList[index - 1].routerPath });
+    router.push({path: oldTabList[index - 1].routerPath});
     // 不再向下执行
     return;
   }
   // 关闭的标签是最右边的话，往左边跳转一个
   if (index === length) {
-    router.push({ path: "/test2" });
+    router.push({path: "/test2"});
     // 同时更新路径
     oldActivePath = oldTabList[index - 1].routerName;
     // 同时存储菜单
@@ -184,7 +177,7 @@ const handleClose = (tab, index) => {
       tabList: oldTabList,
     });
     // tab页向左跳转
-    router.push({ path: oldTabList[index - 1].routerPath });
+    router.push({path: oldTabList[index - 1].routerPath});
   } else {
     // 同时更新路径
     oldActivePath = oldTabList[index].routerName;
@@ -194,7 +187,7 @@ const handleClose = (tab, index) => {
       tabList: oldTabList,
     });
     // tab页向右跳转
-    router.push({ path: oldTabList[index].routerPath });
+    router.push({path: oldTabList[index].routerPath});
   }
 };
 // 菜单点击
@@ -206,7 +199,7 @@ const handleUpdateValue = (key, item) => {
   //添加tags标签
   //访问wellcome 就代表home
   var menuKey =
-    item.menuKey === "adminWellcome" ? "adminWellcome" : item.menuKey;
+      item.menuKey === "adminWellcome" ? "adminWellcome" : item.menuKey;
   var submenu = {
     routerPath: item.routerPath,
     routerName: menuKey,
@@ -216,7 +209,7 @@ const handleUpdateValue = (key, item) => {
   store.commit("selectMenu", submenu);
   loadingBar.start();
   // 页面跳转
-  router.push({ path: item.routerPath });
+  router.push({path: item.routerPath});
 };
 // 初始化加载
 onMounted(async () => {
@@ -227,7 +220,7 @@ onMounted(async () => {
     //结束加载
     show.value = false;
     let menuData = result.data;
-    routerPackag(menuData.list);
+    routerPackage(menuData.list);
     // 动态导入图标库
     const ionicons5 = await import("@vicons/ionicons5");
     for (let index = 0; index < menuData.list.length; index++) {
@@ -237,7 +230,7 @@ onMounted(async () => {
         for (let index = 0; index < element.menuChildren.length; index++) {
           const elementMenuChildren = element.menuChildren[index];
           elementMenuChildren.icon = renderIcon(
-            ionicons5[elementMenuChildren.menuIcon]
+              ionicons5[elementMenuChildren.menuIcon]
           );
         }
       }

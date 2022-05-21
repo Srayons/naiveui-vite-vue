@@ -1,6 +1,5 @@
 <template>
   <n-modal
-    class="custom-card"
     :mask-closable="false"
     v-model:show="showModal"
     preset="card"
@@ -18,6 +17,7 @@
     <n-layout-header
       style="
         position: unset;
+        z-index: 6;
         opacity: 1;
         border-bottom: solid 1px rgb(239, 239, 245);
       "
@@ -106,19 +106,16 @@
   </n-layout>
 </template>
 <script setup>
-import { useRouter } from "vue-router";
-import { defineComponent, onMounted, h, ref } from "vue";
+import {useRouter} from "vue-router";
+import {onMounted, ref} from "vue";
 import {
+  LockClosedOutline as LockClosedIcon,
   SearchOutline as SearchIcon,
   SettingsOutline as SettingsIcon,
-  LockClosedOutline as LockClosedIcon,
 } from "@vicons/ionicons5";
 
-import {
-  FullscreenOutlined as FullscreenIcon,
-  SkinOutlined as SkinIcon,
-} from "@vicons/antd";
-import { useMessage } from "naive-ui";
+import {FullscreenOutlined as FullscreenIcon, SkinOutlined as SkinIcon,} from "@vicons/antd";
+import {useMessage} from "naive-ui";
 
 // 菜单数组
 const options = [
@@ -201,3 +198,5 @@ const showModalSetting = () => {
   showModal.value = true;
 };
 </script>
+<style scoped>
+</style>
