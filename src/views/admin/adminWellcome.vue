@@ -2,19 +2,8 @@
   <div id="wellcome">欢迎页</div>
 </template>
 <script setup>
-import { useLoadingBar } from "naive-ui";
-import {
-  defineComponent,
-  h,
-  ref,
-  useSlots,
-  useAttrs,
-  reactive,
-  nextTick,
-  computed,
-  onMounted,
-  onUnmounted,
-} from "vue";
+import {useLoadingBar} from "naive-ui";
+import {onMounted, useAttrs, useSlots,} from "vue";
 
 const props = defineProps({
   msg: String,

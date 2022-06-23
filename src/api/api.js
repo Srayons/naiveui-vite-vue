@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 var $http = axios.create({
     baseURL: location.origin//服务器地址
 });
