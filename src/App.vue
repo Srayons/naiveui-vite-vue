@@ -15,5 +15,5 @@
 // import index from "./views/index.vue";
 //标题
 
-$("#BlogTitle").html("MrSong's Blog");
+$("#BlogTitle").html("个人学习笔记 ---MrSong's Blog");
 </script>

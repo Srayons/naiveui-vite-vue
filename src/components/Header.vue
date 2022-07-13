@@ -10,9 +10,10 @@
       <div id="A-h-gradint">
         <!-- 渐变文字 -->
         <n-gradient-text
-          gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-          @click="toHome"
-          >MrSong's Blog</n-gradient-text
+            gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+            @click="toHome"
+        >个人学习笔记 ---MrSong's Blog
+        </n-gradient-text
         >
       </div>
       <div id="A-h-icon">
@@ -43,9 +44,10 @@
           <p>
             <!-- 渐变文字 -->
             <n-gradient-text
-              gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
-              @click="toHome"
-              >MrSong's Blog</n-gradient-text
+                gradient="linear-gradient(90deg, red 0%, green 50%, blue 100%)"
+                @click="toHome"
+            >个人学习笔记 ---MrSong's Blog
+            </n-gradient-text
             >
           </p>
           <div class="top-social_v2">
@@ -96,18 +98,18 @@
 </template>
 
 <script>
-import { defineComponent, h, ref, onMounted, nextTick } from "vue";
-import { NIcon } from "naive-ui";
+import {defineComponent, h, nextTick, onMounted, ref} from "vue";
+import {NIcon} from "naive-ui";
 import {
   BookOutline as BookIcon,
-  PersonOutline as PersonIcon,
-  WineOutline as WineIcon,
-  SearchCircleOutline as SearchCircleIcon,
   PersonCircleOutline as PersonCircleIcon,
+  PersonOutline as PersonIcon,
+  SearchCircleOutline as SearchCircleIcon,
+  WineOutline as WineIcon,
 } from "@vicons/ionicons5";
 
 function renderIcon(icon) {
-  return () => h(NIcon, null, { default: () => h(icon) });
+  return () => h(NIcon, null, {default: () => h(icon)});
 }
 
 const menuOptions = [
